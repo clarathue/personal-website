@@ -45,8 +45,8 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="pt-28 pb-20 bg-gradient-to-br from-white to-gray-50">
       <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-7 flex flex-col justify-center">
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
               initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl"
+              className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
             </motion.p>
             
             {/* Floating tags above the button */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mt-8">
               <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
               <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
               <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
@@ -76,6 +76,7 @@ const Hero: React.FC = () => {
             </div>
             
             <motion.div
+              className="mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.7 }}
@@ -88,7 +89,7 @@ const Hero: React.FC = () => {
             </motion.div>
           </div>
           
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 flex items-start pt-24">
             <motion.div
               className="relative h-[400px] w-full"
               initial={{ opacity: 0, scale: 0.9 }}
