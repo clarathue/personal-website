@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -21,7 +20,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-tech-gray-100">
+    <section id="contact" className="py-24 bg-tech-gray-100">
       <div className="section-container">
         <h2 className="section-title text-center">Kontakt</h2>
         <p className="section-subtitle text-center mx-auto">
