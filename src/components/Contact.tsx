@@ -1,0 +1,103 @@
+
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent } from '@/components/ui/card';
+import { Mail, Linkedin } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
+
+const Contact: React.FC = () => {
+  const { toast } = useToast();
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast({
+      title: "Nachricht gesendet",
+      description: "Vielen Dank für Ihre Anfrage. Ich werde mich in Kürze bei Ihnen melden.",
+      duration: 5000,
+    });
+    (e.target as HTMLFormElement).reset();
+  };
+
+  return (
+    <section id="contact" className="py-20 bg-tech-gray-100">
+      <div className="section-container">
+        <h2 className="section-title text-center">Kontakt</h2>
+        <p className="section-subtitle text-center mx-auto">
+          Lassen Sie uns über Ihr Projekt sprechen – ich freue mich auf Ihre Anfrage.
+        </p>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
+          <div className="lg:col-span-5 space-y-8">
+            <Card className="border-none shadow-lg bg-white">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Kontaktieren Sie mich</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
+                      <Mail className="h-5 w-5 text-tech-blue" />
+                    </div>
+                    <a href="mailto:kontakt@example.com" className="text-tech-gray-700 hover:text-tech-blue">kontakt@example.com</a>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
+                      <Linkedin className="h-5 w-5 text-tech-blue" />
+                    </div>
+                    <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="text-tech-gray-700 hover:text-tech-blue">LinkedIn Profil</a>
+                  </div>
+                </div>
+                
+                <div className="mt-8 p-4 bg-tech-gray-100 rounded-lg">
+                  <p className="text-tech-gray-700 text-sm">
+                    Terminbuchung: Sie können auch direkt einen Termin für ein unverbindliches Erstgespräch buchen.
+                  </p>
+                  <Button variant="outline" className="mt-3 w-full border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white">
+                    Termin vereinbaren
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="lg:col-span-7">
+            <Card className="border-none shadow-lg bg-white">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-6">Nachricht senden</h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium text-tech-gray-700">Name</label>
+                      <Input id="name" placeholder="Ihr Name" required />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium text-tech-gray-700">E-Mail</label>
+                      <Input id="email" type="email" placeholder="ihre.email@example.com" required />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium text-tech-gray-700">Betreff</label>
+                    <Input id="subject" placeholder="Betreff Ihrer Nachricht" required />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium text-tech-gray-700">Nachricht</label>
+                    <Textarea id="message" placeholder="Ihre Nachricht..." className="min-h-[120px]" required />
+                  </div>
+                  
+                  <Button type="submit" className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
+                    Nachricht senden
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
