@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChartLine, Search, Database } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 const UseCases: React.FC = () => {
   const [activeTab, setActiveTab] = useState('business-intelligence');
@@ -13,7 +13,6 @@ const UseCases: React.FC = () => {
       title: 'Business Intelligence Chatbot',
       icon: <ChartLine className="h-6 w-6" />,
       description: 'Smarte Datenanalyse auf Knopfdruck für Controlling, Sales und Einkauf.',
-      color: 'bg-blue-500',
       features: [
         'Verbindung zur internen Datenbank (z. B. Postgres)',
         'AI erstellt automatisiert SQL-Abfragen',
@@ -30,9 +29,8 @@ const UseCases: React.FC = () => {
       title: 'Marktforschung & Wettbewerbsanalysen',
       icon: <Search className="h-6 w-6" />,
       description: 'Automatisierte Marktbeobachtung für Strategie, Marketing und Business Development.',
-      color: 'bg-emerald-500',
       features: [
-        'Nutzung von SERPA-API (Google News, Web-Ergebnisse)',
+        'Zugriff auf aktuelle Nachrichten via Internet',
         'AI analysiert Trends, Themen & Wettbewerber',
         'Ausgabe in Form strukturierter Reports',
         'Einsatz: Strategie, Marketing, Business Development'
@@ -43,55 +41,62 @@ const UseCases: React.FC = () => {
       }
     },
     {
-      id: 'supplier-scouting',
-      title: 'Lieferanten-Scouting & Risikomanagement',
+      id: 'recruiting',
+      title: 'Recruiting & Talent Acquisition',
       icon: <Database className="h-6 w-6" />,
-      description: 'Intelligente Lieferantenanalyse für Einkauf, Supply Chain und ESG-Teams.',
-      color: 'bg-amber-500',
+      description: 'Intelligente Unterstützung für HR und Recruiting-Teams bei der Kandidatensuche und Stellenausschreibungen.',
       features: [
-        'Verbindung interner & externer Datenquellen',
-        'Automatisierte Bewertung neuer & bestehender Lieferanten',
-        'Risikofrüherkennung über News- & Social-Sentiment',
-        'Einsatz: Einkauf, Supply Chain, ESG'
+        'Integration mit Bewerbermanagement-Systemen',
+        'KI-gestützte Erstellung und Optimierung von Stellenausschreibungen',
+        'Automatisierte Vorauswahl und Matching von Kandidaten',
+        'Einsatz: HR, Recruiting, Talent Acquisition'
       ],
       chatExample: {
-        question: 'Gibt es aktuelle Risiken bei unserem Zulieferer XYZ GmbH?',
-        answer: 'Bei XYZ GmbH wurden zwei potenzielle Risikofaktoren identifiziert: 1) In lokalen Medien wurde über Arbeitskonflikte im Hauptwerk berichtet (12.04.2025), 2) Eine wichtige Zertifizierung läuft in 45 Tagen aus. Die Gesamtrisikobewertung wurde von "niedrig" auf "mittel" angepasst.'
+        question: 'Wie können wir die Stellenausschreibung für den Senior Software Engineer optimieren?',
+        answer: 'Basierend auf erfolgreichen Stellenausschreibungen und aktuellen Markttrends schlage ich folgende Optimierungen vor: 1) Hervorhebung der Remote-Flexibilität, 2) Konkrete Technologie-Stack-Details (React, Node.js, AWS), 3) Klare Karriereentwicklungsmöglichkeiten. Die aktuelle Ausschreibung erreicht nur 65% der Zielgruppe, mit diesen Änderungen könnten wir die Reichweite um 40% steigern.'
       }
     }
   ];
 
   return (
-    <section id="usecases" className="py-20 bg-white">
+    <section id="usecases" className="py-24 bg-white">
       <div className="section-container">
-        <h2 className="section-title text-center">Anwendungsfälle</h2>
-        <p className="section-subtitle text-center mx-auto">
-          Reale Einsatzszenarien von AI-Chatbots in unterschiedlichen Unternehmensbereichen
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-24"
+        >
+          <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Anwendungsfälle</h2>
+          <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
+            Reale Einsatzszenarien von AI-Chatbots in unterschiedlichen Unternehmensbereichen
+          </p>
+        </motion.div>
 
         <Tabs 
           defaultValue="business-intelligence" 
           value={activeTab}
           onValueChange={setActiveTab}
-          className="w-full max-w-5xl mx-auto mt-12"
+          className="w-full max-w-5xl mx-auto"
         >
-          <TabsList className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-transparent mb-8">
+          <TabsList className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-transparent mb-16">
             {useCases.map((useCase) => (
               <TabsTrigger 
                 key={useCase.id}
                 value={useCase.id} 
                 className={cn(
-                  "flex items-center gap-2 py-4 px-4 border border-gray-200 rounded-lg bg-white data-[state=active]:border-tech-blue data-[state=active]:text-tech-blue shadow-sm hover:shadow-md transition-all",
+                  "flex items-center gap-3 py-4 px-5 border border-gray-200 rounded-xl bg-white data-[state=active]:border-tech-blue data-[state=active]:text-tech-blue shadow-sm hover:shadow-md transition-all h-auto min-h-[72px]",
                   activeTab === useCase.id ? "shadow-md" : ""
                 )}
               >
                 <div className={cn(
-                  "p-2 rounded-full", 
+                  "p-2.5 rounded-lg flex-shrink-0", 
                   activeTab === useCase.id ? "bg-tech-blue text-white" : "bg-tech-gray-100 text-tech-gray-700"
                 )}>
                   {useCase.icon}
                 </div>
-                <span className="font-medium">{useCase.title}</span>
+                <span className="font-medium text-left text-base leading-snug whitespace-normal flex items-center min-h-[24px]">{useCase.title}</span>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -102,19 +107,28 @@ const UseCases: React.FC = () => {
               value={useCase.id}
               className="mt-0 animate-fade-in"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-5 space-y-6">
-                  <h3 className="text-2xl font-bold text-tech-gray-900">{useCase.title}</h3>
-                  <p className="text-tech-gray-700">{useCase.description}</p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div className="lg:col-span-5 space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-tech-gray-900 mb-4">{useCase.title}</h3>
+                    <p className="text-lg text-tech-gray-700">{useCase.description}</p>
+                  </div>
                   
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-tech-gray-900">Kernfunktionen:</h4>
-                    <ul className="space-y-3">
+                    <h4 className="text-lg font-semibold text-tech-gray-900">Kernfunktionen:</h4>
+                    <ul className="space-y-4">
                       {useCase.features.map((feature, index) => (
-                        <li key={index} className="flex items-start">
-                          <div className="mr-2 mt-1.5 h-1.5 w-1.5 rounded-full bg-tech-blue" />
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                          className="flex items-start"
+                        >
+                          <div className="mr-3 mt-1.5 h-1.5 w-1.5 rounded-full bg-tech-blue flex-shrink-0" />
                           <span className="text-tech-gray-700">{feature}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
@@ -122,7 +136,7 @@ const UseCases: React.FC = () => {
                 
                 <div className="lg:col-span-7">
                   <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div className="bg-tech-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                    <div className="bg-tech-gray-100 px-6 py-4 border-b border-gray-200 flex items-center justify-between">
                       <div className="flex space-x-1.5">
                         <div className="w-3 h-3 rounded-full bg-red-400" />
                         <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -141,10 +155,10 @@ const UseCases: React.FC = () => {
                         <p className="text-tech-gray-800">{useCase.chatExample.answer}</p>
                       </div>
                       
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        <span className="px-2 py-1 bg-tech-gray-100 text-tech-gray-700 rounded text-xs">Datenabfrage</span>
-                        <span className="px-2 py-1 bg-tech-gray-100 text-tech-gray-700 rounded text-xs">Analyse</span>
-                        <span className="px-2 py-1 bg-tech-gray-100 text-tech-gray-700 rounded text-xs">Natürliche Sprache</span>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        <span className="px-3 py-1 bg-tech-gray-100 text-tech-gray-700 rounded-full text-sm">Datenabfrage</span>
+                        <span className="px-3 py-1 bg-tech-gray-100 text-tech-gray-700 rounded-full text-sm">Analyse</span>
+                        <span className="px-3 py-1 bg-tech-gray-100 text-tech-gray-700 rounded-full text-sm">Natürliche Sprache</span>
                       </div>
                     </div>
                   </div>
