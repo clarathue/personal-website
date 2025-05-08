@@ -1,8 +1,47 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Hero: React.FC = () => {
+  const chartData = {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [
+      {
+        label: 'Umsatz 2024',
+        data: [2.1, 2.5, 2.2, 2.4],
+        borderColor: '#1EAEDB',
+        tension: 0.4
+      },
+      {
+        label: 'Umsatz 2023',
+        data: [1.9, 2.3, 1.8, 2.2],
+        borderColor: '#94A3B8',
+        tension: 0.4
+      }
+    ]
+  };
+
   return (
     <section id="hero" className="pt-28 pb-20 bg-gradient-to-br from-white to-gray-50">
       <div className="section-container">
@@ -76,9 +115,37 @@ const Hero: React.FC = () => {
                     
                     <div className="bg-tech-blue/10 p-3 rounded-lg text-tech-gray-800">
                       <p className="text-tech-blue font-medium mb-2">AI-Chatbot Antwort:</p>
-                      <p>Der Umsatz in Region Nord liegt im aktuellen Quartal bei €2,4M, das entspricht einem Wachstum von 12% zum Vorjahreszeitraum. Haupttreiber sind die Produktlinien A (+18%) und C (+15%).</p>
-                      <div className="mt-2 h-24 bg-gray-200 rounded-md flex items-center justify-center">
-                        <span className="text-tech-gray-500 text-sm">[Visualisierung: Umsatzentwicklung]</span>
+                      <p className="mb-4">Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht. Die Produktlinie A zeigt besonders im Q2 (+20%) und Q4 (+15%) starke Wachstumsimpulse.</p>
+                      <div className="bg-white p-3 rounded-lg border border-gray-200">
+                        <div className="h-32">
+                          <Line
+                            data={chartData}
+                            options={{
+                              responsive: true,
+                              maintainAspectRatio: false,
+                              plugins: {
+                                legend: {
+                                  position: 'top' as const,
+                                  labels: {
+                                    font: {
+                                      size: 11
+                                    }
+                                  }
+                                }
+                              },
+                              scales: {
+                                y: {
+                                  beginAtZero: false,
+                                  ticks: {
+                                    callback: function(value) {
+                                      return value + 'M €';
+                                    }
+                                  }
+                                }
+                              }
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
