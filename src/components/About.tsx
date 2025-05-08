@@ -189,7 +189,7 @@ const About: React.FC = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                </div>
+              </div>
               </motion.div>
             </div>
           </div>
@@ -212,17 +212,17 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <p className="text-lg text-tech-gray-700">
-                Ich bin Data Scientist mit Fokus auf KI-gestützte Prozessautomatisierung. Mein Schwerpunkt liegt auf der Entwicklung modularer, wiederverwendbarer AI-Komponenten, die sich schnell in Unternehmensstrukturen integrieren lassen.
-              </p>
-              
-              <p className="text-lg text-tech-gray-700">
-                Nach mehreren Jahren im Angestelltenverhältnis habe ich mich selbstständig gemacht, weil ich Unternehmen direkter und unabhängiger unterstützen möchte – mit AI-Lösungen, die nicht nur technisch spannend, sondern wirtschaftlich sinnvoll sind.
-              </p>
-              
-              <p className="text-lg text-tech-gray-700">
-                Ich arbeite pragmatisch, lösungsorientiert und eng mit meinen Kunden zusammen. Mein Ziel ist es, schnelle, tragfähige Ergebnisse zu liefern – ohne unnötigen Overhead.
-              </p>
+            <p className="text-lg text-tech-gray-700">
+              Ich bin Data Scientist mit Fokus auf KI-gestützte Prozessautomatisierung. Mein Schwerpunkt liegt auf der Entwicklung modularer, wiederverwendbarer AI-Komponenten, die sich schnell in Unternehmensstrukturen integrieren lassen.
+            </p>
+            
+            <p className="text-lg text-tech-gray-700">
+              Nach mehreren Jahren im Angestelltenverhältnis habe ich mich selbstständig gemacht, weil ich Unternehmen direkter und unabhängiger unterstützen möchte – mit AI-Lösungen, die nicht nur technisch spannend, sondern wirtschaftlich sinnvoll sind.
+            </p>
+            
+            <p className="text-lg text-tech-gray-700">
+              Ich arbeite pragmatisch, lösungsorientiert und eng mit meinen Kunden zusammen. Mein Ziel ist es, schnelle, tragfähige Ergebnisse zu liefern – ohne unnötigen Overhead.
+            </p>
             </motion.div>
           </div>
         </div>

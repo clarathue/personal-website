@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, Linkedin, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
@@ -88,31 +88,32 @@ const Contact: React.FC = () => {
                     <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
                       <Mail className="h-5 w-5 text-tech-blue" />
                     </div>
-                    <a href="mailto:kontakt@example.com" className="text-tech-gray-700 hover:text-tech-blue">kontakt@example.com</a>
+                    <a href="mailto:clara@thuemecke.net" className="text-tech-gray-700 hover:text-tech-blue">E-Mail senden</a>
                   </div>
                   
                   <div className="flex items-center space-x-3">
                     <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
                       <Linkedin className="h-5 w-5 text-tech-blue" />
                     </div>
-                    <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="text-tech-gray-700 hover:text-tech-blue">LinkedIn Profil</a>
+                    <a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="text-tech-gray-700 hover:text-tech-blue">LinkedIn Profil</a>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
+                      <Calendar className="h-5 w-5 text-tech-blue" />
+                    </div>
+                    <a 
+                      href="https://calendly.com/clara-oesm/30min?share_attribution=expiring_link" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-tech-gray-700 hover:text-tech-blue"
+                    >
+                      Termin vereinbaren
+                    </a>
                   </div>
                 </div>
                 
-                <div className="mt-8 p-4 bg-tech-gray-100 rounded-lg">
-                  <p className="text-tech-gray-700 text-sm">
-                    Terminbuchung: Sie können auch direkt einen Termin für ein unverbindliches Erstgespräch buchen.
-                  </p>
-                  <a 
-                    href="https://calendly.com/clara-oesm/30min?share_attribution=expiring_link" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="outline" className="mt-3 w-full border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white">
-                      Termin vereinbaren
-                    </Button>
-                  </a>
-                </div>
+
               </CardContent>
             </Card>
           </div>
