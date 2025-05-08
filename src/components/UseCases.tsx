@@ -3,6 +3,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChartLine, Search, Database } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const UseCases: React.FC = () => {
   const [activeTab, setActiveTab] = useState('business-intelligence');
@@ -21,7 +42,27 @@ const UseCases: React.FC = () => {
       ],
       chatExample: {
         question: 'Wie hat sich der Umsatz im letzten Quartal entwickelt?',
-        answer: 'Der Gesamtumsatz im letzten Quartal betrug 4.2M €, was einem Wachstum von 8% gegenüber dem Vorjahr entspricht. Die Produktkategorie "Premium" zeigte mit +15% das stärkste Wachstum.'
+        answer: 'Der Gesamtumsatz im letzten Quartal betrug 4.2M €, was einem Wachstum von 8% gegenüber dem Vorjahr entspricht. Die Produktkategorie "Premium" zeigte mit +15% das stärkste Wachstum.',
+        visualization: {
+          type: 'line',
+          data: {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [
+              {
+                label: 'Umsatz 2024',
+                data: [3.8, 4.0, 4.1, 4.2],
+                borderColor: '#1EAEDB',
+                tension: 0.4
+              },
+              {
+                label: 'Umsatz 2023',
+                data: [3.5, 3.6, 3.7, 3.9],
+                borderColor: '#94A3B8',
+                tension: 0.4
+              }
+            ]
+          }
+        }
       }
     },
     {
@@ -152,7 +193,40 @@ const UseCases: React.FC = () => {
                       
                       <div className="bg-tech-blue/10 p-4 rounded-lg">
                         <p className="text-tech-blue font-medium mb-2">AI-Chatbot Antwort:</p>
-                        <p className="text-tech-gray-800">{useCase.chatExample.answer}</p>
+                        <p className="text-tech-gray-800 mb-4">{useCase.chatExample.answer}</p>
+                        {useCase.chatExample.visualization && (
+                          <div className="bg-white p-4 rounded-lg border border-gray-200">
+                            <div className="h-48">
+                              <Line
+                                data={useCase.chatExample.visualization.data}
+                                options={{
+                                  responsive: true,
+                                  maintainAspectRatio: false,
+                                  plugins: {
+                                    legend: {
+                                      position: 'top' as const,
+                                      labels: {
+                                        font: {
+                                          size: 12
+                                        }
+                                      }
+                                    }
+                                  },
+                                  scales: {
+                                    y: {
+                                      beginAtZero: false,
+                                      ticks: {
+                                        callback: function(value) {
+                                          return value + 'M €';
+                                        }
+                                      }
+                                    }
+                                  }
+                                }}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
                       
                       <div className="flex flex-wrap gap-2 mt-4">
