@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <p className="text-tech-gray-300 text-sm">clara@thuemecke.net</p>
             <p className="text-tech-gray-300 text-sm mt-2">
-              <a href="https://linkedin.com/in/clarat-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+              <a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                 LinkedIn Profil
               </a>
             </p>
