@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -50,7 +49,7 @@ const Navbar: React.FC = () => {
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
                 alt="Thümecke Business Intelligence Solutions" 
-                className="h-8 w-auto"
+                className="h-16 w-auto"
               />
             </a>
           </div>
