@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Line } from 'react-chartjs-2';
@@ -22,6 +22,24 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const StreamingText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (currentIndex < text.length) {
+        setDisplayedText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }
+    }, 30); // Geschwindigkeit der Animation
+
+    return () => clearTimeout(timeout);
+  }, [currentIndex, text]);
+
+  return <span>{displayedText}</span>;
+};
 
 const Hero: React.FC = () => {
   const chartData = {
@@ -114,10 +132,19 @@ const Hero: React.FC = () => {
                       Wie entwickelt sich der Umsatz in Region Nord im Vergleich zum Vorjahr?
                     </div>
                     
-                    <div className="bg-tech-blue/10 p-3 rounded-lg text-tech-gray-800">
+                    <motion.div 
+                      className="bg-tech-blue/10 p-3 rounded-lg text-tech-gray-800"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                    >
                       <p className="text-tech-blue font-medium mb-2">AI-Chatbot Antwort:</p>
-                      <p className="mb-4">Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht. Die Produktlinie A zeigt besonders im Q2 (+20%) und Q4 (+15%) starke Wachstumsimpulse.</p>
-                      <div className="bg-white p-3 rounded-lg border border-gray-200">
+                      <motion.div 
+                        className="bg-white p-3 rounded-lg border border-gray-200 mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.5 }}
+                      >
                         <div className="h-32">
                           <Line
                             data={chartData}
@@ -147,8 +174,14 @@ const Hero: React.FC = () => {
                             }}
                           />
                         </div>
-                      </div>
-                    </div>
+                      </motion.div>
+                      <p className="mb-4">
+                        <StreamingText 
+                          text="Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht. Die Produktlinie A zeigt besonders im Q2 (+20%) und Q4 (+15%) starke Wachstumsimpulse."
+                          delay={1500}
+                        />
+                      </p>
+                    </motion.div>
                   </div>
                 </div>
               </div>
