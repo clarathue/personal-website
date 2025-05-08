@@ -76,19 +76,21 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               
-              <div className="absolute top-10 right-10">
-                <div className="flex space-x-2 text-xs animate-pulse">
-                  <span className="px-2 py-1 bg-tech-blue text-white rounded">API</span>
-                  <span className="px-2 py-1 bg-tech-gray-700 text-white rounded">SQL</span>
-                  <span className="px-2 py-1 bg-emerald-600 text-white rounded">Data</span>
+              {/* Top-right floating tags with better positioning and z-index */}
+              <div className="absolute top-4 right-4 z-10">
+                <div className="flex flex-wrap gap-2 justify-end">
+                  <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
+                  <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
+                  <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
                 </div>
               </div>
               
-              <div className="absolute bottom-10 left-10">
-                <div className="flex space-x-2 text-xs animate-pulse">
-                  <span className="px-2 py-1 bg-purple-600 text-white rounded">NLP</span>
-                  <span className="px-2 py-1 bg-amber-500 text-white rounded">LLM</span>
-                  <span className="px-2 py-1 bg-red-500 text-white rounded">Analytics</span>
+              {/* Bottom-left floating tags with better positioning and z-index */}
+              <div className="absolute bottom-4 left-4 z-10">
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-purple-600 text-white rounded text-xs animate-pulse">NLP</span>
+                  <span className="px-2 py-1 bg-amber-500 text-white rounded text-xs animate-pulse">LLM</span>
+                  <span className="px-2 py-1 bg-red-500 text-white rounded text-xs animate-pulse">Analytics</span>
                 </div>
               </div>
             </motion.div>
