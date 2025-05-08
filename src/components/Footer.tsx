@@ -9,7 +9,13 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">DataBot Architect</h3>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                alt="Thümecke Business Intelligence Solutions" 
+                className="h-12 w-auto brightness-200 contrast-200"
+              />
+            </div>
             <p className="text-tech-gray-300 text-sm">
               Modulare AI-Chatbots für datengetriebene Unternehmen. Maßgeschneidert, effizient und mit messbarem Mehrwert.
             </p>
@@ -28,7 +34,7 @@ const Footer: React.FC = () => {
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
-            <p className="text-tech-gray-300 text-sm">kontakt@example.com</p>
+            <p className="text-tech-gray-300 text-sm">kontakt@thuemecke-solutions.de</p>
             <p className="text-tech-gray-300 text-sm mt-2">
               <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                 LinkedIn Profil
@@ -39,7 +45,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-tech-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-tech-gray-400 text-sm">
-            © {currentYear} DataBot Architect. Alle Rechte vorbehalten.
+            © {currentYear} Thümecke Business Intelligence Solutions. Alle Rechte vorbehalten.
           </p>
           <div className="mt-4 md:mt-0 flex space-x-4">
             <a href="#" className="text-tech-gray-400 hover:text-white text-sm">Impressum</a>

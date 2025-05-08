@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 const Index = () => {
   useEffect(() => {
     // Update page title
-    document.title = "DataBot Architect | Modulare AI-Chatbot Lösungen";
+    document.title = "Thümecke Business Intelligence Solutions | Modulare AI-Chatbot Lösungen";
   }, []);
 
   return (

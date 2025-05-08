@@ -9,6 +9,17 @@ const Hero: React.FC = () => {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-8">
+            <div className="mb-6">
+              <motion.img 
+                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                alt="Thümecke Business Intelligence Solutions" 
+                className="h-16 sm:h-20 w-auto"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
               initial={{ opacity: 0, y: 20 }}

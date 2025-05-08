@@ -45,9 +45,13 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <a href="#" className="text-tech-blue font-bold text-xl">
-              DataBot Architect
+          <div className="flex-shrink-0 flex items-center">
+            <a href="#" className="flex items-center space-x-2">
+              <img 
+                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                alt="Thümecke Business Intelligence Solutions" 
+                className="h-8 w-auto"
+              />
             </a>
           </div>
           <div className="hidden md:block">
