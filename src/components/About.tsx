@@ -1,14 +1,12 @@
-
 import React from 'react';
 import { Database, Bot, ChartLine } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="section-container">
-        <h2 className="section-title text-center">Über mich</h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <div className="aspect-square relative rounded-2xl overflow-hidden bg-tech-gray-100">
               <div className="absolute inset-0 flex items-center justify-center">
@@ -27,25 +25,36 @@ const About: React.FC = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-7 space-y-6">
-            <p className="text-lg text-tech-gray-700">
-              Ich bin Data Scientist mit Fokus auf KI-gestützte Prozessautomatisierung. Mein Schwerpunkt liegt auf der Entwicklung modularer, wiederverwendbarer AI-Komponenten, die sich schnell in Unternehmensstrukturen integrieren lassen.
-            </p>
+          <div className="lg:col-span-7 space-y-8">
+            <motion.h2 
+              className="text-3xl font-bold text-tech-gray-900"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Über mich
+            </motion.h2>
             
-            <p className="text-lg text-tech-gray-700">
-              Nach mehreren Jahren im Angestelltenverhältnis habe ich mich selbstständig gemacht, weil ich Unternehmen direkter und unabhängiger unterstützen möchte – mit AI-Lösungen, die nicht nur technisch spannend, sondern wirtschaftlich sinnvoll sind.
-            </p>
-            
-            <p className="text-lg text-tech-gray-700">
-              Ich arbeite pragmatisch, lösungsorientiert und eng mit meinen Kunden zusammen. Mein Ziel ist es, schnelle, tragfähige Ergebnisse zu liefern – ohne unnötigen Overhead.
-            </p>
-            
-            <div className="pt-4">
-              <h3 className="text-xl font-semibold text-tech-gray-900 mb-3">Persönliche Note</h3>
+            <motion.div
+              className="space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <p className="text-lg text-tech-gray-700">
-                Neben meiner Arbeit interessiere ich mich für Komplexitätsforschung, gute Visualisierungen und die Verbindung zwischen Daten, Sprache und Entscheidung.
+                Ich bin Data Scientist mit Fokus auf KI-gestützte Prozessautomatisierung. Mein Schwerpunkt liegt auf der Entwicklung modularer, wiederverwendbarer AI-Komponenten, die sich schnell in Unternehmensstrukturen integrieren lassen.
               </p>
-            </div>
+              
+              <p className="text-lg text-tech-gray-700">
+                Nach mehreren Jahren im Angestelltenverhältnis habe ich mich selbstständig gemacht, weil ich Unternehmen direkter und unabhängiger unterstützen möchte – mit AI-Lösungen, die nicht nur technisch spannend, sondern wirtschaftlich sinnvoll sind.
+              </p>
+              
+              <p className="text-lg text-tech-gray-700">
+                Ich arbeite pragmatisch, lösungsorientiert und eng mit meinen Kunden zusammen. Mein Ziel ist es, schnelle, tragfähige Ergebnisse zu liefern – ohne unnötigen Overhead.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
