@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -9,17 +8,6 @@ const Hero: React.FC = () => {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-8">
-            <div className="mb-6">
-              <motion.img 
-                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
-                alt="Thümecke Business Intelligence Solutions" 
-                className="h-16 sm:h-20 w-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              />
-            </div>
-            
             <motion.h1 
               className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
               initial={{ opacity: 0, y: 20 }}
@@ -37,6 +25,16 @@ const Hero: React.FC = () => {
             >
               Ich entwickle skalierbare, projektbasierte AI-Chatbots für Business Intelligence, Marktanalyse und Lieferantenmanagement – maßgeschneidert, effizient und mit messbarem Mehrwert.
             </motion.p>
+            
+            {/* Floating tags above the button */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
+              <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
+              <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
+              <span className="px-2 py-1 bg-purple-600 text-white rounded text-xs animate-pulse">NLP</span>
+              <span className="px-2 py-1 bg-amber-500 text-white rounded text-xs animate-pulse">LLM</span>
+              <span className="px-2 py-1 bg-red-500 text-white rounded text-xs animate-pulse">Analytics</span>
+            </div>
             
             <motion.div
               initial={{ opacity: 0 }}
@@ -84,24 +82,6 @@ const Hero: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* Top-right floating tags with better positioning and z-index */}
-              <div className="absolute top-4 right-4 z-10">
-                <div className="flex flex-wrap gap-2 justify-end">
-                  <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
-                  <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
-                  <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
-                </div>
-              </div>
-              
-              {/* Bottom-left floating tags with better positioning and z-index */}
-              <div className="absolute bottom-4 left-4 z-10">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 bg-purple-600 text-white rounded text-xs animate-pulse">NLP</span>
-                  <span className="px-2 py-1 bg-amber-500 text-white rounded text-xs animate-pulse">LLM</span>
-                  <span className="px-2 py-1 bg-red-500 text-white rounded text-xs animate-pulse">Analytics</span>
                 </div>
               </div>
             </motion.div>
