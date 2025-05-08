@@ -9,11 +9,11 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '#hero' },
-  { name: 'Über mich', href: '#about' },
-  { name: 'Leistungen', href: '#services' },
-  { name: 'Anwendungsfälle', href: '#usecases' },
-  { name: 'Kontakt', href: '#contact' },
+  { name: 'Home', href: '#/' },
+  { name: 'Über mich', href: '#/about' },
+  { name: 'Leistungen', href: '#/services' },
+  { name: 'Anwendungsfälle', href: '#/usecases' },
+  { name: 'Kontakt', href: '#/contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="flex items-center space-x-2">
+            <a href="#/" className="flex items-center space-x-2">
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
                 alt="Thümecke Business Intelligence Solutions" 
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           <div className="hidden md:block">
-            <a href="#contact">
+            <a href="#/contact">
               <Button className="bg-tech-blue hover:bg-tech-darkBlue text-white">
                 Projekt besprechen
               </Button>
@@ -90,25 +90,27 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+                className="text-tech-gray-700 hover:text-tech-blue block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-tech-gray-700 hover:bg-tech-gray-100 block px-3 py-2 rounded-md text-base font-medium"
               >
                 {item.name}
               </a>
             ))}
-            <div className="pt-2">
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
-                  Projekt besprechen
-                </Button>
-              </a>
-            </div>
+            <a
+              href="#/contact"
+              className="block px-3 py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Button className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
+                Projekt besprechen
+              </Button>
+            </a>
           </div>
         </div>
       )}

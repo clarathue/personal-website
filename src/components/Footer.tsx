@@ -21,20 +21,20 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              <li><a href="/#hero" className="text-tech-gray-300 hover:text-white text-sm">Home</a></li>
-              <li><a href="/#about" className="text-tech-gray-300 hover:text-white text-sm">Über mich</a></li>
-              <li><a href="/#services" className="text-tech-gray-300 hover:text-white text-sm">Leistungen</a></li>
-              <li><a href="/#usecases" className="text-tech-gray-300 hover:text-white text-sm">Anwendungsfälle</a></li>
-              <li><a href="/#contact" className="text-tech-gray-300 hover:text-white text-sm">Kontakt</a></li>
-              <li><a href="/#/impressum" className="text-tech-gray-300 hover:text-white text-sm">Impressum</a></li>
-              <li><a href="/#/datenschutz" className="text-tech-gray-300 hover:text-white text-sm">Datenschutz</a></li>
+              <li><a href="#/" className="text-tech-gray-300 hover:text-white text-sm">Home</a></li>
+              <li><a href="#/about" className="text-tech-gray-300 hover:text-white text-sm">Über mich</a></li>
+              <li><a href="#/services" className="text-tech-gray-300 hover:text-white text-sm">Leistungen</a></li>
+              <li><a href="#/usecases" className="text-tech-gray-300 hover:text-white text-sm">Anwendungsfälle</a></li>
+              <li><a href="#/contact" className="text-tech-gray-300 hover:text-white text-sm">Kontakt</a></li>
+              <li><a href="#/impressum" className="text-tech-gray-300 hover:text-white text-sm">Impressum</a></li>
+              <li><a href="#/datenschutz" className="text-tech-gray-300 hover:text-white text-sm">Datenschutz</a></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <p className="text-tech-gray-300 text-sm">
-              <a href="/#contact" className="hover:text-white">
+              <a href="#/contact" className="hover:text-white">
                 Kontaktformular
               </a>
             </p>

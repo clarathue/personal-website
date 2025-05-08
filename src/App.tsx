@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Impressum from "./app/impressum/page";
+import Datenschutz from "./app/datenschutz/page";
 
 const queryClient = new QueryClient();
 
@@ -17,10 +18,17 @@ const App = () => (
       <HashRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/hero" element={<Index />} />
+          <Route path="/about" element={<Index />} />
+          <Route path="/services" element={<Index />} />
+          <Route path="/usecases" element={<Index />} />
+          <Route path="/contact" element={<Index />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+
       </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
