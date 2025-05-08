@@ -103,9 +103,15 @@ const Contact: React.FC = () => {
                   <p className="text-tech-gray-700 text-sm">
                     Terminbuchung: Sie können auch direkt einen Termin für ein unverbindliches Erstgespräch buchen.
                   </p>
-                  <Button variant="outline" className="mt-3 w-full border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white">
-                    Termin vereinbaren
-                  </Button>
+                  <a 
+                    href="https://calendly.com/clara-oesm/30min?share_attribution=expiring_link" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="mt-3 w-full border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white">
+                      Termin vereinbaren
+                    </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>
