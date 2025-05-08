@@ -1,28 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Linkedin } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
+
+// EmailJS Konfiguration
+emailjs.init("E85RYUMoO3-PpIbgV");
 
 const Contact: React.FC = () => {
-  const { toast } = useToast();
-  
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Nachricht gesendet",
-      description: "Vielen Dank für Ihre Anfrage. Ich werde mich in Kürze bei Ihnen melden.",
-      duration: 5000,
-    });
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+
+    try {
+      const templateParams = {
+        to_email: 'clara@thuemecke.net',
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        reply_to: formData.email, // Wichtig für die Antwort-Funktion
+      };
+
+      const result = await emailjs.send(
+        'service_kd6vrxk',
+        'template_4spc8nj',
+        templateParams
+      );
+
+      if (result.status === 200) {
+        toast.success('Nachricht erfolgreich gesendet!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Unerwarteter Status: ' + result.status);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error(
+        'Fehler beim Senden der Nachricht. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich direkt per E-Mail.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   return (
     <section id="contact" className="py-24 bg-tech-gray-100">
       <div className="section-container">
-        <h2 className="section-title text-center">Kontakt</h2>
+        <motion.h2 
+          className="text-3xl font-bold text-tech-gray-900 mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          Kontakt
+        </motion.h2>
         <p className="section-subtitle text-center mx-auto">
           Lassen Sie uns über Ihr Projekt sprechen – ich freue mich auf Ihre Anfrage.
         </p>
@@ -64,32 +115,64 @@ const Contact: React.FC = () => {
             <Card className="border-none shadow-lg bg-white">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-6">Nachricht senden</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <motion.form 
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-tech-gray-700">Name</label>
-                      <Input id="name" placeholder="Ihr Name" required />
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full"
+                        placeholder="Ihr Name"
+                      />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-tech-gray-700">E-Mail</label>
-                      <Input id="email" type="email" placeholder="ihre.email@example.com" required />
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full"
+                        placeholder="ihre@email.de"
+                      />
                     </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium text-tech-gray-700">Betreff</label>
-                    <Input id="subject" placeholder="Betreff Ihrer Nachricht" required />
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-tech-gray-700">Nachricht</label>
-                    <Textarea id="message" placeholder="Ihre Nachricht..." className="min-h-[120px]" required />
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full min-h-[150px]"
+                      placeholder="Ihre Nachricht..."
+                    />
                   </div>
                   
-                  <Button type="submit" className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
-                    Nachricht senden
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
                   </Button>
-                </form>
+                </motion.form>
               </CardContent>
             </Card>
           </div>
