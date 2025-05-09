@@ -21,7 +21,6 @@ const Index = () => {
       keywords="Business Intelligence, AI-Chatbots, Systemintegration, KI-Lösungen, Automatisierung, Prozessoptimierung"
     >
       <div className="min-h-screen">
-        <Navbar />
         <Hero />
         <About />
         <Services />
@@ -42,7 +41,6 @@ const Index = () => {
             </a>
           </div>
         </div>
-        <Footer />
       </div>
     </Layout>
   );

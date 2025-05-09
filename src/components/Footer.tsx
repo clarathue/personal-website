@@ -20,8 +20,9 @@ const Footer = () => {
             <div className="mb-4">
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
-                alt="Thümecke Business Intelligence Solutions" 
+                alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
                 className="h-12 w-auto brightness-200 contrast-200"
+                loading="lazy"
               />
             </div>
             <p className="text-tech-gray-300 text-sm">

@@ -12,8 +12,9 @@ const About: React.FC = () => {
               <div className="absolute inset-0 backdrop-blur-xl bg-white/30 border border-white/40 rounded-2xl" />
               <img
                 src="/images/clara-thuemecke.png"
-                alt="Clara Thümecke"
+                alt="Clara Thümecke - Data Scientist und KI-Expertin für Business Intelligence Lösungen"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 style={{ position: 'relative', zIndex: 1 }}
               />
             </div>

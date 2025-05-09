@@ -13,8 +13,6 @@ import {
 } from 'chart.js';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Database, MessageSquare, Zap, BarChart3, Building2, Users, FileText, Brain, ExternalLink } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { 
   Carousel,
@@ -199,8 +197,6 @@ const AIChatbotsPage = () => {
       keywords="AI-Chatbots, Künstliche Intelligenz, Chatbot Entwicklung, Kundenservice Automatisierung, KI-Support, Prozessautomatisierung"
     >
       <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
-        <Navbar />
-        
         {/* Hero Section */}
         <section className="pt-28 pb-20 bg-gradient-to-br from-white to-gray-50">
           <div className="section-container">
@@ -854,8 +850,9 @@ const AIChatbotsPage = () => {
                             <div className="relative aspect-[16/9]">
                               <img
                                 src={study.image}
-                                alt={study.title}
+                                alt={`${study.title} - ${study.company} - ${study.description}`}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                               <div className="absolute bottom-0 left-0 right-0 p-3">
@@ -1214,8 +1211,6 @@ const AIChatbotsPage = () => {
             </div>
           </div>
         </section>
-
-        <Footer />
       </div>
     </Layout>
   );
