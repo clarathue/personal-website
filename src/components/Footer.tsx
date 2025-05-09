@@ -19,18 +19,22 @@ const Footer = () => {
             </p>
           </div>
           
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-tech-gray-300 hover:text-white text-sm">Home</Link></li>
-              <li><Link to="/about" className="text-tech-gray-300 hover:text-white text-sm">Über mich</Link></li>
-              <li><Link to="/services" className="text-tech-gray-300 hover:text-white text-sm">Leistungen</Link></li>
-              <li><Link to="/ai-chatbots" className="text-tech-gray-300 hover:text-white text-sm">AI-Chatbots</Link></li>
-              <li><Link to="/usecases" className="text-tech-gray-300 hover:text-white text-sm">Anwendungsfälle</Link></li>
-              <li><Link to="/contact" className="text-tech-gray-300 hover:text-white text-sm">Kontakt</Link></li>
-              <li><Link to="/impressum" className="text-tech-gray-300 hover:text-white text-sm">Impressum</Link></li>
-              <li><Link to="/datenschutz" className="text-tech-gray-300 hover:text-white text-sm">Datenschutz</Link></li>
-            </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-sm font-semibold text-tech-gray-900 mb-4">Navigation</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/ai-chatbots" className="text-tech-gray-600 hover:text-tech-blue">
+                    AI-Chatbots
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-tech-gray-600 hover:text-tech-blue">
+                    Kontakt
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           
           <div>

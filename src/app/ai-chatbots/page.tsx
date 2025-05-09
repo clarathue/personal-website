@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Database, MessageSquare, Zap, BarChart3, Building2, Users, FileText, Brain, ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 import { 
   Carousel,
   CarouselContent,
@@ -205,7 +206,7 @@ const AIChatbotsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                Modulare AI-Chatbots für Ihr Unternehmen
+                KI-Chatbots für Ihre Business Intelligence
               </motion.h1>
               
               <motion.p 
@@ -214,17 +215,8 @@ const AIChatbotsPage = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                Ich entwickle skalierbare, projektbasierte AI-Chatbots für Business Intelligence, Marktanalyse und Lieferantenmanagement – maßgeschneidert, effizient und mit messbarem Mehrwert.
+                Skalierbare, projektbasierte AI-Chatbots für Business Intelligence, Marktanalyse und Lieferantenmanagement – maßgeschneidert, effizient und mit messbarem Mehrwert.
               </motion.p>
-              
-              <div className="flex flex-wrap gap-2 mt-8">
-                <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
-                <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
-                <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
-                <span className="px-2 py-1 bg-purple-600 text-white rounded text-xs animate-pulse">NLP</span>
-                <span className="px-2 py-1 bg-amber-500 text-white rounded text-xs animate-pulse">LLM</span>
-                <span className="px-2 py-1 bg-red-500 text-white rounded text-xs animate-pulse">Analytics</span>
-              </div>
               
               <motion.div
                 className="mt-8"
@@ -232,92 +224,126 @@ const AIChatbotsPage = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.7 }}
               >
-                <a href="#contact">
+                <Link to="/contact">
                   <Button size="lg" className="bg-tech-blue hover:bg-tech-darkBlue text-white">
                     Projekt besprechen
                   </Button>
-                </a>
+                </Link>
               </motion.div>
             </div>
             
-            <div className="lg:col-span-5 flex items-start pt-24">
+            <div className="lg:col-span-5 flex items-center">
               <motion.div
-                className="relative h-[400px] w-full"
+                className="relative w-full"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(30,174,219,0.1)_0%,rgba(255,255,255,0)_100%)]" />
-                
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
-                  <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100">
-                    <div className="flex justify-between items-center mb-4">
-                      <div className="flex space-x-1">
-                        <div className="w-3 h-3 rounded-full bg-red-400" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                        <div className="w-3 h-3 rounded-full bg-green-400" />
+                {/* Modern Chat Interface */}
+                <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+                  {/* Chat Header */}
+                  <div className="bg-gradient-to-r from-tech-blue to-tech-darkBlue p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                          <Brain className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-white font-semibold">Business Intelligence Assistant</h3>
+                          <p className="text-white/80 text-sm">Online & Bereit</p>
+                        </div>
                       </div>
-                      <div className="text-xs text-tech-gray-400">AI-Chatbot</div>
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 rounded-full bg-green-400" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                      </div>
                     </div>
-                    
-                    <div className="space-y-4">
-                      <div className="bg-tech-gray-100 p-3 rounded-lg text-tech-gray-800">
+                  </div>
+
+                  {/* Chat Messages */}
+                  <div className="p-4 space-y-4 bg-gray-50/50">
+                    {/* User Message */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1, duration: 0.5 }}
+                      className="flex justify-end"
+                    >
+                      <div className="bg-tech-blue text-white px-4 py-2 rounded-2xl rounded-tr-none max-w-[80%]">
                         Wie entwickelt sich der Umsatz in Region Nord im Vergleich zum Vorjahr?
                       </div>
-                      
-                      <motion.div 
-                        className="bg-tech-blue/10 p-3 rounded-lg text-tech-gray-800"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 0.5 }}
-                      >
-                        <p className="text-tech-blue font-medium mb-2">AI-Chatbot Antwort:</p>
-                        <motion.div 
-                          className="bg-white p-3 rounded-lg border border-gray-200 mb-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1, duration: 0.5 }}
-                        >
-                          <div className="h-32">
-                            <Line
-                              data={chartData}
-                              options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: {
-                                  legend: {
-                                    position: 'top' as const,
-                                    labels: {
-                                      font: {
-                                        size: 11
-                                      }
-                                    }
-                                  }
-                                },
-                                scales: {
-                                  y: {
-                                    beginAtZero: false,
-                                    ticks: {
-                                      callback: function(value) {
-                                        return value + 'M €';
-                                      }
+                    </motion.div>
+
+                    {/* Bot Response */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.5, duration: 0.5 }}
+                      className="flex justify-start"
+                    >
+                      <div className="bg-white px-4 py-2 rounded-2xl rounded-tl-none max-w-[80%] shadow-sm">
+                        <div className="mb-3">
+                          <Line
+                            data={chartData}
+                            options={{
+                              responsive: true,
+                              maintainAspectRatio: false,
+                              plugins: {
+                                legend: {
+                                  position: 'top' as const,
+                                  labels: {
+                                    font: {
+                                      size: 11
                                     }
                                   }
                                 }
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                        <p className="mb-4">
+                              },
+                              scales: {
+                                y: {
+                                  beginAtZero: false,
+                                  ticks: {
+                                    callback: function(value) {
+                                      return value + 'M €';
+                                    }
+                                  }
+                                }
+                              }
+                            }}
+                          />
+                        </div>
+                        <p className="text-sm text-tech-gray-700">
                           <StreamingText 
-                            text="Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht. Die Produktlinie A zeigt besonders im Q2 (+20%) und Q4 (+15%) starke Wachstumsimpulse."
-                            delay={1500}
+                            text="Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht."
+                            delay={2000}
                           />
                         </p>
-                      </motion.div>
-                    </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Interactive Elements */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 2.5, duration: 0.5 }}
+                      className="flex flex-wrap gap-2 mt-4"
+                    >
+                      <button className="px-3 py-1.5 bg-tech-blue/10 text-tech-blue rounded-full text-sm hover:bg-tech-blue/20 transition-colors">
+                        Detaillierte Analyse
+                      </button>
+                      <button className="px-3 py-1.5 bg-tech-blue/10 text-tech-blue rounded-full text-sm hover:bg-tech-blue/20 transition-colors">
+                        Produktlinie A
+                      </button>
+                      <button className="px-3 py-1.5 bg-tech-blue/10 text-tech-blue rounded-full text-sm hover:bg-tech-blue/20 transition-colors">
+                        Region Süd
+                      </button>
+                    </motion.div>
                   </div>
                 </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute -z-10 inset-0 bg-gradient-to-r from-tech-blue/20 to-tech-darkBlue/20 blur-3xl rounded-full" />
+                <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tech-blue/10 rounded-full blur-2xl" />
               </motion.div>
             </div>
           </div>
@@ -1168,12 +1194,12 @@ const AIChatbotsPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <a href="#contact">
+              <Link to="/contact">
                 <Button size="lg" className="bg-tech-blue hover:bg-tech-darkBlue text-white">
                   Jetzt Projekt besprechen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>

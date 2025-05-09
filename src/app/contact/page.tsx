@@ -9,6 +9,7 @@ import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CalendlyButton from '@/components/CalendlyButton';
 
 // EmailJS Konfiguration
 emailjs.init("E85RYUMoO3-PpIbgV");
@@ -110,14 +111,7 @@ const ContactPage = () => {
                       <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
                         <Calendar className="h-5 w-5 text-tech-blue" />
                       </div>
-                      <a 
-                        href="https://calendly.com/clara-oesm/30min?share_attribution=expiring_link" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-tech-gray-700 hover:text-tech-blue"
-                      >
-                        Termin vereinbaren
-                      </a>
+                      <CalendlyButton />
                     </div>
                   </div>
                 </CardContent>

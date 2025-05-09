@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import CalendlyButton from './CalendlyButton';
 
 interface NavItem {
   name: string;
@@ -10,11 +11,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '/' },
-  { name: 'Über mich', href: '/about' },
-  { name: 'Leistungen', href: '/services' },
   { name: 'AI-Chatbots', href: '/ai-chatbots' },
-  { name: 'Anwendungsfälle', href: '/usecases' },
   { name: 'Kontakt', href: '/contact' },
 ];
 
@@ -46,8 +43,8 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
+          <div className="flex-shrink-0">
+            <Link to="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
                 alt="Thümecke Business Intelligence Solutions" 
@@ -55,8 +52,8 @@ const Navbar: React.FC = () => {
               />
             </Link>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -66,14 +63,8 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
+              <CalendlyButton variant="button" />
             </div>
-          </div>
-          <div className="hidden md:block">
-            <Link to="/contact">
-              <Button className="bg-tech-blue hover:bg-tech-darkBlue text-white">
-                Projekt besprechen
-              </Button>
-            </Link>
           </div>
           <div className="md:hidden">
             <button
@@ -104,15 +95,9 @@ const Navbar: React.FC = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              className="block px-3 py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Button className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
-                Projekt besprechen
-              </Button>
-            </Link>
+            <div className="px-3 py-2">
+              <CalendlyButton />
+            </div>
           </div>
         </div>
       )}
