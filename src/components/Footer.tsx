@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const mainNavLinks = [
-    { to: '/', text: 'Startseite' },
     { to: '/ai-chatbots', text: 'AI-Chatbots' },
     { to: '/system-integration', text: 'Prozessautomatisierung' }
   ];
