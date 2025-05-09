@@ -55,7 +55,7 @@ const Services: React.FC = () => {
           <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Leistungen</h2>
           <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
             Modulare KI-Lösungen mit nahtloser Systemintegration für Ihren spezifischen Geschäftsbedarf
-          </p>
+        </p>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -79,8 +79,8 @@ const Services: React.FC = () => {
                   <h3 className="text-2xl font-bold text-tech-gray-900 mb-3">{service.title}</h3>
                   <p className="text-tech-gray-600 mb-6">{service.description}</p>
                   
-                  <ul className="space-y-3">
-                    {service.items.map((item, itemIndex) => (
+                <ul className="space-y-3">
+                  {service.items.map((item, itemIndex) => (
                       <motion.li
                         key={itemIndex}
                         initial={{ opacity: 0, x: -10 }}
@@ -90,12 +90,12 @@ const Services: React.FC = () => {
                         className="flex items-start"
                       >
                         <div className="mr-3 mt-1.5 h-1.5 w-1.5 rounded-full bg-tech-blue flex-shrink-0" />
-                        <span className="text-tech-gray-700">{item}</span>
+                      <span className="text-tech-gray-700">{item}</span>
                       </motion.li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
             </motion.div>
           ))}
         </div>

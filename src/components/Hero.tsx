@@ -174,7 +174,7 @@ const Hero: React.FC = () => {
                               }
                             }}
                           />
-                        </div>
+                      </div>
                       </motion.div>
                       <p className="mb-4">
                         <StreamingText 

@@ -117,3 +117,25 @@
 .section-subtitle {
   @apply text-xl text-tech-gray-700 mb-12 max-w-3xl;
 }
+
+[data-radix-select-item-indicator],
+[data-radix-select-item-indicator] *,
+[data-radix-select-item-indicator] svg,
+[data-radix-select-item-indicator] span {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+[data-radix-select-item-indicator], 
+[data-radix-select-item-indicator] svg, 
+[data-radix-select-item-indicator] > svg {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
