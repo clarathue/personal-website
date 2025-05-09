@@ -112,7 +112,7 @@ const AIChatbotsPage = () => {
         "Deutlich bessere Matching-Qualität durch KI-gestützte Analyse",
         "Effizientere Einstellungsprozesse mit kürzerer Time-to-Hire"
       ],
-      image: "/images/productivity.jpg"
+      image: "/images/recruiting.jpg"
     },
     {
       title: "Business Intelligence",
@@ -131,7 +131,7 @@ const AIChatbotsPage = () => {
         "Bessere Entscheidungsgrundlage durch KI-gestützte Insights",
         "Effizientere Ressourcennutzung durch automatisierte Reporting-Prozesse"
       ],
-      image: "/images/data-quality.jpg"
+      image: "/images/bi.jpg"
     }
   ];
 
@@ -846,7 +846,11 @@ const AIChatbotsPage = () => {
                       >
                         <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300 max-w-sm mx-auto">
                           <div className="relative aspect-[16/9]">
-                            <div className={`absolute inset-0 bg-[url('${study.image}')] bg-cover bg-center`} />
+                            <img
+                              src={study.image}
+                              alt={study.title}
+                              className="w-full h-full object-cover"
+                            />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                             <div className="absolute bottom-0 left-0 right-0 p-3">
                               <h3 className="text-lg font-bold text-white mb-0.5">{study.title}</h3>
@@ -886,8 +890,8 @@ const AIChatbotsPage = () => {
                                       transition={{ delay: 0.5 }}
                                     >
                                       {study.title === "Recruiting & HR" 
-                                        ? "Wie können wir den Recruiting-Prozess optimieren?"
-                                        : "Wie können wir die Datenanalyse verbessern?"}
+                                        ? "Haben wir passende Kandidaten für die Ingenieurstelle?"
+                                        : "Welches meiner Produkte wurde letzten Monat am meisten verkauft?"}
                                     </motion.span>
                                   </div>
                                 </motion.div>
