@@ -3,7 +3,6 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import CalendlyButton from './CalendlyButton';
 
 interface NavItem {
   name: string;
@@ -11,9 +10,9 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
+  { name: 'Startseite', href: '/' },
   { name: 'AI-Chatbots', href: '/ai-chatbots' },
   { name: 'Systemvernetzung', href: '/system-integration' },
-  { name: 'Kontakt', href: '/contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -64,7 +63,11 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <CalendlyButton variant="button" />
+              <Link to="/contact">
+                <Button variant="default" className="bg-tech-blue hover:bg-tech-darkBlue">
+                  Kontakt
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="md:hidden">
@@ -96,9 +99,13 @@ const Navbar: React.FC = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="px-3 py-2">
-              <CalendlyButton />
-            </div>
+            <Link
+              to="/contact"
+              className="text-tech-gray-700 hover:text-tech-blue block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Kontakt
+            </Link>
           </div>
         </div>
       )}
