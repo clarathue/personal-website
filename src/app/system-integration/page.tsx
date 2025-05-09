@@ -123,10 +123,7 @@ const SystemIntegration = () => {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-tech-blue">Systemintegration</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">
-              Alles was Sie für eine effiziente Systemvernetzung benötigen
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Systemintegration</h2>
             <p className="mt-6 text-lg leading-8 text-tech-gray-600">
               Unsere Lösungen verbinden Ihre Systeme nahtlos und automatisieren Ihre Geschäftsprozesse für maximale Effizienz.
             </p>
@@ -193,10 +190,7 @@ const SystemIntegration = () => {
       <section className="py-24 sm:py-32 bg-gradient-to-br from-tech-blue/5 to-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-tech-blue">Wirtschaftliche Vorteile</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">
-              Messbare Mehrwerte durch Systemvernetzung
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Wirtschaftliche Vorteile</h2>
             <p className="mt-6 text-lg leading-8 text-tech-gray-600">
               Unsere Systemvernetzungen und Automatisierungslösungen generieren konkrete wirtschaftliche Vorteile für Ihr Unternehmen.
             </p>
@@ -325,10 +319,7 @@ const SystemIntegration = () => {
       <section className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-tech-blue">Use Cases</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">
-              Automatisierungslösungen für Ihren Erfolg
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Use Cases</h2>
             <p className="mt-6 text-lg leading-8 text-tech-gray-600">
               Entdecken Sie die vielfältigen Möglichkeiten der Systemvernetzung und Automatisierung für Ihr Unternehmen.
             </p>
@@ -341,31 +332,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <Users className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">Recruiting Automation</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    Automatisierte Übertragung von Kandidatendaten zwischen Bewerbungsportalen, ATS und HR-Systemen. Reduzieren Sie manuelle Dateneingaben und beschleunigen Sie den Recruiting-Prozess.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Automatische Datenübertragung
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Status-Synchronisation
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Dokumentenmanagement
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <Users className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  Recruiting Automation
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  Automatisierte Übertragung von Kandidatendaten zwischen Bewerbungsportalen, ATS und HR-Systemen. Reduzieren Sie manuelle Dateneingaben und beschleunigen Sie den Recruiting-Prozess.
+                </p>
               </motion.div>
 
               {/* Business Intelligence */}
@@ -374,31 +351,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <BarChart3 className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">Automatisiertes Dashboarding</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    Echtzeit-Dashboards mit automatischer Datenaktualisierung aus verschiedenen Quellen. Visualisieren Sie Ihre KPIs und treffen Sie datenbasierte Entscheidungen.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Echtzeit-Datenintegration
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Automatische Berichte
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      KPI-Tracking
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <BarChart3 className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  Automatisiertes Dashboarding
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  Echtzeit-Dashboards mit automatischer Datenaktualisierung aus verschiedenen Quellen. Visualisieren Sie Ihre KPIs und treffen Sie datenbasierte Entscheidungen.
+                </p>
               </motion.div>
 
               {/* E-Commerce Integration */}
@@ -407,31 +370,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <ShoppingCart className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">E-Commerce Integration</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    Nahtlose Verbindung von Online-Shops mit Warenwirtschaft und ERP-Systemen. Automatisieren Sie Bestellungen, Lagerbestände und Lieferungen.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Bestandsmanagement
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Auftragsverarbeitung
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Versandautomatisierung
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <ShoppingCart className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  E-Commerce Integration
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  Nahtlose Verbindung von Online-Shops mit Warenwirtschaft und ERP-Systemen. Automatisieren Sie Bestellungen, Lagerbestände und Lieferungen.
+                </p>
               </motion.div>
 
               {/* Dokumentenverarbeitung */}
@@ -440,31 +389,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <FileText className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">Automatisierte Dokumentenverarbeitung</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    KI-gestützte Verarbeitung und Klassifizierung von Dokumenten. Automatisieren Sie die Extraktion und Weiterleitung von Informationen.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      OCR & Texterkennung
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Automatische Klassifizierung
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Workflow-Automatisierung
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <FileText className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  Automatisierte Dokumentenverarbeitung
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  KI-gestützte Verarbeitung und Klassifizierung von Dokumenten. Automatisieren Sie die Extraktion und Weiterleitung von Informationen.
+                </p>
               </motion.div>
 
               {/* Lieferantenmanagement */}
@@ -473,31 +408,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <Truck className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">Lieferantenmanagement</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    Automatisierte Kommunikation und Datenübertragung mit Lieferanten. Optimieren Sie Bestellungen, Lieferungen und Rechnungsstellung.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      EDI-Integration
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Automatische Bestellungen
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Lieferstatus-Tracking
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <Truck className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  Lieferantenmanagement
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  Automatisierte Kommunikation und Datenübertragung mit Lieferanten. Optimieren Sie Bestellungen, Lieferungen und Rechnungsstellung.
+                </p>
               </motion.div>
 
               {/* Finanzautomatisierung */}
@@ -506,31 +427,17 @@ const SystemIntegration = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
               >
-                <div className="p-6">
-                  <div className="w-12 h-12 bg-tech-blue/10 rounded-lg flex items-center justify-center mb-4">
-                    <Wallet className="h-6 w-6 text-tech-blue" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-tech-gray-900 mb-2">Finanzautomatisierung</h3>
-                  <p className="text-tech-gray-600 mb-4">
-                    Automatisierte Buchhaltung und Finanzprozesse. Verbinden Sie Banken, ERP und Buchhaltungssysteme für effiziente Finanzverwaltung.
-                  </p>
-                  <ul className="space-y-2 text-sm text-tech-gray-600">
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Automatische Buchungen
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Rechnungsverarbeitung
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-tech-blue rounded-full mr-2" />
-                      Cashflow-Management
-                    </li>
-                  </ul>
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
+                  <Wallet className="h-6 w-6 text-tech-blue" />
                 </div>
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                  Finanzautomatisierung
+                </h3>
+                <p className="text-sm text-tech-gray-600">
+                  Automatisierte Buchhaltung und Finanzprozesse. Verbinden Sie Banken, ERP und Buchhaltungssysteme für effiziente Finanzverwaltung.
+                </p>
               </motion.div>
             </div>
           </div>
