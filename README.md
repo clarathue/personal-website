@@ -54,11 +54,23 @@ npm run dev
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Vite (build tool and dev server)
+- React (frontend framework)
+- TypeScript (type safety)
+- shadcn-ui (UI components)
+- Tailwind CSS (utility-first CSS framework)
+- Framer Motion (animations)
+- Chart.js (data visualization)
+
+## How is this project deployed?
+
+- **Deployment:** Automated via GitHub Actions (`.github/workflows/deploy.yml`)
+- **Build Output:** The `dist/` folder is published to GitHub Pages
+- **Custom Domain:** Supported via a `CNAME` file (`thuemecke.net`)
+- **Static Assets:** All files in `public/` (including `sitemap.xml`, `robots.txt`, `favicon.ico`) are copied to the root of the deployed site
+- **SEO:** Meta-Tags, Open Graph, Twitter Cards, and structured data are included for all main pages
+- **Sitemap & robots.txt:** Automatically available at the site root for search engines
+- **SPA Routing:** Vite/React Router is used; for deep links, a `404.html` can be added if needed
 
 ## How can I deploy this project?
 
