@@ -28,8 +28,13 @@ const Contact: React.FC = () => {
         to_email: 'clara@thuemecke.net',
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
-        reply_to: formData.email, // Wichtig für die Antwort-Funktion
+        message: `
+Name: ${formData.name}
+E-Mail: ${formData.email}
+
+Nachricht:
+${formData.message}`,
+        reply_to: formData.email,
       };
 
       const result = await emailjs.send(
