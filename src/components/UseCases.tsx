@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ChartLine, Search, Database } from 'lucide-react';
+import { ChartLine, Search, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Line } from 'react-chartjs-2';
@@ -67,7 +67,7 @@ const UseCases: React.FC = () => {
     },
     {
       id: 'market-research',
-      title: 'Marktforschung & Wettbewerbsanalysen',
+      title: 'Marktforschung',
       icon: <Search className="h-6 w-6" />,
       description: 'Automatisierte Marktbeobachtung für Strategie, Marketing und Business Development.',
       features: [
@@ -83,8 +83,8 @@ const UseCases: React.FC = () => {
     },
     {
       id: 'recruiting',
-      title: 'Recruiting & Talent Acquisition',
-      icon: <Database className="h-6 w-6" />,
+      title: 'Recruiting',
+      icon: <Users className="h-6 w-6" />,
       description: 'Intelligente Unterstützung für HR und Recruiting-Teams bei der Kandidatensuche und Stellenausschreibungen.',
       features: [
         'Integration mit Bewerbermanagement-Systemen',
@@ -127,7 +127,7 @@ const UseCases: React.FC = () => {
                 key={useCase.id}
                 value={useCase.id} 
                 className={cn(
-                  "flex items-center gap-3 py-4 px-5 border border-gray-200 rounded-xl bg-white data-[state=active]:border-tech-blue data-[state=active]:text-tech-blue shadow-sm hover:shadow-md transition-all h-auto min-h-[72px]",
+                  "flex items-center gap-3 py-4 px-5 border border-gray-200 rounded-xl bg-white data-[state=active]:border-tech-blue data-[state=active]:text-tech-blue shadow-sm hover:shadow-md transition-all h-auto min-h-[72px] w-full",
                   activeTab === useCase.id ? "shadow-md" : ""
                 )}
               >
@@ -137,7 +137,7 @@ const UseCases: React.FC = () => {
                 )}>
                   {useCase.icon}
                 </div>
-                <span className="font-medium text-left text-base leading-snug whitespace-normal flex items-center min-h-[24px]">{useCase.title}</span>
+                <span className="font-medium text-left text-base leading-snug break-words flex-1">{useCase.title}</span>
               </TabsTrigger>
             ))}
           </TabsList>
