@@ -18,7 +18,7 @@ const SystemIntegration = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                Systemvernetzungen & Automatisierung
+                Prozessautomatisierung & Integration
               </motion.h1>
               
               <motion.p 
@@ -27,7 +27,7 @@ const SystemIntegration = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                Effiziente Integration und Automatisierung Ihrer Geschäftsprozesse durch maßgeschneiderte Systemvernetzungen. Optimieren Sie Ihre Workflows und steigern Sie die Produktivität.
+                Effiziente Integration und Automatisierung Ihrer Geschäftsprozesse durch maßgeschneiderte Lösungen. Optimieren Sie Ihre Workflows und steigern Sie die Produktivität.
               </motion.p>
               
               <motion.div
@@ -165,7 +165,7 @@ const SystemIntegration = () => {
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Systemintegration</h2>
             <p className="mt-6 text-lg leading-8 text-tech-gray-600">
-              Unsere Lösungen verbinden Ihre Systeme nahtlos und automatisieren Ihre Geschäftsprozesse für maximale Effizienz.
+              Unsere Lösungen automatisieren Ihre Geschäftsprozesse für maximale Effizienz und nahtlose Integration.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -230,9 +230,9 @@ const SystemIntegration = () => {
       <section className="py-24 sm:py-32 bg-gradient-to-br from-tech-blue/5 to-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Wirtschaftliche Vorteile</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Ihre Vorteile</h2>
             <p className="mt-6 text-lg leading-8 text-tech-gray-600">
-              Unsere Systemvernetzungen und Automatisierungslösungen generieren konkrete wirtschaftliche Vorteile für Ihr Unternehmen.
+              Unsere Prozessautomatisierungslösungen generieren konkrete Vorteile für Ihr Unternehmen.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">

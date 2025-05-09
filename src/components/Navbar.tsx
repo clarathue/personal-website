@@ -12,7 +12,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: 'Startseite', href: '/' },
   { name: 'AI-Chatbots', href: '/ai-chatbots' },
-  { name: 'Systemvernetzung', href: '/system-integration' },
+  { name: 'Prozessautomatisierung', href: '/system-integration' },
 ];
 
 const Navbar: React.FC = () => {

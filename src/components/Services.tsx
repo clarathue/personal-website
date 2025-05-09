@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Brain, Code, Network } from 'lucide-react';
+import { Brain, Code, Network, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Services: React.FC = () => {
   const services = [
@@ -29,7 +30,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Systemvernetzung & Automatisierung",
+      title: "Prozessautomatisierung & Integration",
       icon: <Network className="h-8 w-8" />,
       description: "Nahtlose Verbindung verschiedener Systeme und Automatisierung von Geschäftsprozessen",
       items: [
@@ -57,7 +58,7 @@ const Services: React.FC = () => {
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -98,6 +99,27 @@ const Services: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center gap-6"
+        >
+          <Link to="/ai-chatbots">
+            <button className="rounded-md bg-tech-blue px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-tech-darkBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-blue transition-colors duration-300 flex items-center gap-2">
+              AI-Chatbots
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </Link>
+          <Link to="/system-integration">
+            <button className="rounded-md bg-tech-blue px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-tech-darkBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-blue transition-colors duration-300 flex items-center gap-2">
+              Prozessautomatisierung
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

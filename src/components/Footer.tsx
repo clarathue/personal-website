@@ -23,32 +23,17 @@ const Footer = () => {
             <div>
               <h3 className="text-sm font-semibold text-tech-gray-900 mb-4">Navigation</h3>
               <ul className="space-y-3">
-                <li>
-                  <Link to="/ai-chatbots" className="text-tech-gray-600 hover:text-tech-blue">
-                    AI-Chatbots
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/contact" className="text-tech-gray-600 hover:text-tech-blue">
-                    Kontakt
-                  </Link>
-                </li>
+                <li><Link to="/ai-chatbots" className="text-tech-gray-300 hover:text-white">AI-Chatbots</Link></li>
+                <li><Link to="/system-integration" className="text-tech-gray-300 hover:text-white">Prozessautomatisierung</Link></li>
+                <li><Link to="/contact" className="text-tech-gray-300 hover:text-white">Kontakt</Link></li>
               </ul>
             </div>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
-            <p className="text-tech-gray-300 text-sm">
-              <Link to="/contact" className="hover:text-white">
-                Kontaktformular
-              </Link>
-            </p>
-            <p className="text-tech-gray-300 text-sm mt-2">
-              <a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                LinkedIn Profil
-              </a>
-            </p>
+            <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
+            <p className="text-tech-gray-300 text-sm mt-2"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
           </div>
         </div>
         
