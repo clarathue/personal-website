@@ -15,6 +15,16 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm run build
+      - name: Create 404.html
+        run: |
+          cp dist/index.html dist/404.html
+
+      - name: Add .nojekyll file
+        run: touch dist/.nojekyll
+
+      - name: Add CNAME file
+        run: echo "thuemecke.net" > dist/CNAME
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
