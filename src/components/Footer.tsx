@@ -43,6 +43,15 @@ const Footer = () => {
                   ))}
                 </div>
               </div>
+
+              <div className="text-right">
+                <h3 className="text-lg font-semibold mb-4 text-white">Kontakt</h3>
+                <div className="flex flex-col space-y-2">
+                  <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
+                  <p className="text-tech-gray-300 text-sm"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
+                </div>
+              </div>
+              
               <div className="text-right">
                 <h3 className="text-lg font-semibold mb-4 text-white">Rechtliches</h3>
                 <div className="flex flex-col space-y-2">
@@ -55,13 +64,7 @@ const Footer = () => {
                   ))}
                 </div>
               </div>
-              <div className="text-right">
-                <h3 className="text-lg font-semibold mb-4 text-white">Kontakt</h3>
-                <div className="flex flex-col space-y-2">
-                  <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
-                  <p className="text-tech-gray-300 text-sm"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
