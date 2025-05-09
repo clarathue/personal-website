@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_URL: '/'
+          VITE_BASE_URL: ''
       
       # Add a 404.html file for client-side routing
       - name: Create 404.html
