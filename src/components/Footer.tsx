@@ -2,11 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const mainNavLinks = [
+    { to: '/', text: 'Startseite' },
+    { to: '/ai-chatbots', text: 'AI-Chatbots' },
+    { to: '/system-integration', text: 'Prozessautomatisierung' }
+  ];
+
+  const legalLinks = [
+    { to: '/impressum', text: 'Impressum' },
+    { to: '/datenschutz', text: 'Datenschutz' }
+  ];
+
   return (
     <footer className="bg-tech-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div className="md:col-span-4">
             <div className="mb-4">
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
@@ -19,21 +30,40 @@ const Footer = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-tech-gray-900 mb-4">Navigation</h3>
-              <ul className="space-y-3">
-                <li><Link to="/ai-chatbots" className="text-tech-gray-300 hover:text-white">AI-Chatbots</Link></li>
-                <li><Link to="/system-integration" className="text-tech-gray-300 hover:text-white">Prozessautomatisierung</Link></li>
-                <li><Link to="/contact" className="text-tech-gray-300 hover:text-white">Kontakt</Link></li>
-              </ul>
+          <div className="md:col-span-8 flex flex-col items-end">
+            <div className="grid grid-cols-3 gap-8">
+              <div className="text-right">
+                <h3 className="text-lg font-semibold mb-4 text-white">Navigation</h3>
+                <div className="flex flex-col space-y-2">
+                  {mainNavLinks.map((link) => (
+                    <p key={link.to} className="text-tech-gray-300 text-sm">
+                      <Link to={link.to} className="hover:text-white whitespace-nowrap">
+                        {link.text}
+                      </Link>
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold mb-4 text-white">Rechtliches</h3>
+                <div className="flex flex-col space-y-2">
+                  {legalLinks.map((link) => (
+                    <p key={link.to} className="text-tech-gray-300 text-sm">
+                      <Link to={link.to} className="hover:text-white whitespace-nowrap">
+                        {link.text}
+                      </Link>
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className="text-right">
+                <h3 className="text-lg font-semibold mb-4 text-white">Kontakt</h3>
+                <div className="flex flex-col space-y-2">
+                  <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
+                  <p className="text-tech-gray-300 text-sm"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
-            <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
-            <p className="text-tech-gray-300 text-sm mt-2"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
           </div>
         </div>
         
