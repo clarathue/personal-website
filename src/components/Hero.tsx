@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Line } from 'react-chartjs-2';
+import { Link } from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -99,11 +100,11 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.7 }}
             >
-              <a href="#contact">
+              <Link to="/contact">
                 <Button size="lg" className="bg-tech-blue hover:bg-tech-darkBlue text-white">
                   Projekt besprechen
                 </Button>
-              </a>
+              </Link>
             </motion.div>
           </div>
           

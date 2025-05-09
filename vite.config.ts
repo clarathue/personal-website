@@ -31,4 +31,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Add history fallback for client-side routing
+  preview: {
+    port: 3000,
+    strictPort: true,
+    host: true,
+    proxy: {
+      '/': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path,
+      },
+    },
+  },
 }));

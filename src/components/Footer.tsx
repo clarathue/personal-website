@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -21,22 +22,23 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              <li><a href="#/" className="text-tech-gray-300 hover:text-white text-sm">Home</a></li>
-              <li><a href="#/about" className="text-tech-gray-300 hover:text-white text-sm">Über mich</a></li>
-              <li><a href="#/services" className="text-tech-gray-300 hover:text-white text-sm">Leistungen</a></li>
-              <li><a href="#/usecases" className="text-tech-gray-300 hover:text-white text-sm">Anwendungsfälle</a></li>
-              <li><a href="#/contact" className="text-tech-gray-300 hover:text-white text-sm">Kontakt</a></li>
-              <li><a href="#/impressum" className="text-tech-gray-300 hover:text-white text-sm">Impressum</a></li>
-              <li><a href="#/datenschutz" className="text-tech-gray-300 hover:text-white text-sm">Datenschutz</a></li>
+              <li><Link to="/" className="text-tech-gray-300 hover:text-white text-sm">Home</Link></li>
+              <li><Link to="/about" className="text-tech-gray-300 hover:text-white text-sm">Über mich</Link></li>
+              <li><Link to="/services" className="text-tech-gray-300 hover:text-white text-sm">Leistungen</Link></li>
+              <li><Link to="/ai-chatbots" className="text-tech-gray-300 hover:text-white text-sm">AI-Chatbots</Link></li>
+              <li><Link to="/usecases" className="text-tech-gray-300 hover:text-white text-sm">Anwendungsfälle</Link></li>
+              <li><Link to="/contact" className="text-tech-gray-300 hover:text-white text-sm">Kontakt</Link></li>
+              <li><Link to="/impressum" className="text-tech-gray-300 hover:text-white text-sm">Impressum</Link></li>
+              <li><Link to="/datenschutz" className="text-tech-gray-300 hover:text-white text-sm">Datenschutz</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <p className="text-tech-gray-300 text-sm">
-              <a href="#/contact" className="hover:text-white">
+              <Link to="/contact" className="hover:text-white">
                 Kontaktformular
-              </a>
+              </Link>
             </p>
             <p className="text-tech-gray-300 text-sm mt-2">
               <a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">

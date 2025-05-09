@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface NavItem {
   name: string;
@@ -9,11 +10,12 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '#/' },
-  { name: 'Über mich', href: '#/about' },
-  { name: 'Leistungen', href: '#/services' },
-  { name: 'Anwendungsfälle', href: '#/usecases' },
-  { name: 'Kontakt', href: '#/contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Über mich', href: '/about' },
+  { name: 'Leistungen', href: '/services' },
+  { name: 'AI-Chatbots', href: '/ai-chatbots' },
+  { name: 'Anwendungsfälle', href: '/usecases' },
+  { name: 'Kontakt', href: '/contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -45,33 +47,33 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <a href="#/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
                 alt="Thümecke Business Intelligence Solutions" 
                 className="h-16 w-auto"
               />
-            </a>
+            </Link>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-tech-gray-700 hover:text-tech-blue px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
           <div className="hidden md:block">
-            <a href="#/contact">
+            <Link to="/contact">
               <Button className="bg-tech-blue hover:bg-tech-darkBlue text-white">
                 Projekt besprechen
               </Button>
-            </a>
+            </Link>
           </div>
           <div className="md:hidden">
             <button
@@ -93,24 +95,24 @@ const Navbar: React.FC = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-tech-gray-700 hover:text-tech-blue block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#/contact"
+            <Link
+              to="/contact"
               className="block px-3 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Button className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white">
                 Projekt besprechen
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       )}
