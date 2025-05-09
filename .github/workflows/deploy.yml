@@ -35,7 +35,12 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_URL: '/personal-website/'
+          VITE_BASE_URL: '/'
+      
+      # Add a 404.html file for client-side routing
+      - name: Create 404.html
+        run: |
+          cp dist/index.html dist/404.html
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -54,9 +59,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
-      
-      # Add a 404.html file for client-side routing
-      - name: Create 404.html
-        run: |
-          cp dist/index.html dist/404.html 
+        uses: actions/deploy-pages@v4 
