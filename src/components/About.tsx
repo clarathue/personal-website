@@ -11,7 +11,7 @@ const About: React.FC = () => {
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-tech-blue/20 via-purple-500/20 to-pink-500/20">
               <div className="absolute inset-0 backdrop-blur-xl bg-white/30 border border-white/40 rounded-2xl" />
               <img
-                src="/images/Foto_Clara Thümecke.png"
+                src="/images/clara-thuemecke.png"
                 alt="Clara Thümecke"
                 className="w-full h-full object-cover"
                 style={{ position: 'relative', zIndex: 1 }}
