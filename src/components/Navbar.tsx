@@ -12,6 +12,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'AI-Chatbots', href: '/ai-chatbots' },
+  { name: 'Systemvernetzung', href: '/system-integration' },
   { name: 'Kontakt', href: '/contact' },
 ];
 
