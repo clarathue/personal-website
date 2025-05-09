@@ -51,9 +51,9 @@ const SystemIntegration = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
-                {/* Modern System Integration Interface */}
+                {/* Modern System Integration Dashboard */}
                 <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
-                  {/* Header */}
+                  {/* Dashboard Header */}
                   <div className="bg-gradient-to-r from-tech-blue to-tech-darkBlue p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
@@ -61,52 +61,92 @@ const SystemIntegration = () => {
                           <Code className="h-6 w-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-white font-semibold">System Integration Dashboard</h3>
-                          <p className="text-white/80 text-sm">Aktiv & Synchronisiert</p>
+                          <h3 className="text-white font-semibold">System Integration Hub</h3>
+                          <p className="text-white/80 text-sm">Alle Systeme synchronisiert</p>
                         </div>
                       </div>
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-green-400" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                      <div className="flex items-center space-x-2">
+                        <div className="px-2 py-1 bg-white/20 rounded-full">
+                          <span className="text-white text-sm">Live</span>
+                        </div>
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Integration Status */}
+                  {/* Dashboard Content */}
                   <div className="p-4 space-y-4 bg-gray-50/50">
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1, duration: 0.5 }}
-                      className="flex justify-end"
-                    >
-                      <div className="bg-tech-blue text-white px-4 py-2 rounded-2xl rounded-tr-none max-w-[80%]">
-                        System-Status: Alle Komponenten synchronisiert
+                    {/* System Status Overview */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white p-3 rounded-lg shadow-sm">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-tech-gray-700">ERP System</span>
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        </div>
+                        <div className="text-xs text-tech-gray-500">Letzte Synchronisation: vor 2 Min</div>
                       </div>
-                    </motion.div>
+                      <div className="bg-white p-3 rounded-lg shadow-sm">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-medium text-tech-gray-700">CRM System</span>
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        </div>
+                        <div className="text-xs text-tech-gray-500">Letzte Synchronisation: vor 1 Min</div>
+                      </div>
+                    </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1.5, duration: 0.5 }}
-                      className="flex justify-start"
-                    >
-                      <div className="bg-white px-4 py-2 rounded-2xl rounded-tl-none max-w-[80%] shadow-sm">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                          <span className="text-sm text-tech-gray-700">Datenbank: Verbunden</span>
+                    {/* Integration Metrics */}
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                      <h4 className="text-sm font-medium text-tech-gray-900 mb-3">Integration Metriken</h4>
+                      <div className="space-y-3">
+                        <div>
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="text-xs text-tech-gray-600">Datenübertragung</span>
+                            <span className="text-xs text-tech-gray-600">98%</span>
+                          </div>
+                          <div className="h-1.5 bg-tech-gray-100 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: "98%" }}
+                              transition={{ duration: 1, delay: 0.2 }}
+                              className="h-full bg-tech-blue rounded-full"
+                            />
+                          </div>
                         </div>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                          <span className="text-sm text-tech-gray-700">API: Aktiv</span>
-                        </div>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                          <span className="text-sm text-tech-gray-700">Workflow: Läuft</span>
+                        <div>
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="text-xs text-tech-gray-600">API Verfügbarkeit</span>
+                            <span className="text-xs text-tech-gray-600">99.9%</span>
+                          </div>
+                          <div className="h-1.5 bg-tech-gray-100 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: "99.9%" }}
+                              transition={{ duration: 1, delay: 0.4 }}
+                              className="h-full bg-tech-blue rounded-full"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
+
+                    {/* Recent Activities */}
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                      <h4 className="text-sm font-medium text-tech-gray-900 mb-3">Letzte Aktivitäten</h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-1.5 h-1.5 bg-tech-blue rounded-full" />
+                          <span className="text-xs text-tech-gray-600">Neue Bestellung synchronisiert</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-1.5 h-1.5 bg-tech-blue rounded-full" />
+                          <span className="text-xs text-tech-gray-600">Kundendaten aktualisiert</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-1.5 h-1.5 bg-tech-blue rounded-full" />
+                          <span className="text-xs text-tech-gray-600">Lagerbestand angepasst</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
