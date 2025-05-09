@@ -97,12 +97,12 @@ const AIChatbotsPage = () => {
   const caseStudies = [
     {
       title: "Recruiting & HR",
-      company: "Tech Startup",
+      company: "Recruiting-Agentur in der Pharma- und Biotech-Branche",
       description: "Automatisierung des Recruiting-Prozesses mit KI-gestützter Vorauswahl und Matching",
       preview: "Durch die Integration eines KI-Chatbots in den Recruiting-Prozess konnten wir die Bewerbungsanalyse automatisieren und die Qualität der Kandidatenauswahl verbessern. Der Chatbot analysiert Lebensläufe, führt erste Gespräche und unterstützt das HR-Team bei der Vorauswahl.",
       situation: "Das Tech-Startup stand vor der Herausforderung, bei starkem Wachstum die Qualität der Einstellungen zu halten und gleichzeitig den Recruiting-Prozess zu beschleunigen. Die manuelle Vorauswahl von Bewerbungen war zeitaufwändig und führte zu Engpässen im HR-Team.",
       process: [
-        "Integration des KI-Chatbots in das bestehende ATS-System",
+        "Integration des KI-Chatbots in den bestehenden Workflow",
         "Training des Systems mit historischen Einstellungsdaten und erfolgreichen Kandidatenprofilen",
         "Implementierung automatisierter Bewerbungsanalyse und Kategorisierung",
         "Entwicklung einer Matching-Engine für Kandidaten-Position-Passung"
@@ -116,20 +116,20 @@ const AIChatbotsPage = () => {
     },
     {
       title: "Business Intelligence",
-      company: "E-Commerce Unternehmen",
+      company: "SaaS Unternehmen",
       description: "KI-gestützte Datenanalyse und Reporting für datengetriebene Entscheidungen",
       preview: "Der KI-Chatbot revolutionierte die Datenanalyse im Unternehmen durch automatisierte Report-Generierung und intelligente Insights. Er analysiert Umsatzdaten, Kundenverhalten und Produktperformance in Echtzeit und liefert maßgeschneiderte Berichte für verschiedene Abteilungen.",
-      situation: "Das E-Commerce Unternehmen benötigte eine effizientere Methode zur Analyse von Geschäftsdaten und zur Erstellung von Reports. Die manuelle Datenaufbereitung war zeitaufwändig und führte zu verzögerten Entscheidungen.",
+      situation: "Das SaaS Unternehmen benötigte eine effizientere Methode zur Analyse von Geschäftsdaten und zur Erstellung von Reports. Die manuelle Datenaufbereitung war zeitaufwändig und führte zu verzögerten Entscheidungen.",
       process: [
-        "Integration verschiedener Datenquellen (Umsatz, Kundenverhalten, Produktperformance)",
-        "Entwicklung eines KI-Modells zur automatischen Datenanalyse",
+        "Integration verschiedener Datenquellen (Umsatz, Kundendaten, etc.)",
+        "Finetuning eines KI-Modells zur automatischen Datenanalyse",
         "Implementierung eines interaktiven Reporting-Systems",
         "Einrichtung von Echtzeit-Monitoring für wichtige KPIs"
       ],
       results: [
         "Schnellere und präzisere Datenanalyse durch automatisierte Prozesse",
         "Bessere Entscheidungsgrundlage durch KI-gestützte Insights",
-        "Effizientere Ressourcennutzung durch automatisierte Reporting-Prozesse"
+        "Erhöhung der Effizienz durch Reduzierung manueller Arbeitsschritte bei der Datenanalyse"
       ],
       image: "/images/bi.jpg"
     }
