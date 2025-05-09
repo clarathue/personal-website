@@ -366,118 +366,148 @@ const SystemIntegration = () => {
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Recruiting Automation */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <Users className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <Users className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   Recruiting Automation
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  Automatisierte Übertragung von Kandidatendaten zwischen Bewerbungsportalen, ATS und HR-Systemen. Reduzieren Sie manuelle Dateneingaben und beschleunigen Sie den Recruiting-Prozess.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Optimieren Sie Ihren Recruiting-Prozess durch automatisierte Datenübertragung und -verarbeitung.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>Automatisierte Übertragung von Kandidatendaten</li>
+                  <li>Reduzierung manueller Dateneingaben</li>
+                  <li>Beschleunigung des Recruiting-Prozesses</li>
+                  <li>Verbesserte Datenqualität</li>
+                </ul>
               </motion.div>
 
-              {/* Business Intelligence */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <BarChart3 className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <BarChart3 className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   Automatisiertes Dashboarding
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  Echtzeit-Dashboards mit automatischer Datenaktualisierung aus verschiedenen Quellen. Visualisieren Sie Ihre KPIs und treffen Sie datenbasierte Entscheidungen.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Erhalten Sie einen umfassenden Überblick über Ihre Geschäftsprozesse durch automatisierte Dashboards.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>Echtzeit-Datenaktualisierung</li>
+                  <li>Integration verschiedener Datenquellen</li>
+                  <li>Automatisierte KPI-Berechnung</li>
+                  <li>Maßgeschneiderte Berichte</li>
+                </ul>
               </motion.div>
 
-              {/* E-Commerce Integration */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <ShoppingCart className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <ShoppingCart className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   E-Commerce Integration
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  Nahtlose Verbindung von Online-Shops mit Warenwirtschaft und ERP-Systemen. Automatisieren Sie Bestellungen, Lagerbestände und Lieferungen.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Verbinden Sie Ihren Online-Shop nahtlos mit Ihren internen Systemen für optimierte Prozesse.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>Nahtlose Systemverbindung</li>
+                  <li>Automatisierte Bestellungsverarbeitung</li>
+                  <li>Echtzeit-Lagerbestandsaktualisierung</li>
+                  <li>Automatisierte Lieferungsverfolgung</li>
+                </ul>
               </motion.div>
 
-              {/* Dokumentenverarbeitung */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <FileText className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <FileText className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   Automatisierte Dokumentenverarbeitung
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  KI-gestützte Verarbeitung und Klassifizierung von Dokumenten. Automatisieren Sie die Extraktion und Weiterleitung von Informationen.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Nutzen Sie KI-gestützte Technologien für die effiziente Verarbeitung Ihrer Dokumente.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>KI-gestützte Verarbeitung</li>
+                  <li>Automatisierte Extraktion</li>
+                  <li>Intelligente Weiterleitung</li>
+                  <li>Digitale Archivierung</li>
+                </ul>
               </motion.div>
 
-              {/* Lieferantenmanagement */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <Truck className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <Truck className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   Lieferantenmanagement
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  Automatisierte Kommunikation und Datenübertragung mit Lieferanten. Optimieren Sie Bestellungen, Lieferungen und Rechnungsstellung.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Optimieren Sie Ihre Lieferantenbeziehungen durch automatisierte Prozesse und Kommunikation.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>Automatisierte Kommunikation</li>
+                  <li>Echtzeit-Bestandsüberwachung</li>
+                  <li>Automatisierte Bestellprozesse</li>
+                  <li>Digitale Rechnungsverarbeitung</li>
+                </ul>
               </motion.div>
 
-              {/* Finanzautomatisierung */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-tech-blue/20 transition-all duration-300 group"
               >
-                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors">
-                  <Wallet className="h-6 w-6 text-tech-blue" />
+                <div className="bg-tech-blue/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-tech-blue/20 transition-colors duration-300">
+                  <Wallet className="h-6 w-6 text-tech-blue group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-tech-gray-900 mb-2 group-hover:text-tech-blue transition-colors">
+                <h3 className="text-lg font-semibold text-tech-gray-900 mb-4 group-hover:text-tech-blue transition-colors duration-300">
                   Finanzautomatisierung
                 </h3>
-                <p className="text-sm text-tech-gray-600">
-                  Automatisierte Buchhaltung und Finanzprozesse. Verbinden Sie Banken, ERP und Buchhaltungssysteme für effiziente Finanzverwaltung.
+                <p className="text-sm text-tech-gray-600 mb-4 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  Steigern Sie die Effizienz Ihrer Finanzprozesse durch intelligente Automatisierung.
                 </p>
+                <ul className="list-disc list-inside space-y-2 text-sm text-tech-gray-600 group-hover:text-tech-gray-900 transition-colors duration-300">
+                  <li>Automatisierte Buchhaltung</li>
+                  <li>Integration von Finanzsystemen</li>
+                  <li>Automatische Rechnungsstellung</li>
+                  <li>Echtzeit-Finanzberichte</li>
+                </ul>
               </motion.div>
             </div>
           </div>
