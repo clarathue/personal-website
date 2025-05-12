@@ -363,8 +363,8 @@ const AIChatbotsPage = () => {
             </motion.div>
 
             <div className="relative">
-              {/* Interactive Timeline */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-tech-blue/20 -translate-x-1/2" />
+              {/* Interactive Timeline - hide on small screens */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-tech-blue/20 -translate-x-1/2 hidden md:block" />
 
               {/* Cost Savings */}
               <motion.div
@@ -374,14 +374,14 @@ const AIChatbotsPage = () => {
                 transition={{ duration: 0.7 }}
                 className="relative mb-24"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="lg:order-2">
                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-tech-blue/15 to-transparent">
                       <div className="absolute inset-0 bg-[url('/images/cost-savings.jpg')] bg-cover bg-center mix-blend-soft-light opacity-90" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <h3 className="text-3xl font-bold mb-2">Kosteneinsparung</h3>
-                        <p className="text-lg opacity-90">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 text-white">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 break-words hyphens-auto">Kosteneinsparung</h3>
+                        <p className="text-sm sm:text-base lg:text-lg opacity-90 break-words hyphens-auto">
                           Signifikante Reduzierung der Support-Kosten durch Automatisierung von Routineanfragen. Laut 
                           <a 
                             href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year" 
@@ -399,21 +399,21 @@ const AIChatbotsPage = () => {
                   </div>
                   <div className="lg:order-1">
                     <div className="relative">
-                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-tech-blue rounded-full -translate-y-1/2" />
-                      <div className="bg-white p-8 rounded-2xl shadow-lg">
+                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-tech-blue rounded-full -translate-y-1/2 hidden md:block" />
+                      <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-12 h-12 bg-tech-blue/10 rounded-full flex items-center justify-center">
-                            <BarChart3 className="h-6 w-6 text-tech-blue" />
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-tech-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-tech-blue" />
                           </div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-tech-gray-900">Kosteneinsparung durch KI</h4>
-                            <p className="text-tech-gray-600">Konkrete Beispiele aus der Praxis</p>
+                          <div className="min-w-0">
+                            <h4 className="text-base sm:text-lg font-semibold text-tech-gray-900 break-words hyphens-auto">Kosteneinsparung durch KI</h4>
+                            <p className="text-sm text-tech-gray-600 break-words hyphens-auto">Konkrete Beispiele aus der Praxis</p>
                           </div>
                         </div>
                         <div className="space-y-6">
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Support-Anfragen</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Support-Anfragen</span>
                               <span className="text-sm text-tech-gray-500">85%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -425,12 +425,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-tech-blue rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Automatisierte Bearbeitung von Routineanfragen</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Automatisierte Bearbeitung von Routineanfragen</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Datenanalyse</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Datenanalyse</span>
                               <span className="text-sm text-tech-gray-500">75%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -442,12 +442,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-tech-blue rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Reduzierung manueller Datenaufbereitung</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Reduzierung manueller Datenaufbereitung</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Reporting</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Reporting</span>
                               <span className="text-sm text-tech-gray-500">90%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -459,7 +459,7 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-tech-blue rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Automatisierte Report-Generierung</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Automatisierte Report-Generierung</p>
                           </div>
                         </div>
                       </div>
@@ -476,14 +476,14 @@ const AIChatbotsPage = () => {
                 transition={{ duration: 0.7 }}
                 className="relative mb-24"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div>
                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-500/15 to-transparent">
                       <div className="absolute inset-0 bg-[url('/images/productivity.jpg')] bg-cover bg-center mix-blend-soft-light opacity-90" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <h3 className="text-3xl font-bold mb-2">Produktivitätssteigerung</h3>
-                        <p className="text-lg opacity-90">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 text-white">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 break-words hyphens-auto">Produktivitätssteigerung</h3>
+                        <p className="text-sm sm:text-base lg:text-lg opacity-90 break-words hyphens-auto">
                           Mitarbeiter können sich auf wertschöpfende Aufgaben konzentrieren, während KI-Systeme repetitive Arbeiten übernehmen. Dies führt zu einer effizienteren Ressourcennutzung und höherer Mitarbeiterzufriedenheit.
                         </p>
                       </div>
@@ -491,21 +491,21 @@ const AIChatbotsPage = () => {
                   </div>
                   <div>
                     <div className="relative">
-                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-emerald-500 rounded-full -translate-y-1/2" />
-                      <div className="bg-white p-8 rounded-2xl shadow-lg">
+                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-emerald-500 rounded-full -translate-y-1/2 hidden md:block" />
+                      <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center">
-                            <Users className="h-6 w-6 text-emerald-600" />
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Users className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600" />
                           </div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-tech-gray-900">Produktivitätssteigerung</h4>
-                            <p className="text-tech-gray-600">Mehr Zeit für wertschöpfende Aufgaben</p>
+                          <div className="min-w-0">
+                            <h4 className="text-base sm:text-lg font-semibold text-tech-gray-900 break-words hyphens-auto">Produktivitätssteigerung</h4>
+                            <p className="text-sm text-tech-gray-600 break-words hyphens-auto">Mehr Zeit für wertschöpfende Aufgaben</p>
                           </div>
                         </div>
                         <div className="space-y-6">
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Strategische Planung</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Strategische Planung</span>
                               <span className="text-sm text-tech-gray-500">+40%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -517,12 +517,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-emerald-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Mehr Zeit für strategische Entscheidungen</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Mehr Zeit für strategische Entscheidungen</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Kreative Arbeit</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Kreative Arbeit</span>
                               <span className="text-sm text-tech-gray-500">+60%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -534,12 +534,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-emerald-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Fokus auf innovative Lösungen</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Fokus auf innovative Lösungen</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Kundeninteraktion</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Kundeninteraktion</span>
                               <span className="text-sm text-tech-gray-500">+50%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -551,7 +551,7 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-emerald-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Mehr Zeit für persönlichen Kontakt</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Mehr Zeit für persönlichen Kontakt</p>
                           </div>
                         </div>
                       </div>
@@ -568,14 +568,14 @@ const AIChatbotsPage = () => {
                 transition={{ duration: 0.7 }}
                 className="relative mb-24"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="lg:order-2">
                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500/15 to-transparent">
                       <div className="absolute inset-0 bg-[url('/images/scalability.jpg')] bg-cover bg-center mix-blend-soft-light opacity-90" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <h3 className="text-3xl font-bold mb-2">Skalierbarkeit</h3>
-                        <p className="text-lg opacity-90">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 text-white">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 break-words hyphens-auto">Skalierbarkeit</h3>
+                        <p className="text-sm sm:text-base lg:text-lg opacity-90 break-words hyphens-auto">
                           Flexible Anpassung an wachsende Anforderungen ohne proportional steigende Personalkosten. Die Systeme wachsen mit Ihrem Unternehmen und können Spitzenlasten effizient bewältigen.
                         </p>
                       </div>
@@ -583,21 +583,21 @@ const AIChatbotsPage = () => {
                   </div>
                   <div className="lg:order-1">
                     <div className="relative">
-                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-purple-500 rounded-full -translate-y-1/2" />
-                      <div className="bg-white p-8 rounded-2xl shadow-lg">
+                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-purple-500 rounded-full -translate-y-1/2 hidden md:block" />
+                      <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center">
-                            <Building2 className="h-6 w-6 text-purple-600" />
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
                           </div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-tech-gray-900">Skalierbarkeit</h4>
-                            <p className="text-tech-gray-600">Flexible Anpassung an Wachstum</p>
+                          <div className="min-w-0">
+                            <h4 className="text-base sm:text-lg font-semibold text-tech-gray-900 break-words hyphens-auto">Skalierbarkeit</h4>
+                            <p className="text-sm text-tech-gray-600 break-words hyphens-auto">Flexible Anpassung an Wachstum</p>
                           </div>
                         </div>
                         <div className="space-y-6">
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Anfragen pro Stunde</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Anfragen pro Stunde</span>
                               <span className="text-sm text-tech-gray-500">1000+</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -609,12 +609,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-purple-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Bewältigung von Spitzenlasten</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Bewältigung von Spitzenlasten</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Datenvolumen</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Datenvolumen</span>
                               <span className="text-sm text-tech-gray-500">10x</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -626,12 +626,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-purple-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Skalierbare Datenverarbeitung</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Skalierbare Datenverarbeitung</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Kosteneffizienz</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Kosteneffizienz</span>
                               <span className="text-sm text-tech-gray-500">70%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -643,7 +643,7 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-purple-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Geringere Kosten pro Transaktion</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Geringere Kosten pro Transaktion</p>
                           </div>
                         </div>
                       </div>
@@ -660,14 +660,14 @@ const AIChatbotsPage = () => {
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div>
                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/15 to-transparent">
                       <div className="absolute inset-0 bg-[url('/images/data-quality.jpg')] bg-cover bg-center mix-blend-soft-light opacity-90" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <h3 className="text-3xl font-bold mb-2">Datenqualität</h3>
-                        <p className="text-lg opacity-90">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 text-white">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 break-words hyphens-auto">Datenqualität</h3>
+                        <p className="text-sm sm:text-base lg:text-lg opacity-90 break-words hyphens-auto">
                           Verbesserte Datenqualität durch automatisierte Validierung und Konsistenzprüfung. Dies führt zu fundierteren Entscheidungen und reduziert Fehler in der Datenanalyse erheblich.
                         </p>
                       </div>
@@ -675,21 +675,21 @@ const AIChatbotsPage = () => {
                   </div>
                   <div>
                     <div className="relative">
-                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-amber-500 rounded-full -translate-y-1/2" />
-                      <div className="bg-white p-8 rounded-2xl shadow-lg">
+                      <div className="absolute -left-4 top-1/2 w-8 h-8 bg-amber-500 rounded-full -translate-y-1/2 hidden md:block" />
+                      <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center">
-                            <FileText className="h-6 w-6 text-amber-600" />
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <FileText className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600" />
                           </div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-tech-gray-900">Datenqualität</h4>
-                            <p className="text-tech-gray-600">Präzise und zuverlässige Daten</p>
+                          <div className="min-w-0">
+                            <h4 className="text-base sm:text-lg font-semibold text-tech-gray-900 break-words hyphens-auto">Datenqualität</h4>
+                            <p className="text-sm text-tech-gray-600 break-words hyphens-auto">Präzise und zuverlässige Daten</p>
                           </div>
                         </div>
                         <div className="space-y-6">
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Fehlerreduktion</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Fehlerreduktion</span>
                               <span className="text-sm text-tech-gray-500">95%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -701,12 +701,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-amber-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Automatische Fehlererkennung</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Automatische Fehlererkennung</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Datenkonsistenz</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Datenkonsistenz</span>
                               <span className="text-sm text-tech-gray-500">98%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -718,12 +718,12 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-amber-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Einheitliche Datenformate</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Einheitliche Datenformate</p>
                           </div>
 
                           <div>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-sm font-medium text-tech-gray-700">Echtzeit-Validierung</span>
+                              <span className="text-sm font-medium text-tech-gray-700 break-words hyphens-auto">Echtzeit-Validierung</span>
                               <span className="text-sm text-tech-gray-500">100%</span>
                             </div>
                             <div className="h-2 bg-tech-gray-100 rounded-full overflow-hidden">
@@ -735,7 +735,7 @@ const AIChatbotsPage = () => {
                                 className="h-full bg-amber-500 rounded-full"
                               />
                             </div>
-                            <p className="text-xs text-tech-gray-500 mt-1">Sofortige Qualitätsprüfung</p>
+                            <p className="text-xs text-tech-gray-500 mt-1 break-words hyphens-auto">Sofortige Qualitätsprüfung</p>
                           </div>
                         </div>
                       </div>
