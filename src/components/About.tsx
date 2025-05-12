@@ -1,6 +1,7 @@
 import React from 'react';
 import { Database, Bot, ChartLine, Code, Cpu, Network } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Title } from '@/components/ui/title';
 
 const About: React.FC = () => {
   return (
@@ -21,15 +22,9 @@ const About: React.FC = () => {
           </div>
           
           <div className="lg:col-span-7 space-y-8">
-            <motion.h2 
-              className="text-3xl font-bold text-tech-gray-900"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+            <Title as="h2" variant="section" animate={true}>
               Über mich
-            </motion.h2>
+            </Title>
             
             <motion.div
               className="space-y-6"

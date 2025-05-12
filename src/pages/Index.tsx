@@ -20,11 +20,11 @@ const Index = () => {
       description="Professionelle Business Intelligence Lösungen mit Fokus auf AI-Chatbots und Systemintegration. Optimieren Sie Ihre Geschäftsprozesse mit maßgeschneiderten KI-Lösungen."
       keywords="Business Intelligence, AI-Chatbots, Systemintegration, KI-Lösungen, Automatisierung, Prozessoptimierung"
     >
-      <div className="min-h-screen">
-        <Hero />
-        <About />
-        <Services />
-        <UseCases />
+    <div className="min-h-screen">
+      <Hero />
+      <About />
+      <Services />
+      <UseCases />
         <div className="py-12 bg-gradient-to-br from-tech-blue/5 to-white">
           <div className="section-container text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-tech-gray-900 mb-4">
@@ -41,7 +41,7 @@ const Index = () => {
             </a>
           </div>
         </div>
-      </div>
+    </div>
     </Layout>
   );
 };

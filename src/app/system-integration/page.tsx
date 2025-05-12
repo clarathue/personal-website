@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Database, GitBranch, Zap, Shield, Code, BarChart3, Users, Building2, ShoppingCart, FileText, Truck, Wallet } from 'lucide-react';
 import Layout from '@/components/Layout';
+import { Title } from '@/components/ui/title';
 
 const SystemIntegration = () => {
   return (
@@ -17,14 +18,13 @@ const SystemIntegration = () => {
           <div className="section-container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-7 flex flex-col justify-center">
-                <motion.h1 
-                  className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7 }}
+                <Title 
+                  as="h1"
+                  variant="page" 
+                  animate={true}
                 >
                   Prozessautomatisierung & Integration
-                </motion.h1>
+                </Title>
                 
                 <motion.p 
                   className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"
@@ -168,7 +168,7 @@ const SystemIntegration = () => {
         <section className="py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Systemintegration</h2>
+              <Title as="h2" variant="section">Systemintegration</Title>
               <p className="mt-6 text-lg leading-8 text-tech-gray-600">
                 Unsere Lösungen automatisieren Ihre Geschäftsprozesse für maximale Effizienz und nahtlose Integration.
               </p>
@@ -235,7 +235,7 @@ const SystemIntegration = () => {
         <section className="py-24 sm:py-32 bg-gradient-to-br from-tech-blue/5 to-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Ihre Vorteile</h2>
+              <Title as="h2" variant="section">Ihre Vorteile</Title>
               <p className="mt-6 text-lg leading-8 text-tech-gray-600">
                 Unsere Prozessautomatisierungslösungen generieren konkrete Vorteile für Ihr Unternehmen.
               </p>
@@ -364,7 +364,7 @@ const SystemIntegration = () => {
         <section className="py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-tech-gray-900 sm:text-4xl">Use Cases</h2>
+              <Title as="h2" variant="section">Use Cases</Title>
               <p className="mt-6 text-lg leading-8 text-tech-gray-600">
                 Entdecken Sie die vielfältigen Möglichkeiten der Systemvernetzung und Automatisierung für Ihr Unternehmen.
               </p>

@@ -111,7 +111,11 @@
 }
 
 .section-title {
-  @apply text-3xl sm:text-4xl font-bold mb-6 text-tech-gray-900;
+  @apply text-[clamp(1.875rem,5vw,3.5rem)] font-bold mb-6 text-tech-gray-900 leading-tight max-w-full break-words hyphens-auto;
+}
+
+.page-title {
+  @apply text-[clamp(1.875rem,5vw,3.5rem)] font-bold text-tech-gray-900 leading-tight max-w-full break-words hyphens-auto;
 }
 
 .section-subtitle {

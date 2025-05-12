@@ -3,13 +3,13 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Line } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
+import { Title } from '@/components/ui/title';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend,
 } from 'chart.js';
@@ -19,7 +19,6 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend
 );
@@ -66,14 +65,9 @@ const Hero: React.FC = () => {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
+            <Title as="h1" variant="page" animate={true}>
               Modulare AI-Lösungen für datengetriebene Unternehmen
-            </motion.h1>
+            </Title>
             
             <motion.p 
               className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"

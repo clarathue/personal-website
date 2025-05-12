@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CalendlyButton from '@/components/CalendlyButton';
-
+import { Title } from '@/components/ui/title';
 // EmailJS Konfiguration
 emailjs.init("E85RYUMoO3-PpIbgV");
 
@@ -74,20 +74,14 @@ const ContactPage = () => {
       <Navbar />
       <section className="pt-32 pb-20">
         <div className="section-container">
-          <motion.h2 
-            className="text-3xl font-bold text-tech-gray-900 mb-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <Title as="h1" variant="page" animate={true} className="text-center mb-5">
             Kontakt
-          </motion.h2>
+          </Title>
           <p className="section-subtitle text-center mx-auto">
             Lassen Sie uns über Ihr Projekt sprechen – ich freue mich auf Ihre Anfrage.
           </p>
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-14">
             <div className="lg:col-span-5 space-y-8">
               <Card className="border-none shadow-lg bg-white">
                 <CardContent className="p-6">

@@ -7,7 +7,6 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend,
 } from 'chart.js';
@@ -22,13 +21,13 @@ import {
   CarouselNext
 } from '@/components/ui/carousel';
 import Layout from '@/components/Layout';
+import { Title } from '@/components/ui/title';
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend
 );
@@ -202,14 +201,9 @@ const AIChatbotsPage = () => {
           <div className="section-container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-7 flex flex-col justify-center">
-                <motion.h1 
-                  className="text-4xl sm:text-5xl md:text-6xl font-bold text-tech-gray-900 leading-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7 }}
-                >
+                <Title as="h1" variant="page" animate={true}>
                   KI-Chatbots für Ihre Business Intelligence
-                </motion.h1>
+                </Title>
                 
                 <motion.p 
                   className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"
@@ -362,7 +356,7 @@ const AIChatbotsPage = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Wirtschaftlicher Nutzen</h2>
+              <Title as="h2" variant="section">Wirtschaftlicher Nutzen</Title>
               <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
                 Konkrete Mehrwerte für Ihr Unternehmen durch KI-Integration
               </p>
@@ -773,7 +767,7 @@ const AIChatbotsPage = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Use Cases</h2>
+              <Title as="h2" variant="section">Use Cases</Title>
               <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
                 Flexible Einsatzmöglichkeiten für verschiedene Anwendungsfälle
               </p>
@@ -814,7 +808,7 @@ const AIChatbotsPage = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Case Studies</h2>
+              <Title as="h2" variant="section">Case Studies</Title>
               <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
                 Erfolgreiche KI-Integrationen in verschiedenen Branchen
               </p>

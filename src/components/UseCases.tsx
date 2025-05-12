@@ -4,13 +4,13 @@ import { ChartLine, Search, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Line } from 'react-chartjs-2';
+import { Title } from '@/components/ui/title';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend,
 } from 'chart.js';
@@ -28,7 +28,6 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
   Legend
 );
@@ -134,7 +133,9 @@ const UseCases: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Anwendungsfälle</h2>
+          <Title as="h2" variant="section" animate={true}>
+            Anwendungsfälle
+          </Title>
           <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
           Reale Einsatzszenarien von AI-Chatbots in unterschiedlichen Unternehmensbereichen
         </p>

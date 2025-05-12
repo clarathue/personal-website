@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Brain, Code, Network, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
+import { Title } from '@/components/ui/title';
 const Services: React.FC = () => {
   const services = [
     {
@@ -52,7 +52,9 @@ const Services: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-tech-gray-900 mb-4">Leistungen</h2>
+          <Title as="h2" variant="section" animate={true}>
+            Leistungen
+          </Title>
           <p className="text-xl text-tech-gray-600 max-w-2xl mx-auto">
             Modulare KI-Lösungen mit nahtloser Systemintegration für Ihren spezifischen Geschäftsbedarf
         </p>
