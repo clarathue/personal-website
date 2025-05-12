@@ -1,8 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   const mainNavLinks = [
+    { to: '/', text: 'Startseite' },
     { to: '/ai-chatbots', text: 'AI-Chatbots' },
     { to: '/system-integration', text: 'Prozessautomatisierung' }
   ];
@@ -18,12 +26,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <div className="md:col-span-4">
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
-                alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
-                className="h-12 w-auto brightness-200 contrast-200"
-                loading="lazy"
-              />
+              <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+                <img 
+                  src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                  alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
+                  className="h-12 w-auto brightness-200 contrast-200"
+                  loading="lazy"
+                />
+              </Link>
             </div>
             <p className="text-tech-gray-300 text-sm">
               Modulare AI-Chatbots für datengetriebene Unternehmen. Maßgeschneidert, effizient und mit messbarem Mehrwert.
@@ -36,11 +46,13 @@ const Footer = () => {
                 <h3 className="text-lg font-semibold mb-4 text-white">Navigation</h3>
                 <div className="flex flex-col space-y-2">
                   {mainNavLinks.map((link) => (
-                    <p key={link.to} className="text-tech-gray-300 text-sm">
-                      <Link to={link.to} className="hover:text-white whitespace-nowrap">
-                        {link.text}
-                      </Link>
-                    </p>
+                    <button 
+                      key={link.to} 
+                      onClick={() => handleNavigation(link.to)}
+                      className="text-tech-gray-300 text-right text-sm hover:text-white whitespace-nowrap cursor-pointer"
+                    >
+                      {link.text}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -48,8 +60,20 @@ const Footer = () => {
               <div className="text-right">
                 <h3 className="text-lg font-semibold mb-4 text-white">Kontakt</h3>
                 <div className="flex flex-col space-y-2">
-                  <p className="text-tech-gray-300 text-sm"><Link to="/contact" className="hover:text-white">Kontaktformular</Link></p>
-                  <p className="text-tech-gray-300 text-sm"><a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn Profil</a></p>
+                  <button
+                    onClick={() => handleNavigation('/contact')}
+                    className="text-tech-gray-300 text-right text-sm hover:text-white cursor-pointer"
+                  >
+                    Kontaktformular
+                  </button>
+                  <a 
+                    href="https://linkedin.com/in/clara-thuemecke" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-tech-gray-300 text-right text-sm hover:text-white"
+                  >
+                    LinkedIn Profil
+                  </a>
                 </div>
               </div>
               
@@ -57,11 +81,13 @@ const Footer = () => {
                 <h3 className="text-lg font-semibold mb-4 text-white">Rechtliches</h3>
                 <div className="flex flex-col space-y-2">
                   {legalLinks.map((link) => (
-                    <p key={link.to} className="text-tech-gray-300 text-sm">
-                      <Link to={link.to} className="hover:text-white whitespace-nowrap">
-                        {link.text}
-                      </Link>
-                    </p>
+                    <button 
+                      key={link.to} 
+                      onClick={() => handleNavigation(link.to)}
+                      className="text-tech-gray-300 text-right text-sm hover:text-white whitespace-nowrap cursor-pointer"
+                    >
+                      {link.text}
+                    </button>
                   ))}
                 </div>
               </div>
