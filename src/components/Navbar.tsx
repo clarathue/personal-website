@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                src="/favicon.png" 
                 alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
                 className="h-16 w-auto"
                 loading="lazy"

@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="mb-4">
               <Link to="/" onClick={() => window.scrollTo(0, 0)}>
                 <img 
-                  src="/lovable-uploads/46f348e0-9fb0-45e9-8ca3-2de393953867.png" 
+                  src="/favicon.png" 
                   alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
                   className="h-12 w-auto brightness-200 contrast-200"
                   loading="lazy"
