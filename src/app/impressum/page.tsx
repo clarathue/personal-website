@@ -19,7 +19,7 @@ const Impressum = () => {
           <p className="mb-6"> </p>
 
           <div className="prose prose-lg max-w-none">
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Angaben gemäß § 5 TMG
             </Title>
             <p className="mb-6">
@@ -29,14 +29,14 @@ const Impressum = () => {
               80339 München
             </p>
 
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Kontakt
             </Title>
             <p className="mb-6">
               E-Mail: clara@thuemecke.net
             </p>
 
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </Title>
             <p className="mb-6">
@@ -45,7 +45,7 @@ const Impressum = () => {
               80339 München
             </p>
 
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Streitschlichtung
             </Title>
             <p className="mb-6">
@@ -53,7 +53,7 @@ const Impressum = () => {
               Verbraucherschlichtungsstelle teilzunehmen.
             </p>
 
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Haftung für Inhalte
             </Title>
             <p className="mb-6">
@@ -63,7 +63,7 @@ const Impressum = () => {
               zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
             </p>
 
-            <Title as="h3" variant="subsection" animate={true}>
+            <Title as="h3" variant="section" animate={true}>
               Haftung für Links
             </Title>
             <p className="mb-6">

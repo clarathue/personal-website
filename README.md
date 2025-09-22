@@ -1,8 +1,12 @@
-# Welcome to my personal website
+# Thümecke Business Intelligence Solutions
 
-## Project info
+Professional Business Intelligence Solutions with AI-Chatbots and System Integration.
 
-**URL**: https://thuemecke.net/
+**Live URL**: https://thuemecke.net/
+
+## Project Overview
+
+This is a modern, responsive website built with React and TypeScript, showcasing Clara Thümecke's Business Intelligence and AI solutions. The site features a clean, professional design with smooth animations and optimized performance.
 
 ## Website Structure & Main Sections
 
@@ -38,3 +42,47 @@ This project is built with:
 - **SEO:** Meta-Tags, Open Graph, Twitter Cards, and structured data are included for all main pages
 - **Sitemap & robots.txt:** Automatically available at the site root for search engines
 - **SPA Routing:** Vite/React Router is used; for deep links, a `404.html` can be added if needed
+
+## Repository Structure
+
+### 📁 Source Code (`src/`)
+```
+src/
+├── app/                           # Page-based routing structure
+│   ├── home/page.tsx             # Main homepage with hero, about, services sections
+│   ├── contact/page.tsx          # Contact form and business information
+│   ├── ai-chatbots/page.tsx      # AI chatbot services and use cases
+│   ├── system-integration/page.tsx # System integration solutions
+│   ├── impressum/page.tsx        # Legal imprint page (German law requirement)
+│   ├── datenschutz/page.tsx      # Privacy policy page (GDPR compliance)
+│   └── not-found/page.tsx        # Custom 404 error page
+├── components/                    # Reusable React components
+│   ├── index.ts                  # Centralized component exports for clean imports
+│   ├── ui/                       # shadcn/ui component library (14 essential components)
+│   │   ├── button.tsx            # Button component with variants
+│   │   ├── card.tsx              # Card layout components
+│   │   ├── input.tsx             # Form input components
+│   │   ├── textarea.tsx          # Multi-line text input
+│   │   ├── tabs.tsx              # Tab navigation components
+│   │   ├── title.tsx             # Typography component with responsive sizing
+│   │   ├── toast.tsx             # Toast notification components
+│   │   ├── tooltip.tsx           # Tooltip components for UI hints
+│   │   └── [6 more essential UI components]
+│   ├── About.tsx                 # About section component
+│   ├── Contact.tsx               # Contact form component
+│   ├── Footer.tsx                # Site footer with links and legal info
+│   ├── Hero.tsx                  # Landing page hero section
+│   ├── Layout.tsx                # Page layout wrapper with SEO
+│   ├── Navbar.tsx                # Navigation header component
+│   ├── Services.tsx              # Services overview component
+│   ├── UseCases.tsx              # Use cases showcase component
+│   └── CalendlyButton.tsx        # Calendly integration button
+├── lib/
+│   └── utils.ts                  # Utility functions (cn helper for Tailwind classes)
+├── types/
+│   └── index.ts                  # TypeScript type definitions for the application
+├── App.tsx                       # Main app component with routing
+├── main.tsx                      # React app entry point
+└── index.css                     # Global styles and Tailwind CSS imports
+```
+
