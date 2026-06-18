@@ -1,93 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { Line } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
 import { Title } from '@/components/ui/title';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend
-);
-
-const StreamingText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (currentIndex < text.length) {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }
-    }, 30); // Geschwindigkeit der Animation
-
-    return () => clearTimeout(timeout);
-  }, [currentIndex, text]);
-
-  return <span>{displayedText}</span>;
-};
+const metrics = [
+  { label: 'Manuelle Prozesse reduziert', value: '−70 %' },
+  { label: 'Prozesszeit verkürzt', value: '−60 %' },
+  { label: 'API-Verfügbarkeit', value: '99,9 %' },
+];
 
 const Hero: React.FC = () => {
-  const chartData = {
-    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-    datasets: [
-      {
-        label: 'Umsatz 2024',
-        data: [2.1, 2.5, 2.2, 2.4],
-        borderColor: '#1EAEDB',
-        tension: 0.4
-      },
-      {
-        label: 'Umsatz 2023',
-        data: [1.9, 2.3, 1.8, 2.2],
-        borderColor: '#94A3B8',
-        tension: 0.4
-      }
-    ]
-  };
-
   return (
     <section id="hero" className="pt-28 pb-20 bg-gradient-to-br from-white to-gray-50">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7 flex flex-col justify-center">
             <Title as="h1" variant="page" animate={true}>
-              Modulare AI-Lösungen für datengetriebene Unternehmen
+              Prozessautomatisierung & Systemintegration für den Mittelstand
             </Title>
-            
-            <motion.p 
+
+            <motion.p
               className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Ich entwickle skalierbare, projektbasierte AI-Chatbots für Business Intelligence, Marktanalyse und Lieferantenmanagement – maßgeschneidert, effizient und mit messbarem Mehrwert.
+              Wir automatisieren Ihre Geschäftsprozesse und vernetzen Ihre Systemlandschaft – von HR und Recruiting bis Einkauf und Finance. Pragmatisch umgesetzt, messbar wirksam.
             </motion.p>
-            
-            {/* Floating tags above the button */}
-            <div className="flex flex-wrap gap-2 mt-8">
-              <span className="px-2 py-1 bg-tech-blue text-white rounded text-xs animate-pulse">API</span>
-              <span className="px-2 py-1 bg-tech-gray-700 text-white rounded text-xs animate-pulse">SQL</span>
-              <span className="px-2 py-1 bg-emerald-600 text-white rounded text-xs animate-pulse">Data</span>
-              <span className="px-2 py-1 bg-purple-600 text-white rounded text-xs animate-pulse">NLP</span>
-              <span className="px-2 py-1 bg-amber-500 text-white rounded text-xs animate-pulse">LLM</span>
-              <span className="px-2 py-1 bg-red-500 text-white rounded text-xs animate-pulse">Analytics</span>
-            </div>
-            
+
+            <motion.div
+              className="flex flex-wrap gap-2 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45, duration: 0.7 }}
+            >
+              <span className="px-3 py-1 bg-tech-blue text-white rounded-full text-sm font-medium">HR & Payroll</span>
+              <span className="px-3 py-1 bg-tech-gray-700 text-white rounded-full text-sm font-medium">Systemintegration</span>
+              <span className="px-3 py-1 bg-emerald-600 text-white rounded-full text-sm font-medium">Recruiting</span>
+              <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm font-medium">Einkauf</span>
+              <span className="px-3 py-1 bg-amber-500 text-white rounded-full text-sm font-medium">Finance</span>
+              <span className="px-3 py-1 bg-red-500 text-white rounded-full text-sm font-medium">Operations</span>
+            </motion.div>
+
             <motion.div
               className="mt-8"
               initial={{ opacity: 0 }}
@@ -101,83 +56,49 @@ const Hero: React.FC = () => {
               </Link>
             </motion.div>
           </div>
-          
-          <div className="lg:col-span-5 flex items-start pt-24">
+
+          <div className="lg:col-span-5 flex items-center pt-4">
             <motion.div
-              className="relative h-[400px] w-full"
-              initial={{ opacity: 0, scale: 0.9 }}
+              className="w-full"
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(30,174,219,0.1)_0%,rgba(255,255,255,0)_100%)]" />
-              
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
-                <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100">
-                  <div className="flex justify-between items-center mb-4">
-                    <div className="flex space-x-1">
-                      <div className="w-3 h-3 rounded-full bg-red-400" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                      <div className="w-3 h-3 rounded-full bg-green-400" />
-                    </div>
-                    <div className="text-xs text-tech-gray-400">AI-Chatbot</div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="bg-tech-gray-100 p-3 rounded-lg text-tech-gray-800">
-                      Wie entwickelt sich der Umsatz in Region Nord im Vergleich zum Vorjahr?
-                    </div>
-                    
-                    <motion.div 
-                      className="bg-tech-blue/10 p-3 rounded-lg text-tech-gray-800"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5, duration: 0.5 }}
-                    >
-                      <p className="text-tech-blue font-medium mb-2">AI-Chatbot Antwort:</p>
-                      <motion.div 
-                        className="bg-white p-3 rounded-lg border border-gray-200 mb-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 0.5 }}
-                      >
-                        <div className="h-32">
-                          <Line
-                            data={chartData}
-                            options={{
-                              responsive: true,
-                              maintainAspectRatio: false,
-                              plugins: {
-                                legend: {
-                                  position: 'top' as const,
-                                  labels: {
-                                    font: {
-                                      size: 11
-                                    }
-                                  }
-                                }
-                              },
-                              scales: {
-                                y: {
-                                  beginAtZero: false,
-                                  ticks: {
-                                    callback: function(value) {
-                                      return value + 'M €';
-                                    }
-                                  }
-                                }
-                              }
-                            }}
-                          />
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+                <p className="text-xs font-semibold text-tech-gray-400 uppercase tracking-widest mb-6">
+                  Ergebnisse aus Kundenprojekten
+                </p>
+                <div className="space-y-5">
+                  {metrics.map((m, i) => (
+                    <motion.div key={i}>
+                      <div className="flex items-center justify-between">
+                        <span className="text-tech-gray-700">{m.label}</span>
+                        <motion.span
+                          className="text-2xl font-bold text-tech-blue"
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.7 + i * 0.15, duration: 0.4 }}
+                        >
+                          {m.value}
+                        </motion.span>
                       </div>
-                      </motion.div>
-                      <p className="mb-4">
-                        <StreamingText 
-                          text="Der Umsatz in Region Nord zeigt eine dynamische Entwicklung: Nach einem starken Q2 (2.5M €) gab es im Q3 einen Rückgang auf 2.2M €. Im aktuellen Q4 liegt der Umsatz bei 2.4M €, was einem Wachstum von 9% zum Vorjahresquartal entspricht. Die Produktlinie A zeigt besonders im Q2 (+20%) und Q4 (+15%) starke Wachstumsimpulse."
-                          delay={1500}
-                        />
-                      </p>
+                      {i < metrics.length - 1 && <div className="h-px bg-gray-100 mt-5" />}
                     </motion.div>
-                  </div>
+                  ))}
+                  <div className="h-px bg-gray-100" />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.1, duration: 0.5 }}
+                  >
+                    <p className="text-xs text-tech-gray-400 uppercase tracking-widest mb-3">Unsere Branchen</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-tech-blue/10 text-tech-blue rounded-full text-sm font-medium">Pharma & Industrie</span>
+                      <span className="px-3 py-1 bg-tech-blue/10 text-tech-blue rounded-full text-sm font-medium">HR & Recruiting</span>
+                      <span className="px-3 py-1 bg-tech-blue/10 text-tech-blue rounded-full text-sm font-medium">Einkauf</span>
+                      <span className="px-3 py-1 bg-tech-blue/10 text-tech-blue rounded-full text-sm font-medium">Finance</span>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>

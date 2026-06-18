@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Linkedin, Calendar } from 'lucide-react';
+import { Mail, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
@@ -78,14 +78,14 @@ const ContactPage = () => {
             Kontakt
           </Title>
           <p className="section-subtitle text-center mx-auto">
-            Lassen Sie uns über Ihr Projekt sprechen – ich freue mich auf Ihre Anfrage.
+            Lassen Sie uns über Ihr Projekt sprechen – wir freuen uns auf Ihre Anfrage.
           </p>
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-14">
             <div className="lg:col-span-5 space-y-8">
               <Card className="border-none shadow-lg bg-white">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Kontaktieren Sie mich</h3>
+                  <h3 className="text-xl font-semibold mb-4">Kontaktieren Sie uns</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
@@ -94,13 +94,6 @@ const ContactPage = () => {
                       <a href="mailto:clara@thuemecke.net" className="text-tech-gray-700 hover:text-tech-blue">E-Mail senden</a>
                     </div>
                     
-                    <div className="flex items-center space-x-3">
-                      <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
-                        <Linkedin className="h-5 w-5 text-tech-blue" />
-                      </div>
-                      <a href="https://linkedin.com/in/clara-thuemecke" target="_blank" rel="noopener noreferrer" className="text-tech-gray-700 hover:text-tech-blue">LinkedIn Profil</a>
-                    </div>
-
                     <div className="flex items-center space-x-3">
                       <div className="h-10 w-10 rounded-full bg-tech-blue/10 flex items-center justify-center">
                         <Calendar className="h-5 w-5 text-tech-blue" />

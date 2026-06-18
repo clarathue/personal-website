@@ -15,9 +15,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ 
   children, 
-  title = "Thümecke Business Intelligence Solutions | Modulare AI-Chatbot Lösungen",
-  description = "Professionelle Business Intelligence Lösungen mit Fokus auf AI-Chatbots und Systemintegration. Optimieren Sie Ihre Geschäftsprozesse mit maßgeschneiderten KI-Lösungen.",
-  keywords = "Business Intelligence, AI-Chatbots, Systemintegration, KI-Lösungen, Automatisierung, Prozessoptimierung",
+  title = "Thümecke Business Intelligence Solutions | Prozessautomatisierung & Systemintegration",
+  description = "Prozessautomatisierung und Systemintegration für den Mittelstand – von HR und Recruiting bis Einkauf und Finance. Pragmatisch umgesetzt, messbar wirksam.",
+  keywords = "Prozessautomatisierung, Systemintegration, Business Intelligence, HR-Automatisierung, Recruiting-Automatisierung, KI-Lösungen, Mittelstand",
   canonicalUrl = "https://thuemecke.net",
   ogImage = "https://thuemecke.net/favicon.png",
   ogType = "website"
@@ -43,8 +43,7 @@ const Layout: React.FC<LayoutProps> = ({
       "email": "clara@thuemecke.net"
     },
     "sameAs": [
-      "https://www.linkedin.com/in/clara-thuemecke/",
-      "https://github.com/clarathuemecke"
+      "https://github.com/clarathue"
     ]
   };
 

@@ -32,7 +32,7 @@ const SystemIntegration = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.7 }}
                 >
-                  Effiziente Integration und Automatisierung Ihrer Geschäftsprozesse durch maßgeschneiderte Lösungen. Optimieren Sie Ihre Workflows und steigern Sie die Produktivität.
+                  Wir integrieren Ihre Systeme und automatisieren Ihre Geschäftsprozesse – maßgeschneidert, zuverlässig und mit nachhaltigem Nutzen für Ihre Organisation.
                 </motion.p>
                 
                 <motion.div
@@ -539,7 +539,7 @@ const SystemIntegration = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg text-tech-gray-600 mb-8"
               >
-                Lassen Sie uns gemeinsam Ihre Systeme vernetzen und Ihre Prozesse automatisieren.
+                Sprechen Sie uns an – wir vernetzen Ihre Systeme und automatisieren Ihre Prozesse.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

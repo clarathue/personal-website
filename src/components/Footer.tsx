@@ -29,14 +29,14 @@ const Footer = () => {
               <Link to="/" onClick={() => window.scrollTo(0, 0)}>
                 <img 
                   src="/favicon.png" 
-                  alt="Thümecke Business Intelligence Solutions Logo - Modulare AI-Chatbot Lösungen" 
+                  alt="Thümecke Business Intelligence Solutions Logo"
                   className="h-12 w-auto brightness-200 contrast-200"
                   loading="lazy"
                 />
               </Link>
             </div>
             <p className="text-tech-gray-300 text-sm">
-              Modulare AI-Chatbots für datengetriebene Unternehmen. Maßgeschneidert, effizient und mit messbarem Mehrwert.
+              Prozessautomatisierung und Systemintegration für den Mittelstand. Pragmatisch umgesetzt, messbar wirksam.
             </p>
           </div>
           
@@ -66,14 +66,6 @@ const Footer = () => {
                   >
                     Kontaktformular
                   </button>
-                  <a 
-                    href="https://linkedin.com/in/clara-thuemecke" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-tech-gray-300 text-right text-sm hover:text-white"
-                  >
-                    LinkedIn Profil
-                  </a>
                 </div>
               </div>
               

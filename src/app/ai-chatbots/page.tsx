@@ -94,42 +94,61 @@ const AIChatbotsPage = () => {
 
   const caseStudies = [
     {
-      title: "Recruiting & HR",
-      company: "Recruiting-Agentur in der Pharma- und Biotech-Branche",
-      description: "Automatisierung des Recruiting-Prozesses mit KI-gestützter Vorauswahl und Matching",
-      preview: "Durch die Integration eines KI-Chatbots in den Recruiting-Prozess konnten wir die Bewerbungsanalyse automatisieren und die Qualität der Kandidatenauswahl verbessern. Der Chatbot analysiert Lebensläufe, führt erste Gespräche und unterstützt das HR-Team bei der Vorauswahl.",
-      situation: "Das Tech-Startup stand vor der Herausforderung, bei starkem Wachstum die Qualität der Einstellungen zu halten und gleichzeitig den Recruiting-Prozess zu beschleunigen. Die manuelle Vorauswahl von Bewerbungen war zeitaufwändig und führte zu Engpässen im HR-Team.",
+      title: "HR & Payroll Automatisierung",
+      company: "Internationaler Pharmahersteller, 5.000+ Mitarbeitende",
+      description: "Aufbau einer integrierten HR-Systemlandschaft aus Beratung, Prozessdesign und technischer Umsetzung",
+      preview: "Ein internationaler Pharmahersteller mit über 5.000 Mitarbeitenden stand vor der Herausforderung, HR-, Payroll- und Zeitwirtschaftsprozesse über mehrere Systeme und Standorte zu harmonisieren. Thümecke übernahm Beratung, Prozessanalyse und technische Umsetzung – von der Zielarchitektur bis zur Systemintegration.",
+      situation: "HR-, Payroll- und Zeitwirtschaftsprozesse liefen über mehrere Systeme und Standorte ohne klare Verantwortlichkeiten. Medienbrüche und manuelle Arbeitsschritte führten zu Ineffizienz, Fehleranfälligkeit und hohem Abstimmungsaufwand zwischen HR, Payroll und IT.",
       process: [
-        "Integration des KI-Chatbots in den bestehenden Workflow",
-        "Training des Systems mit historischen Einstellungsdaten und erfolgreichen Kandidatenprofilen",
-        "Implementierung automatisierter Bewerbungsanalyse und Kategorisierung",
-        "Entwicklung einer Matching-Engine für Kandidaten-Position-Passung"
+        "Analyse bestehender HR-, Payroll- und Zeitwirtschaftsprozesse an mehreren Standorten",
+        "Entwicklung einer fachlich-technischen Zielarchitektur für Personio, ATOSS und DATEV",
+        "Konzeption und Umsetzung der Systemintegration inkl. Lohnarten-Mapping und Schnittstellenlogik",
+        "Übersetzung zwischen HR, Payroll und IT – von der Anforderung bis zur produktiven Lösung"
       ],
       results: [
-        "Signifikante Zeitersparnis im Screening-Prozess durch automatisierte Vorauswahl",
-        "Deutlich bessere Matching-Qualität durch KI-gestützte Analyse",
-        "Effizientere Einstellungsprozesse mit kürzerer Time-to-Hire"
+        "Klare HR-Systemarchitektur mit abgestimmten Prozessen zwischen HR, Payroll und Zeitwirtschaft",
+        "Reduktion manueller Arbeitsschritte durch automatisierte Datenflüsse zwischen den Systemen",
+        "Belastbarere Grundlage für Integration, Automatisierung und operativen HR-Betrieb"
       ],
       image: "/images/recruiting.jpg"
     },
     {
-      title: "Business Intelligence",
-      company: "SaaS Unternehmen",
-      description: "KI-gestützte Datenanalyse und Reporting für datengetriebene Entscheidungen",
-      preview: "Der KI-Chatbot revolutionierte die Datenanalyse im Unternehmen durch automatisierte Report-Generierung und intelligente Insights. Er analysiert Umsatzdaten, Kundenverhalten und Produktperformance in Echtzeit und liefert maßgeschneiderte Berichte für verschiedene Abteilungen.",
-      situation: "Das SaaS Unternehmen benötigte eine effizientere Methode zur Analyse von Geschäftsdaten und zur Erstellung von Reports. Die manuelle Datenaufbereitung war zeitaufwändig und führte zu verzögerten Entscheidungen.",
+      title: "Recruiting-Prozesse automatisiert",
+      company: "Personaldienstleister im Recruiting-Umfeld",
+      description: "Automatisierung wiederkehrender ATS-Prozesse – von Jobfeeds bis zur DSGVO-konformen Bewerberkommunikation",
+      preview: "Ein Personaldienstleister nutzte Vincere als zentrales ATS, aber operative Prozesse rund um Jobausschreibungen, Bewerberkommunikation und DSGVO-Consent waren manuell und fehleranfällig. Thümecke entwickelte ein Portfolio serverloser Automationen, das manuelle Arbeit spürbar reduzierte.",
+      situation: "Operative Recruiting-Prozesse erforderten viele manuelle Schritte: Jobausschreibungen mussten manuell auf Plattformen übertragen, Absagen einzeln versendet, DSGVO-Einverständnisse manuell eingeholt und Daten zwischen Systemen synchronisiert werden.",
       process: [
-        "Integration verschiedener Datenquellen (Umsatz, Kundendaten, etc.)",
-        "Finetuning eines KI-Modells zur automatischen Datenanalyse",
-        "Implementierung eines interaktiven Reporting-Systems",
-        "Einrichtung von Echtzeit-Monitoring für wichtige KPIs"
+        "Analyse der operativen Recruiting-Prozesse und Identifikation von Automatisierungspotenzialen",
+        "Aufbau von XML-Jobfeed-Automationen für die Übertragung auf externe Plattformen (LinkedIn, Xing)",
+        "Implementierung automatischer Bewerberkommunikation und DSGVO-Consent-Workflows",
+        "Entwicklung serverloser Integrationslogik für Datenpflege und Statussynchronisation im ATS"
       ],
       results: [
-        "Schnellere und präzisere Datenanalyse durch automatisierte Prozesse",
-        "Bessere Entscheidungsgrundlage durch KI-gestützte Insights",
-        "Erhöhung der Effizienz durch Reduzierung manueller Arbeitsschritte bei der Datenanalyse"
+        "Signifikante Reduktion manueller ATS-Arbeit durch automatisierte Jobfeeds und Kommunikationsprozesse",
+        "DSGVO-konforme Einholung von Einverständniserklärungen vollständig automatisiert",
+        "Stabilere Datenflüsse und bessere operative Skalierbarkeit im Recruiting-Alltag"
       ],
       image: "/images/bi.jpg"
+    },
+    {
+      title: "KI-gestützte Procurement-Plattform",
+      company: "SaaS-Unternehmen im Beschaffungsbereich",
+      description: "Multi-Agent-Plattform für automatisierte Lieferanten-, Markt- und Dokumentenanalyse im Einkauf",
+      preview: "Ein SaaS-Unternehmen im Procurement-Bereich benötigte eine skalierbare KI-Plattform, die Einkaufsteams bei Recherche, Analyse und Entscheidungsvorbereitung unterstützt. Thümecke entwickelte eine Multi-Agent-Architektur mit spezialisierten KI-Agenten für unterschiedliche Procurement-Anwendungsfälle.",
+      situation: "Procurement-Informationen lagen verteilt über interne Systeme, Dokumente, Newsquellen und Lieferantendaten. Recherche- und Analyseprozesse waren zeitaufwendig und manuell – ein skalierbares digitales Werkzeug fehlte.",
+      process: [
+        "Architektur und Entwicklung einer Multi-Agent-Plattform mit spezialisierten KI-Agenten",
+        "Umsetzung von Agents für Supplier Scouting, Marktanalysen, News Monitoring und Dokumentenvergleich",
+        "Integration eines BI/SQL-Agenten für natürlichsprachliche Abfragen auf strukturierte Daten",
+        "Cloudfähige Deployment-Architektur mit OAuth2, Rollenverwaltung und CI/CD-Pipeline"
+      ],
+      results: [
+        "Wiederverwendbare Agentenarchitektur als Basis für mehrere Procurement-Anwendungsfälle",
+        "Beschleunigung von Recherche- und Analyseprozessen durch automatisierte KI-Workflows",
+        "Bessere Nutzung interner und externer Daten sowie strukturierte Entscheidungsunterstützung im Einkauf"
+      ],
+      image: "/images/recruiting.jpg"
     }
   ];
 
@@ -191,8 +210,8 @@ const AIChatbotsPage = () => {
 
   return (
     <Layout
-      title="AI-Chatbots | Thümecke Business Intelligence Solutions"
-      description="Maßgeschneiderte AI-Chatbot Lösungen für Ihr Unternehmen. Automatisieren Sie Kundenbetreuung, Support und interne Prozesse mit modernster KI-Technologie."
+      title="KI-gestützte Lösungen | Thümecke Business Intelligence Solutions"
+      description="KI-gestützte Automatisierung für Daten, Analyse und Entscheidungsunterstützung. Wir entwickeln maßgeschneiderte Lösungen – von Multi-Agent-Systemen bis zur intelligenten Prozessautomatisierung."
       keywords="AI-Chatbots, Künstliche Intelligenz, Chatbot Entwicklung, Kundenservice Automatisierung, KI-Support, Prozessautomatisierung"
     >
       <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
@@ -202,16 +221,16 @@ const AIChatbotsPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <div className="lg:col-span-7 flex flex-col justify-center">
                 <Title as="h1" variant="page" animate={true}>
-                  KI-Chatbots für Ihre Business Intelligence
+                  KI-gestützte Lösungen für Daten, Analyse und Entscheidungsunterstützung
                 </Title>
-                
-                <motion.p 
+
+                <motion.p
                   className="text-lg sm:text-xl text-tech-gray-700 max-w-2xl mt-8"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.7 }}
                 >
-                  Skalierbare, projektbasierte AI-Chatbots für Business Intelligence, Marktanalyse und Lieferantenmanagement – maßgeschneidert, effizient und mit messbarem Mehrwert.
+                  Wir entwickeln intelligente Lösungen für Business Intelligence, Marktanalyse und Prozessautomatisierung – skalierbar aufgebaut, nahtlos integriert und mit messbarem Mehrwert.
                 </motion.p>
                 
                 <motion.div
@@ -1187,7 +1206,7 @@ const AIChatbotsPage = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg text-tech-gray-600 mb-8"
               >
-                Lassen Sie uns gemeinsam Ihr AI-Chatbot Projekt entwickeln. Ich berate Sie gerne bei der Konzeption und Umsetzung.
+                Sprechen Sie uns an – wir beraten Sie gerne bei Konzeption und Umsetzung Ihrer nächsten Automatisierungslösung.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
