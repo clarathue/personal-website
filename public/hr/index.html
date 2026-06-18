@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>HR-Systemintegration in regulierten Industrien | Thümecke Business Intelligence Solutions</title>
+  <meta name="description" content="Wir verbinden HR-Systeme in regulierten Produktionsumgebungen — pragmatisch, messbar wirksam.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Design tokens — exakt wie Hauptseite ────────────────────── */
+    :root {
+      --blue:      #1EAEDB;
+      --blue-dk:   #0FA0CE;
+      --blue-lt:   rgba(30,174,219,0.08);
+      --blue-lt2:  rgba(30,174,219,0.15);
+      --gray-900:  #222222;
+      --gray-800:  #333333;
+      --gray-700:  #403E43;
+      --gray-600:  #8E9196;
+      --gray-500:  #8A898C;
+      --gray-400:  #9F9EA1;
+      --gray-300:  #C8C8C9;
+      --gray-200:  #F1F1F1;
+      --gray-100:  #F6F6F7;
+      --border:    #e5e7eb;
+      --white:     #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    /* section-container aus der Hauptseite: max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 */
+    .sc {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    @media (min-width: 640px)  { .sc { padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .sc { padding: 0 2rem; } }
+
+    /* Schmale Textspalte für zentrierte Sektionen */
+    .narrow { max-width: 720px; margin: 0 auto; }
+
+    /* ── Section-Hintergründe — identisch zur Hauptseite ─────────── */
+    .bg-white   { background: var(--white); }
+    .bg-gray    { background: #f9fafb; }   /* Tailwind gray-50 */
+    .bg-grad    { background: linear-gradient(to bottom right, var(--white), #f9fafb); }
+    .bg-grad-b  { background: linear-gradient(to bottom, var(--white), #f9fafb); }
+    .bg-grad-bl { background: linear-gradient(to bottom right, rgba(30,174,219,0.05), var(--white)); }
+    .bg-dark    { background: var(--gray-900); }
+
+    section { padding: 6rem 0; }  /* py-24 */
+
+    /* ── Typografie — entspricht section-title, section-subtitle ─── */
+    h1 {
+      font-size: clamp(1.875rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      color: var(--gray-900);
+    }
+
+    h2 {
+      font-size: clamp(1.875rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--gray-900);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .sub {
+      /* section-subtitle */
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      margin-top: 1rem;
+    }
+
+    p { color: var(--gray-700); font-size: 1.0625rem; line-height: 1.75; }
+
+    /* ── Buttons — 1:1 shadcn Button size=lg aus Hauptseite ──────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 2.75rem;          /* h-11 */
+      padding: 0 2rem;          /* px-8 */
+      border-radius: 6px;       /* rounded-md */
+      font-family: inherit;
+      font-size: 0.875rem;      /* text-sm */
+      font-weight: 500;         /* font-medium */
+      line-height: 1;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color .15s, opacity .15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--blue-dk); }
+
+    .btn-white   { background: var(--white); color: var(--blue); }
+    .btn-white:hover { opacity: .9; }
+
+    .btn-ghost-w { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.5); }
+    .btn-ghost-w:hover { background: rgba(255,255,255,.1); }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .cta-c   { justify-content: center; }
+
+    /* ── Animations ─────────────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+
+    .au  { animation: fadeUp .6s ease both; }
+    .d1  { animation-delay:.15s; }
+    .d2  { animation-delay:.3s; }
+    .d3  { animation-delay:.45s; }
+    .d4  { animation-delay:.6s; }
+
+    /* Scroll-reveal */
+    .rv       { opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+    .rv.on    { opacity:1; transform:none; }
+    .rv.t1    { transition-delay:.08s; }
+    .rv.t2    { transition-delay:.16s; }
+    .rv.t3    { transition-delay:.24s; }
+    .rv.t4    { transition-delay:.32s; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 7rem 0 5rem;
+      background: linear-gradient(to bottom right, var(--white), #f9fafb);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid    { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-diagram { order: -1; }
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8125rem; font-weight: 500;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: .3rem 1rem; border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: .025em;
+      border: 1px solid rgba(30,174,219,.15);
+    }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--gray-700);
+      margin-top: 1.5rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas { margin-top: 2rem; }
+
+    /* ── Process diagram ────────────────────────────────────────── */
+    .hero-diagram {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .diagram-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem 1.5rem 1.25rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .diagram-label {
+      font-size: .6875rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .375rem;
+    }
+
+    .diagram-label .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes livePulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+
+    .mesh-svg { width: 100%; height: auto; display: block; }
+
+    .compliance-bar {
+      display: flex;
+      align-items: center;
+      gap: .625rem;
+      background: var(--blue-lt);
+      border: 1px solid rgba(30,174,219,.2);
+      border-radius: 8px;
+      padding: .625rem .875rem;
+      margin-top: .875rem;
+    }
+
+    .compliance-bar svg { flex-shrink: 0; color: var(--blue); }
+
+    .compliance-bar-text {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--blue);
+      line-height: 1.3;
+    }
+
+    /* ── How-we-work visual ─────────────────────────────────────── */
+    .howto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 860px) {
+      .howto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .howto-visual { order: -1; }
+    }
+
+    .howto-visual-card {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem 1.75rem;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .howto-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .howto-phase {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .howto-phase:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    /* Animated fill on the connector line */
+    .howto-phase:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 36px;
+      width: 2px;
+      height: 0;
+      background: var(--blue);
+      transition: height 1s ease .3s;
+    }
+
+    .howto-phase.on::after { height: calc(100% - 36px); }
+
+    .phase-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-500);
+      transition: background .4s, border-color .4s, color .4s;
+      z-index: 1;
+    }
+
+    .howto-phase.on .phase-icon {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    .phase-label { font-size: .8125rem; font-weight: 600; color: var(--gray-900); margin-bottom: .25rem; }
+    .phase-sub   { font-size: .8125rem; color: var(--gray-500); line-height: 1.5; }
+
+    /* ── Tags ───────────────────────────────────────────────────── */
+    .tags-row { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+    .tag {
+      font-size: .875rem; font-weight: 500;
+      padding: .3rem .875rem; border-radius: 999px;
+      background: var(--blue-lt);
+      color: var(--blue);
+      border: 1px solid rgba(30,174,219,.15);
+    }
+
+    /* ── Industry bar ───────────────────────────────────────────── */
+    .ind-bar {
+      padding: 1.375rem 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .ind-bar-label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--gray-500); margin-bottom: .75rem;
+    }
+
+    /* ── Problem cards ──────────────────────────────────────────── */
+    .prob-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) { .prob-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .prob-grid { grid-template-columns: 1fr; } }
+
+    .prob-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.75rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+      transition: box-shadow .2s;
+    }
+    .prob-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+
+    .prob-icon-wrap {
+      width: 2.75rem; height: 2.75rem;
+      border-radius: .625rem;
+      background: var(--blue-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--blue);
+    }
+
+    .prob-card h4 { margin-bottom: .5rem; }
+
+    /* ── Steps ──────────────────────────────────────────────────── */
+    .steps-list { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 3rem; }
+
+    .step-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+
+    .step-badge {
+      flex-shrink: 0;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700; font-size: .875rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .step-item h4 { margin-bottom: .375rem; }
+
+    /* ── Case study card ────────────────────────────────────────── */
+    .case-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.75rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+      margin-top: 2rem;
+    }
+
+    .case-cat {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: .375rem;
+    }
+
+    .case-company {
+      font-size: .9375rem; color: var(--gray-500); margin-bottom: 1rem;
+    }
+
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 580px) {
+      .ba-grid { grid-template-columns: 1fr; }
+      .ba-arrow { display: none; }
+    }
+
+    .ba-box {
+      padding: 1rem 1.125rem;
+      border-radius: .5rem;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .ba-before {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .ba-after {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .ba-box strong { display: block; font-weight: 600; margin-bottom: .25rem; font-size: .875rem; }
+
+    .ba-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400); font-size: 1.25rem; font-weight: 300;
+    }
+
+    .result-row {
+      border-top: 1px solid var(--border);
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+    }
+
+    .result-label {
+      font-size: .6875rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gray-400); margin-bottom: .375rem;
+    }
+
+    .result-text { font-size: .9375rem; font-weight: 500; color: var(--gray-800); }
+
+    .case-rtags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+
+    .rtag {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .8125rem; font-weight: 500;
+      padding: .25rem .75rem; border-radius: 999px;
+      background: var(--blue-lt);
+      color: var(--blue);
+      border: 1px solid rgba(30,174,219,.15);
+    }
+
+    /* ── Metrics ────────────────────────────────────────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 4rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 640px) { .metrics-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .metric-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .5rem; }
+    .metric-label { font-size: 1rem; font-weight: 500; color: var(--gray-700); }
+    .metric-val   { font-size: 1.375rem; font-weight: 700; color: var(--blue); }
+
+    .bar-track {
+      height: 8px; background: var(--gray-200); border-radius: 999px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; background: var(--blue); border-radius: 999px; width: 0;
+      transition: width 1.1s cubic-bezier(.4,0,.2,1);
+    }
+
+    .metric-note { font-size: .875rem; color: var(--gray-500); margin-top: .375rem; }
+
+    /* ── USP Box ────────────────────────────────────────────────── */
+    .usp-box {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--blue-lt);
+      border: 1px solid rgba(30,174,219,.2);
+      border-left: 3px solid var(--blue);
+      border-radius: .75rem;
+      padding: 1.625rem;
+      margin-top: 2rem;
+    }
+
+    .usp-icon {
+      flex-shrink: 0;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: .5rem;
+      background: var(--blue);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: .125rem;
+    }
+
+    .usp-claim { font-weight: 600; font-size: 1rem; color: var(--gray-900); margin-bottom: .5rem; }
+    .usp-body  { font-size: .9375rem; color: var(--gray-700); }
+
+    /* ── About links ────────────────────────────────────────────── */
+    .about-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.75rem; }
+    .about-links a {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--blue); text-decoration: none;
+      font-weight: 500; font-size: .9375rem;
+    }
+    .about-links a:hover { text-decoration: underline; }
+
+    /* ── Logo strip ─────────────────────────────────────────────── */
+    .tools-section { padding: 3rem 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; background: var(--white); }
+    .tools-label { text-align: center; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8A898C; margin-bottom: 2rem; }
+    .logos-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2.5rem 3.5rem; padding: 0 2rem; }
+    .logo-item { display: flex; align-items: center; justify-content: center; }
+    .logo-item img {
+      height: 34px; width: auto; max-width: 120px;
+      filter: grayscale(1) opacity(0.45);
+      transition: filter .25s, transform .15s;
+      object-fit: contain;
+    }
+    .logo-item img:hover { filter: grayscale(0) opacity(1); transform: translateY(-1px); }
+
+    /* ── Mid CTA ────────────────────────────────────────────────── */
+    .mid-cta-box {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom right, rgba(30,174,219,.05), var(--white));
+      border-radius: 1.25rem;
+      border: 1px solid rgba(30,174,219,.15);
+    }
+
+    .mid-cta-box p { max-width: 520px; margin: 1rem auto 0; font-size: 1.125rem; }
+
+    /* ── Final CTA ──────────────────────────────────────────────── */
+    .final { padding: 5rem 0; text-align: center; background: linear-gradient(to bottom right, rgba(30,174,219,.05), var(--white)); }
+    .final h2 { color: var(--gray-900); }
+    .final p  { color: var(--gray-600); margin: 1rem auto 0; max-width: 540px; font-size: 1.125rem; }
+    .final .cta-row { margin-top: 2rem; }
+
+    /* ── Footer — identisch zur Hauptseite ──────────────────────── */
+    footer {
+      background: var(--gray-900);
+      color: var(--white);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer .copy {
+      font-size: .875rem;
+      color: var(--gray-500);
+    }
+
+    footer .legal {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+
+    footer .legal a {
+      font-size: .875rem; color: var(--gray-500); text-decoration: none;
+    }
+    footer .legal a:hover { color: var(--white); }
+
+    /* ── Sticky mobile CTA ──────────────────────────────────────── */
+    .sticky-cta { display: none; }
+
+    @media (max-width: 520px) {
+      section { padding: 4rem 0; }
+
+      .hero { padding: 4rem 0 3rem; }
+      .final { padding: 4rem 0 5.5rem; }
+
+      .sticky-cta {
+        display: block;
+        position: fixed; bottom: 0; left: 0; right: 0;
+        padding: .875rem 1rem;
+        background: var(--blue);
+        z-index: 200;
+        box-shadow: 0 -2px 12px rgba(0,0,0,.15);
+      }
+      .sticky-cta a {
+        display: flex; align-items: center; justify-content: center; gap: .5rem;
+        color: var(--white); font: 600 .9375rem/1 inherit; text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════ HERO ════════════════════════════════ -->
+<section class="hero">
+  <div class="sc">
+    <div class="hero-grid">
+
+      <!-- TEXT COLUMN -->
+      <div>
+        <span class="eyebrow au">
+          <svg width="7" height="7" viewBox="0 0 7 7" fill="currentColor" aria-hidden="true"><circle cx="3.5" cy="3.5" r="3.5"/></svg>
+          Pharma · Medtech · Chemie · Maschinenbau
+        </span>
+
+        <h1 class="au d1">
+          HR-Systeme, die nicht miteinander reden — Ihr Team zahlt den Preis.
+        </h1>
+
+        <p class="hero-sub au d2">
+          Wir verbinden HR-Systeme in regulierten Produktionsumgebungen so, dass Daten automatisch und prüfungssicher fließen — pragmatisch, messbar wirksam.
+        </p>
+
+        <div class="cta-row hero-ctas au d3">
+          <a href="https://calendly.com/clara-oesm/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            15-Minuten-Gespräch buchen
+          </a>
+        </div>
+      </div>
+
+      <!-- MESH DIAGRAM COLUMN -->
+      <div class="hero-diagram au d2">
+        <div class="diagram-card">
+          <div class="diagram-label">
+            <span class="live-dot"></span>
+            HR-Bereiche im integrierten Datenaustausch
+          </div>
+
+          <!-- SVG Mesh: 4 nodes ↔ central hub, bidirectional animated lines -->
+          <svg class="mesh-svg" viewBox="0 0 400 230" aria-hidden="true">
+
+            <!-- Pulsing outer ring on hub -->
+            <circle cx="200" cy="115" r="48" fill="none" stroke="#1EAEDB" stroke-width="1.5" opacity="0.12">
+              <animate attributeName="r" values="46;58;46" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.12;0.04;0.12" dur="3s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- ── Connector lines (bidirectional dashed) ── -->
+            <!-- TL ↔ Hub (outward) -->
+            <line x1="122" y1="44" x2="168" y2="93" stroke="#1EAEDB" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <!-- TL ↔ Hub (return, lighter) -->
+            <line x1="168" y1="93" x2="122" y2="44" stroke="#1EAEDB" stroke-width="1" stroke-dasharray="3 8" opacity="0.35">
+              <animate attributeName="stroke-dashoffset" from="-5" to="-16" dur="2.2s" repeatCount="indefinite"/>
+            </line>
+
+            <!-- TR ↔ Hub (outward) -->
+            <line x1="278" y1="44" x2="232" y2="93" stroke="#1EAEDB" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" from="-5" to="-23" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <!-- TR ↔ Hub (return) -->
+            <line x1="232" y1="93" x2="278" y2="44" stroke="#1EAEDB" stroke-width="1" stroke-dasharray="3 8" opacity="0.35">
+              <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="2.2s" repeatCount="indefinite"/>
+            </line>
+
+            <!-- BL ↔ Hub (outward) -->
+            <line x1="122" y1="186" x2="168" y2="137" stroke="#1EAEDB" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" from="-9" to="-27" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <!-- BL ↔ Hub (return) -->
+            <line x1="168" y1="137" x2="122" y2="186" stroke="#1EAEDB" stroke-width="1" stroke-dasharray="3 8" opacity="0.35">
+              <animate attributeName="stroke-dashoffset" from="-3" to="-14" dur="2.2s" repeatCount="indefinite"/>
+            </line>
+
+            <!-- BR ↔ Hub (outward) -->
+            <line x1="278" y1="186" x2="232" y2="137" stroke="#1EAEDB" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" from="-14" to="-32" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <!-- BR ↔ Hub (return) -->
+            <line x1="232" y1="137" x2="278" y2="186" stroke="#1EAEDB" stroke-width="1" stroke-dasharray="3 8" opacity="0.35">
+              <animate attributeName="stroke-dashoffset" from="-8" to="-19" dur="2.2s" repeatCount="indefinite"/>
+            </line>
+
+            <!-- ── Node boxes ── -->
+            <!-- TL: Recruiting -->
+            <rect x="8" y="14" width="114" height="60" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <text x="65" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#222222">Recruiting</text>
+            <text x="65" y="54" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8A898C">Eintritt &amp; Onboarding</text>
+
+            <!-- TR: Personalverwaltung -->
+            <rect x="278" y="14" width="114" height="60" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <text x="335" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#222222">Personal­daten</text>
+            <text x="335" y="54" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8A898C">Stamm­daten &amp; Akten</text>
+
+            <!-- BL: Zeiterfassung -->
+            <rect x="8" y="156" width="114" height="60" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <text x="65" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#222222">Zeit­erfassung</text>
+            <text x="65" y="196" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8A898C">Schicht &amp; Planung</text>
+
+            <!-- BR: Abrechnung -->
+            <rect x="278" y="156" width="114" height="60" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1.5"/>
+            <text x="335" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#222222">Abrechnung</text>
+            <text x="335" y="196" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8A898C">Payroll &amp; Reporting</text>
+
+            <!-- ── Central Hub ── -->
+            <circle cx="200" cy="115" r="44" fill="#1EAEDB"/>
+            <text x="200" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="white">Integration</text>
+            <text x="200" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.82)">Audit Trail · DSGVO</text>
+
+          </svg>
+
+          <!-- Compliance bar -->
+          <div class="compliance-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <div class="compliance-bar-text">
+              Alle Bereiche kommunizieren automatisch — lückenlos dokumentiert
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ INDUSTRY BAR ═══════════════════════════════ -->
+<div class="ind-bar">
+  <div class="sc">
+    <p class="ind-bar-label">Einsatz in regulierten Industrien</p>
+    <div class="tags-row">
+      <span class="tag">Pharma</span>
+      <span class="tag">Medtech</span>
+      <span class="tag">Diagnostik</span>
+      <span class="tag">Chemie</span>
+      <span class="tag">Maschinenbau</span>
+      <span class="tag">Regulierte Umgebungen</span>
+      <span class="tag">DSGVO-konform</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ PROBLEM ═══════════════════════════════ -->
+<section class="bg-grad-b">
+  <div class="sc">
+    <div class="narrow" style="text-align:center;">
+      <h2 class="rv">Wenn HR-Systeme nicht kommunizieren, arbeitet Ihr Team als Datenpfleger.</h2>
+      <p class="sub rv t1">Drei Muster, die wir in fast jedem Erstgespräch hören.</p>
+    </div>
+
+    <div class="prob-grid">
+      <div class="prob-card rv t1">
+        <div class="prob-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Dieselben Daten, mehrfach erfasst</h4>
+        <p>HR-Bereiche, die nichts voneinander wissen: Neue Mitarbeitende werden manuell in jedes System eingetragen — mit allen Fehlerquellen, die dazugehören.</p>
+      </div>
+
+      <div class="prob-card rv t2">
+        <div class="prob-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h4>Manuelle Prozesse sind Audit-Risiken</h4>
+        <p>In regulierten Umgebungen ist lückenlose Nachvollziehbarkeit Pflicht. Datentransfers ohne automatisierten Audit Trail werden bei der nächsten Inspektion zum Befund.</p>
+      </div>
+
+      <div class="prob-card rv t3">
+        <div class="prob-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </div>
+        <h4>Reporting bleibt Handarbeit</h4>
+        <p>Headcount, Betriebsratsunterlagen, Compliance-Reports — alles manuell zusammengezogen, zeitintensiv, fehleranfällig. Das Potenzial Ihrer Systemdaten bleibt ungenutzt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ HOW WE WORK ══════════════════════════════ -->
+<section class="bg-white">
+  <div class="sc">
+    <div style="max-width:680px;">
+      <h2 class="rv">Wie wir vorgehen</h2>
+      <p class="sub rv t1">Kein Beratungsmarathon. Wir kommen mit konkreten Ergebnissen.</p>
+    </div>
+
+    <div class="howto-grid">
+      <!-- Left: Steps -->
+      <div class="howto-steps">
+        <div class="step-item rv">
+          <div class="step-badge">01</div>
+          <div>
+            <h4>Analyse der bestehenden Systemlandschaft</h4>
+            <p>Wir schauen uns an, welche Systeme im Einsatz sind, wo Daten heute manuell wandern und wo der größte Hebel liegt — ohne Vorannahmen, ohne Vendor-Präferenz.</p>
+          </div>
+        </div>
+
+        <div class="step-item rv t1">
+          <div class="step-badge">02</div>
+          <div>
+            <h4>Die beste Lösung — nicht die bequemste</h4>
+            <p>Manchmal ist das eine Integration bestehender Systeme über APIs und Middleware. Manchmal lohnt ein gezieltes Upgrade. Wir empfehlen, was tatsächlich sinnvoll ist — und setzen beides um.</p>
+          </div>
+        </div>
+
+        <div class="step-item rv t2">
+          <div class="step-badge">03</div>
+          <div>
+            <h4>Compliance von Anfang an eingebaut</h4>
+            <p>Jede Lösung ist auf regulierte Umgebungen ausgelegt: Nachvollziehbarkeit, Audit Trail, Validierbarkeit. Nichts, was im Nachgang nachgerüstet werden muss.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Animated phases visual -->
+      <div class="howto-visual rv t2">
+        <div class="howto-visual-card">
+          <p style="font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8A898C;margin-bottom:1.5rem;">Projektverlauf</p>
+          <div class="howto-phases">
+
+            <div class="howto-phase" id="hp1">
+              <div class="phase-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div>
+                <div class="phase-label">Analyse</div>
+                <div class="phase-sub">Systeme, Datenflüsse, Lücken</div>
+              </div>
+            </div>
+
+            <div class="howto-phase" id="hp2">
+              <div class="phase-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <div class="phase-label">Architektur</div>
+                <div class="phase-sub">Zielarchitektur &amp; Roadmap</div>
+              </div>
+            </div>
+
+            <div class="howto-phase" id="hp3">
+              <div class="phase-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div>
+                <div class="phase-label">Umsetzung</div>
+                <div class="phase-sub">Integration &amp; Automatisierung</div>
+              </div>
+            </div>
+
+            <div class="howto-phase" id="hp4">
+              <div class="phase-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <div class="phase-label">Go-live</div>
+                <div class="phase-sub">Validiert, produktiv</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CASE ═══════════════════════════════════ -->
+<section class="bg-gray">
+  <div class="sc">
+    <h2 class="rv">Aus der Praxis</h2>
+    <p class="sub rv t1">Ein abgeschlossenes Projekt — exemplarisch für das, was wir tun.</p>
+
+    <div class="case-card rv t2">
+      <p class="case-cat">Pharma · HR · Payroll</p>
+      <h3 style="margin-bottom:.375rem;">HR &amp; Payroll Automatisierung</h3>
+      <p class="case-company">Internationaler Pharmahersteller, 5.000+ Mitarbeitende, DACH</p>
+
+      <p>Aufbau einer integrierten HR-Systemlandschaft: Prozessanalyse, Zielarchitektur und technische Umsetzung für Personio, ATOSS und DATEV über mehrere Standorte hinweg. Zeiterfassung, HR-Stammdaten und Payroll liefen in drei voneinander isolierten Systemen — jede Gehaltsabrechnung erforderte mehrstündige manuelle Abstimmungen, Stammdaten wurden doppelt gepflegt, Auswertungen für Betriebsrat und Compliance per Hand erstellt.</p>
+
+      <div class="ba-grid">
+        <div class="ba-box ba-before">
+          <strong>Vorher</strong>
+          3 isolierte Systeme, manuelle Dateneingabe in ATOSS, Personio und DATEV, wöchentliche Korrekturrunden vor der Abrechnung — jede Abweichung ein potenzieller Audit-Befund
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-box ba-after">
+          <strong>Nachher</strong>
+          Automatische Datenflüsse zwischen allen drei Systemen, lückenlose Audit-Trail-Dokumentation, Betriebsratsreports direkt aus dem System
+        </div>
+      </div>
+
+      <div class="result-row">
+        <p class="result-label">Ergebnis</p>
+        <p class="result-text">Klare Systemarchitektur, automatisierte Datenflüsse, deutlich weniger manuelle Prozesse</p>
+      </div>
+
+      <div class="case-rtags">
+        <span class="rtag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Personio · ATOSS · DATEV
+        </span>
+        <span class="rtag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Regulierte Umgebung
+        </span>
+        <span class="rtag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Mehrere Standorte
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ TOOLS ════════════════════════════════ -->
+<div class="tools-section">
+  <div class="logos-row">
+    <div class="logo-item"><img src="logos/personio.svg" alt="Personio" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/atoss.svg" alt="ATOSS" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/datev.svg" alt="DATEV" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/vincere.png" alt="Vincere" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/aws.svg" alt="AWS" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/calendly.svg" alt="Calendly" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/microsoft.svg" alt="Microsoft" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/notion.svg" alt="Notion" loading="lazy" /></div>
+    <div class="logo-item"><img src="logos/monday.svg" alt="Monday" loading="lazy" /></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ METRICS ════════════════════════════════ -->
+<section class="bg-white">
+  <div class="sc">
+    <div class="narrow" style="text-align:center;">
+      <h2 class="rv">Was nach einer Integration messbar anders ist</h2>
+      <p class="sub rv t1">Basierend auf Projekten in Pharma-, Medtech- und Chemieunternehmen im DACH-Raum.</p>
+    </div>
+
+    <div class="metrics-grid" id="metrics-block">
+      <div class="rv t1">
+        <div class="metric-head">
+          <span class="metric-label">Manuelle Dateneingaben</span>
+          <span class="metric-val">−70 %</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" data-w="70"></div></div>
+        <p class="metric-note">Durch automatisierte Übergaben zwischen ATS, HR-Core und Payroll</p>
+      </div>
+
+      <div class="rv t2">
+        <div class="metric-head">
+          <span class="metric-label">Fehlerquote bei Datenübergaben</span>
+          <span class="metric-val">−85 %</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" data-w="85"></div></div>
+        <p class="metric-note">Weniger Korrekturrunden, weniger Rückfragen, weniger Nacharbeit</p>
+      </div>
+
+      <div class="rv t3">
+        <div class="metric-head">
+          <span class="metric-label">Aufwand für Compliance-Reporting</span>
+          <span class="metric-val">−60 %</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" data-w="60"></div></div>
+        <p class="metric-note">Betriebsratsunterlagen und Auswertungen direkt aus integrierten Systemen</p>
+      </div>
+
+      <div class="rv t4">
+        <div class="metric-head">
+          <span class="metric-label">Synchronisation neuer Mitarbeitender</span>
+          <span class="metric-val">Automatisch</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" data-w="95"></div></div>
+        <p class="metric-note">Stammdaten laufen automatisch in alle verbundenen Systeme — ohne manuelle Übergaben</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ MID CTA ══════════════════════════════════ -->
+<section class="bg-gray">
+  <div class="sc">
+    <div class="narrow">
+      <div class="mid-cta-box rv">
+        <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);">Lohnt sich das Gespräch für Sie?</h2>
+        <p>Wenn Ihr Team regelmäßig Zeit mit manuellen Datentransfers zwischen HR-Systemen verbringt — dann ja. Wir sagen Ihnen in 15 Minuten, ob und wie wir helfen können.</p>
+        <div class="cta-row cta-c" style="margin-top:1.75rem;">
+          <a href="https://calendly.com/clara-oesm/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            15-Minuten-Gespräch buchen
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ABOUT ════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="sc">
+    <div class="narrow">
+      <h2 class="rv">Unser Ansatz</h2>
+
+      <div class="rv t1" style="margin-top:1.5rem;">
+        <p style="font-size:1.125rem; line-height:1.75;">Thümecke Business Intelligence Solutions unterstützt mittelständische Unternehmen und wachsende Organisationen bei der Automatisierung von Geschäftsprozessen und der Integration komplexer Systemlandschaften.</p>
+        <p style="font-size:1.125rem; line-height:1.75; margin-top:1.25rem;">Unsere Stärke liegt in der Verbindung von Fachbereichsverständnis mit technischer Umsetzungskompetenz – von der Prozessanalyse über die Systemarchitektur bis zur produktiven Lösung. Moderne Technologien, einschließlich KI, setzen wir dort ein, wo sie echten Mehrwert erzeugen.</p>
+        <p style="font-size:1.125rem; line-height:1.75; margin-top:1.25rem;">Wir arbeiten pragmatisch, lösungsorientiert und eng mit unseren Kunden zusammen. Unser Ziel: schnelle, tragfähige Ergebnisse, die im Betrieb bestehen – ohne unnötigen Overhead.</p>
+      </div>
+
+      <div class="usp-box rv t2">
+        <div class="usp-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <p class="usp-claim">Wir kennen den HR-Alltag. Und wir kennen die Systeme dahinter.</p>
+          <p class="usp-body">Viele Technologen bauen elegante Lösungen, die am HR-Alltag vorbeigehen. Viele HR-Berater kennen die Prozesse, aber nicht die Systeme. Wir kennen beide Seiten: das Prozessverständnis aus dem operativen HR und die technische Tiefe, um es sauber zu integrieren.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FINAL CTA ════════════════════════════════ -->
+<section class="final">
+  <div class="sc">
+    <h2 class="rv">15 Minuten für eine erste Einschätzung.</h2>
+    <p class="rv t1">Erzählen Sie uns kurz, wie Ihre Systemlandschaft heute aussieht — wir sagen Ihnen direkt, ob und wo wir helfen können.</p>
+    <div class="cta-row cta-c rv t2">
+      <a href="https://calendly.com/clara-oesm/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Termin buchen
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FOOTER ════════════════════════════════ -->
+<footer>
+  <div class="sc">
+    <div class="footer-inner">
+      <span class="copy">© 2026 Thümecke Business Intelligence Solutions</span>
+      <div class="legal">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="https://thuemecke.net">thuemecke.net</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://calendly.com/clara-oesm/30min" target="_blank" rel="noopener noreferrer">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    15-Minuten-Gespräch buchen
+  </a>
+</div>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(
+    es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Animate progress bars when metrics section enters view
+  let barsGone = false;
+  new IntersectionObserver(es => {
+    if (es[0].isIntersecting && !barsGone) {
+      barsGone = true;
+      document.querySelectorAll('.bar-fill').forEach(b => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 100);
+      });
+    }
+  }, { threshold: 0.2 }).observe(document.getElementById('metrics-block'));
+
+  // Animate howto phases on scroll
+  const phasesBlock = document.querySelector('.howto-phases');
+  if (phasesBlock) {
+    new IntersectionObserver(es => {
+      if (!es[0].isIntersecting) return;
+      document.querySelectorAll('.howto-phase').forEach((el, i) => {
+        setTimeout(() => el.classList.add('on'), 200 + i * 350);
+      });
+    }, { threshold: 0.3 }).observe(phasesBlock);
+  }
+
+  // Hide sticky CTA near footer
+  const sticky = document.getElementById('sticky-cta');
+  if (sticky) {
+    new IntersectionObserver(
+      es => { sticky.style.display = es[0].isIntersecting ? 'none' : ''; },
+      { threshold: 0.1 }
+    ).observe(document.querySelector('footer'));
+  }
+</script>
+</body>
+</html>
