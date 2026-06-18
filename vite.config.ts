@@ -26,8 +26,18 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
+    {
+      name: 'serve-static-subpages',
+      configureServer(server) {
+        server.middlewares.use((req, _res, next) => {
+          if (req.url === '/hr' || req.url === '/hr/') {
+            req.url = '/hr/index.html';
+          }
+          next();
+        });
+      },
+    },
   ].filter(Boolean),
   resolve: {
     alias: {
