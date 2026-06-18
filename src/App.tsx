@@ -11,6 +11,7 @@ import AIChatbotsPage from "./app/ai-chatbots/page";
 import ContactPage from "./app/contact/page";
 import ScrollToTop from "./components/ScrollToTop";
 import SystemIntegration from './app/system-integration/page';
+import HRPage from './app/hr/page';
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/ai-chatbots" element={<AIChatbotsPage />} />
           <Route path="/system-integration" element={<SystemIntegration />} />
+          <Route path="/hr" element={<HRPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
