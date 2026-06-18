@@ -611,6 +611,7 @@
 
     @media (max-width: 700px) {
       .case-photo-grid { grid-template-columns: 1fr !important; }
+      .about-photo-grid { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 520px) {
@@ -915,14 +916,7 @@
     <h2 class="rv">Aus der Praxis</h2>
     <p class="sub rv t1">Ein abgeschlossenes Projekt — exemplarisch für das, was wir tun.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1.7fr;gap:2rem;align-items:start;margin-top:2.5rem;">
-      <div class="rv t1" style="border-radius:1rem;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
-        <img src="/images/team-overhead.jpg"
-             alt="Team analysiert gemeinsam HR-Prozesse und Systemlandschaft"
-             style="width:100%;display:block;object-fit:cover;min-height:280px;max-height:460px;object-position:center;"
-             loading="lazy" />
-      </div>
-      <div class="case-card rv t2" style="margin-top:0;">
+    <div class="case-card rv t2">
       <p class="case-cat">Pharma · HR · Payroll</p>
       <h3 style="margin-bottom:.375rem;">HR &amp; Payroll Automatisierung</h3>
       <p class="case-company">Internationaler Pharmahersteller, 5.000+ Mitarbeitende, DACH</p>
@@ -961,7 +955,6 @@
         </span>
       </div>
     </div>
-    </div><!-- end case grid -->
   </div>
 </section>
 
@@ -1049,7 +1042,16 @@
 <!-- ════════════════════════════ ABOUT ════════════════════════════════════ -->
 <section class="bg-white">
   <div class="sc">
-    <div class="narrow">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:center;">
+
+      <div class="rv" style="border-radius:1rem;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.09);">
+        <img src="/images/team-clara.jpg"
+             alt="Thümecke BIS Team bei der Arbeit"
+             style="width:100%;display:block;object-fit:cover;object-position:center top;max-height:460px;"
+             loading="lazy" />
+      </div>
+
+      <div>
       <h2 class="rv">Unser Ansatz</h2>
 
       <div class="rv t1" style="margin-top:1.5rem;">
@@ -1068,7 +1070,8 @@
         </div>
       </div>
 
-    </div>
+      </div><!-- end text column -->
+    </div><!-- end about grid -->
   </div>
 </section>
 

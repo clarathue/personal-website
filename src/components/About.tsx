@@ -11,9 +11,9 @@ const About: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="/images/work-cafe.jpg"
-                alt="Moderner Arbeitsplatz – pragmatische Lösungen direkt am Rechner"
-                className="w-full h-full object-cover"
+                src="/images/team-clara.jpg"
+                alt="Thümecke BIS Team – gemeinsam an Kundenprojekten"
+                className="w-full h-full object-cover object-top"
                 loading="lazy"
               />
             </div>
