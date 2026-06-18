@@ -252,85 +252,9 @@
 
     /* ── How-we-work visual ─────────────────────────────────────── */
     .howto-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
       margin-top: 3rem;
+      max-width: 720px;
     }
-
-    @media (max-width: 860px) {
-      .howto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .howto-visual { order: -1; }
-    }
-
-    .howto-visual-card {
-      background: #f9fafb;
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 2rem 1.75rem;
-      position: sticky;
-      top: 2rem;
-    }
-
-    .howto-phases {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .howto-phase {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding-bottom: 1.75rem;
-      position: relative;
-    }
-
-    .howto-phase:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 17px;
-      top: 36px;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-
-    /* Animated fill on the connector line */
-    .howto-phase:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 17px;
-      top: 36px;
-      width: 2px;
-      height: 0;
-      background: var(--blue);
-      transition: height 1s ease .3s;
-    }
-
-    .howto-phase.on::after { height: calc(100% - 36px); }
-
-    .phase-icon {
-      flex-shrink: 0;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gray-500);
-      transition: background .4s, border-color .4s, color .4s;
-      z-index: 1;
-    }
-
-    .howto-phase.on .phase-icon {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: var(--white);
-    }
-
-    .phase-label { font-size: .8125rem; font-weight: 600; color: var(--gray-900); margin-bottom: .25rem; }
-    .phase-sub   { font-size: .8125rem; color: var(--gray-500); line-height: 1.5; }
 
     /* ── Tags ───────────────────────────────────────────────────── */
     .tags-row { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
@@ -830,7 +754,6 @@
     </div>
 
     <div class="howto-grid">
-      <!-- Left: Steps -->
       <div class="howto-steps">
         <div class="step-item rv">
           <div class="step-badge">01</div>
@@ -853,56 +776,6 @@
           <div>
             <h4>Compliance von Anfang an eingebaut</h4>
             <p>Jede Lösung ist auf regulierte Umgebungen ausgelegt: Nachvollziehbarkeit, Audit Trail, Validierbarkeit. Nichts, was im Nachgang nachgerüstet werden muss.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Animated phases visual -->
-      <div class="howto-visual rv t2">
-        <div class="howto-visual-card">
-          <p style="font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8A898C;margin-bottom:1.5rem;">Projektverlauf</p>
-          <div class="howto-phases">
-
-            <div class="howto-phase" id="hp1">
-              <div class="phase-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <div>
-                <div class="phase-label">Analyse</div>
-                <div class="phase-sub">Systeme, Datenflüsse, Lücken</div>
-              </div>
-            </div>
-
-            <div class="howto-phase" id="hp2">
-              <div class="phase-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
-              <div>
-                <div class="phase-label">Architektur</div>
-                <div class="phase-sub">Zielarchitektur &amp; Roadmap</div>
-              </div>
-            </div>
-
-            <div class="howto-phase" id="hp3">
-              <div class="phase-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <div>
-                <div class="phase-label">Umsetzung</div>
-                <div class="phase-sub">Integration &amp; Automatisierung</div>
-              </div>
-            </div>
-
-            <div class="howto-phase" id="hp4">
-              <div class="phase-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div>
-                <div class="phase-label">Go-live</div>
-                <div class="phase-sub">Validiert, produktiv</div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
@@ -1129,17 +1002,6 @@
       });
     }
   }, { threshold: 0.2 }).observe(document.getElementById('metrics-block'));
-
-  // Animate howto phases on scroll
-  const phasesBlock = document.querySelector('.howto-phases');
-  if (phasesBlock) {
-    new IntersectionObserver(es => {
-      if (!es[0].isIntersecting) return;
-      document.querySelectorAll('.howto-phase').forEach((el, i) => {
-        setTimeout(() => el.classList.add('on'), 200 + i * 350);
-      });
-    }, { threshold: 0.3 }).observe(phasesBlock);
-  }
 
   // Hide sticky CTA near footer
   const sticky = document.getElementById('sticky-cta');
