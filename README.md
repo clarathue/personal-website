@@ -33,6 +33,11 @@ This project is built with:
 - Framer Motion (animations)
 - Chart.js (data visualization)
 
+## How is this project tested?
+
+See [`TESTING.md`](./TESTING.md) — test level, commands to run before and after a
+change, and the planned sequence of test PRs.
+
 ## How is this project deployed?
 
 - **Deployment:** Automated via GitHub Actions (`.github/workflows/deploy.yml`)
