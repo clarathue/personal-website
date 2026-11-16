@@ -7,7 +7,7 @@ name: Monitor thuemecke.net
 # (Job keepalive), das setzt die Frist zurück – ohne Commit, ohne Deploy.
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '23 * * * *'
     - cron: '41 4 1 * *'   # keepalive, am 1. jedes Monats
   workflow_dispatch:
     inputs:
