@@ -25,3 +25,7 @@ dist-ssr
 
 .venv
 .env
+
+# Playwright
+test-results/
+playwright-report/

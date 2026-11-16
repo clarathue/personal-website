@@ -13,6 +13,8 @@
     "preview": "vite preview",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix",
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
     "type-check": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean"
@@ -74,6 +76,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",

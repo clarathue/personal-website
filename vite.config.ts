@@ -49,12 +49,5 @@ export default defineConfig(({ mode }) => ({
     port: 3000,
     strictPort: true,
     host: true,
-    proxy: {
-      '/': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path,
-      },
-    },
   },
 }));
