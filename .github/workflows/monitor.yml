@@ -2,16 +2,22 @@ name: Monitor thuemecke.net
 
 # Stündlicher Check gegen Prod, nur lesend (siehe e2e/smoke.spec.ts).
 # Rot → GitHub-Benachrichtigung an den, der den Cron zuletzt geändert hat.
-# Achtung: In öffentlichen Repos schaltet GitHub geplante Workflows nach
-# 60 Tagen ohne Repo-Aktivität ab.
+# GitHub schaltet geplante Workflows nach 60 Tagen ohne Repo-Aktivität ab.
+# Dagegen schaltet sich der Workflow monatlich per API selbst wieder ein
+# (Job keepalive), das setzt die Frist zurück – ohne Commit, ohne Deploy.
 on:
   schedule:
     - cron: '17 * * * *'
+    - cron: '41 4 1 * *'   # keepalive, am 1. jedes Monats
   workflow_dispatch:
     inputs:
       base_url:
         description: 'Adresse, gegen die geprüft wird'
         default: 'https://thuemecke.net'
+      keepalive:
+        description: 'Nur den Keepalive ausführen'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -22,6 +28,7 @@ concurrency:
 
 jobs:
   smoke:
+    if: github.event.schedule != '41 4 1 * *' && !inputs.keepalive
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -52,3 +59,23 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  keepalive:
+    if: github.event.schedule == '41 4 1 * *' || inputs.keepalive
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Workflow erneut einschalten (setzt die 60-Tage-Frist zurück)
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/monitor.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Zustand prüfen
+        run: |
+          state=$(gh api "repos/${{ github.repository }}/actions/workflows/monitor.yml" --jq .state)
+          echo "monitor.yml: $state"
+          test "$state" = "active"
+        env:
+          GH_TOKEN: ${{ github.token }}
