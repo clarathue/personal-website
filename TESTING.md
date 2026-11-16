@@ -24,7 +24,7 @@ Routen: `src/App.tsx:26-38`. Formular: `src/app/contact/page.tsx:112-169`. Workf
 | 5 | Datenqualität im Lauf | ➖ entfällt: keine Batches | – |
 | 6 | E2E/UI | ❌ offen: keine Specs für die Seiten (`/` samt vier Aliasen, `/ai-chatbots`, `/system-integration`, `/contact`, `/impressum`, `/datenschutz`, `/hr/`, 404-Fallback) und das Formular | `src/App.tsx:26-38`, `public/hr/index.html` |
 | 7 | Smoke nach Deploy | ❌ offen: nach `actions/deploy-pages` prüft nichts, ob die Seite läuft. Kein Rollback | `deploy.yml:70-80` |
-| 8 | Heartbeat | ✅ seit PR 2: `monitor.yml` stündlich (Minute 17) und per Hand, `@smoke`-Specs gegen https://thuemecke.net, nur lesend, EmailJS blockiert. Alarm: fehlgeschlagener Workflow → GitHub-Mail (Entscheidung 16.11.2026: Mail reicht, kein Telegram). Achtung: GitHub schaltet geplante Workflows nach 60 Tagen ohne Repo-Aktivität ab | `.github/workflows/monitor.yml`, `e2e/smoke.spec.ts` |
+| 8 | Heartbeat | ✅ seit PR 2: `monitor.yml` stündlich (Minute 17) und per Hand, `@smoke`-Specs gegen https://thuemecke.net, nur lesend, EmailJS blockiert. Alarm: fehlgeschlagener Workflow → GitHub-Mail (Entscheidung 16.11.2026: Mail reicht, kein Telegram). Gegen das Abschalten nach 60 Tagen ohne Repo-Aktivität schaltet sich der Workflow am 1. jedes Monats per API selbst wieder ein (Job `keepalive`, ohne Commit) | `.github/workflows/monitor.yml`, `e2e/smoke.spec.ts` |
 | 9 | LLM-Evals | ➖ entfällt: kein Sprachmodell | – |
 | 10 | Restore | ➖ entfällt: keine eigenen Backups, der Inhalt liegt vollständig im Repo | – |
 
