@@ -6,8 +6,8 @@ test.beforeEach(async ({ page }) => {
   await page.route("**/api.emailjs.com/**", (route) => route.abort());
 });
 
-// GitHub Pages liefert Unterseiten über die 404.html aus (Status 404).
-// Geprüft wird deshalb der Inhalt, nicht der HTTP-Status.
+// Jede Seite muss mit Status 200 kommen – sonst werten Suchmaschinen sie als nicht vorhanden.
+// Unterseiten liefert GitHub Pages aus dist/<route>.html (scripts/write-route-pages.mjs).
 const PAGES = [
   { path: "/", h1: /Prozessautomatisierung & Systemintegration/ },
   { path: "/impressum", h1: /^Impressum$/ },
@@ -18,14 +18,16 @@ const PAGES = [
 ];
 
 for (const { path, h1 } of PAGES) {
-  test(`${path} zeigt ihre Überschrift @smoke`, async ({ page }) => {
-    await page.goto(path);
+  test(`${path} kommt mit Status 200 und zeigt ihre Überschrift @smoke`, async ({ page }) => {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(h1);
   });
 }
 
 test("/contact zeigt das Formular mit allen Feldern @smoke", async ({ page }) => {
-  await page.goto("/contact");
+  const response = await page.goto("/contact");
+  expect(response?.status()).toBe(200);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/^Kontakt$/);
   await expect(page.getByLabel("Name")).toBeVisible();
   await expect(page.getByLabel("E-Mail")).toBeVisible();
