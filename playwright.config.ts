@@ -18,7 +18,8 @@ export default defineConfig({
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   ...(isLocal && {
     webServer: {
-      command: "npm run build && npx vite preview --port 4173 --strictPort",
+      // serve verhält sich wie GitHub Pages: /contact aus contact.html, sonst 404.html mit Status 404.
+      command: "npm run build && npx serve dist --listen 4173 --no-clipboard",
       url: LOCAL_URL,
       reuseExistingServer: !process.env.CI,
       timeout: 120_000,

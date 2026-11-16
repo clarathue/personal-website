@@ -49,13 +49,8 @@ jobs:
         env:
           VITE_BASE_URL: ''
       
-      # Create 404.html for SPA routing
-      - name: Create 404.html
-        run: cp dist/index.html dist/404.html
-
-      # Add .nojekyll to prevent Jekyll processing
-      - name: Add .nojekyll file
-        run: touch dist/.nojekyll
+      # 404.html, .nojekyll und je Route eine <route>.html schreibt
+      # scripts/write-route-pages.mjs (postbuild).
 
       # Add CNAME for custom domain
       - name: Add CNAME file
