@@ -7,8 +7,8 @@ Stand 13.11.2026, `main` @ `9315521`: keine Tests, kein `test`-Skript, kein Work
 
 ## Befehle
 - Build wie im Deploy: `npm ci && npm run build` (`.github/workflows/deploy.yml:34-46`)
-- Lint: `npm run lint` (`package.json:14`). Läuft in keinem Workflow, siehe Schicht 1
-- Typen: `npm run type-check` (`package.json:16`) prüft keine Datei. Die Root-`tsconfig.json` hat `"files": []` und nur Verweise (`tsconfig.json:2-6`), und denen folgt erst `tsc -b`. Echte Prüfung: `npx tsc -p tsconfig.app.json --noEmit`, kommt mit PR 1
+- Lint: `npm run lint`. Läuft in `ci.yml` bei jedem PR und vor jedem Deploy
+- Typen: `npm run type-check` (`tsc -p` für `tsconfig.app.json` und `tsconfig.node.json`). Läuft in `ci.yml`
 - E2E: noch keine. Geplant: Specs unter `e2e/`, `npx playwright test`, gegen Prod `npx playwright test --grep @smoke`
 
 ## Schichten
@@ -16,7 +16,7 @@ Routen: `src/App.tsx:26-38`. Formular: `src/app/contact/page.tsx:112-169`. Workf
 
 | # | Schicht | Stand | Wo |
 |---|---|---|---|
-| 1 | Statisch | ❌ offen: ESLint ist eingerichtet, läuft aber nirgends. Der Deploy installiert und baut nur, für PRs gibt es keinen Workflow. Die Typprüfung läuft ins Leere (siehe Befehle). Kein Secret-Scan, kein Dependency-Audit, kein Pre-commit. `.env` steht in `.gitignore`, der EmailJS-Public-Key samt Service- und Template-ID aber im Quelltext, entgegen der Lernhistorie der Agent-Spec Tech (18.06.2026) | `package.json:14-16`, `eslint.config.js`, `tsconfig.json:2-6`, `deploy.yml:34-46`, `.gitignore:27`, `src/app/contact/page.tsx:15,43-44`, `src/components/Contact.tsx:12,41-42` |
+| 1 | Statisch | ✅ seit PR 1: `ci.yml` bei jedem PR und als Gate vor dem Deploy (Lint, Typprüfung, Build, `npm audit --omit=dev --audit-level=high`, gitleaks), Node 22; Pre-commit mit gitleaks und ESLint. Offen: EmailJS-Public-Key samt Service- und Template-ID im Quelltext (eigener fix-PR, Entscheidung offen) | `.github/workflows/ci.yml`, `.github/workflows/deploy.yml`, `.pre-commit-config.yaml` |
 | 2 | Unit | ➖ entfällt. Vorschlag, Freigabe offen, weil die Spec Schicht 2 „immer" verlangt: im Repo steckt keine Fachlogik. `src/lib/utils.ts` ist der `cn`-Helfer, `src/components/ui/` sind Darstellungskomponenten (größtenteils shadcn). Die einzige eigene Logik (Eingaben an EmailJS schicken, `status === 200` auswerten) prüft Schicht 4a an der abgefangenen Anfrage, ohne Umbau. Kommt Fachlogik dazu: `vitest` | `src/app/contact/page.tsx:29-62` |
 | 3 | Integration lokale DB | ➖ entfällt: keine eigene DB | – |
 | 4a | Contract offline | ❌ offen: wie das Formular auf Erfolg und Fehler von EmailJS reagiert, prüft kein Test | `src/app/contact/page.tsx:42-58` |
