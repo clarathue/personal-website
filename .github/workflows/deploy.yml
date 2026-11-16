@@ -77,3 +77,50 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 
+
+  # Schicht 7: dieselben @smoke-Specs gegen die gerade deployte Seite.
+  # Wartet, bis Pages den neuen Stand ausliefert (<meta name="build-sha">).
+  # Rückweg bei Rot: letzten grünen Deploy-Lauf neu starten oder Revert auf main.
+  smoke:
+    runs-on: ubuntu-latest
+    needs: deploy
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Warten auf den neuen Stand
+        run: |
+          for i in $(seq 1 60); do
+            live=$(curl -fsS "https://thuemecke.net/?sha-check=$i" | grep -o 'name="build-sha" content="[^"]*"' | cut -d'"' -f4 || true)
+            echo "Versuch $i: live=${live:-?} erwartet=$GITHUB_SHA"
+            [ "$live" = "$GITHUB_SHA" ] && exit 0
+            sleep 10
+          done
+          echo "Pages liefert nach 10 Minuten noch nicht den neuen Stand aus." >&2
+          exit 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke gegen Prod
+        run: npm run test:smoke
+        env:
+          BASE_URL: https://thuemecke.net
+
+      - name: Report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-deploy
+          path: playwright-report/
+          retention-days: 7

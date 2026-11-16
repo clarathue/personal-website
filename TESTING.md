@@ -23,7 +23,7 @@ Routen: `src/App.tsx:26-38`. Formular: `src/app/contact/page.tsx:112-169`. Workf
 | 4b | Live-Contract | ❌ offen und lesend nicht machbar: der Sendeweg hat keinen Trockenlauf, jeder erfolgreiche Aufruf verschickt eine Mail. Siehe Entscheidungen unten | – |
 | 5 | Datenqualität im Lauf | ➖ entfällt: keine Batches | – |
 | 6 | E2E/UI | ❌ offen: keine Specs für die Seiten (`/` samt vier Aliasen, `/ai-chatbots`, `/system-integration`, `/contact`, `/impressum`, `/datenschutz`, `/hr/`, 404-Fallback) und das Formular | `src/App.tsx:26-38`, `public/hr/index.html` |
-| 7 | Smoke nach Deploy | ❌ offen: nach `actions/deploy-pages` prüft nichts, ob die Seite läuft. Kein Rollback | `deploy.yml:70-80` |
+| 7 | Smoke nach Deploy | ✅ seit 16.11.2026: Job `smoke` in `deploy.yml` wartet, bis Pages den neuen Stand ausliefert (`<meta name="build-sha">`), und lässt dann die `@smoke`-Specs gegen https://thuemecke.net laufen. Rot → GitHub-Mail. Rückweg: letzten grünen Deploy-Lauf neu starten oder Revert auf `main` | `.github/workflows/deploy.yml`, `vite.config.ts` |
 | 8 | Heartbeat | ✅ seit PR 2: `monitor.yml` stündlich (Minute 17) und per Hand, `@smoke`-Specs gegen https://thuemecke.net, nur lesend, EmailJS blockiert. Alarm: fehlgeschlagener Workflow → GitHub-Mail (Entscheidung 16.11.2026: Mail reicht, kein Telegram). Gegen das Abschalten nach 60 Tagen ohne Repo-Aktivität schaltet sich der Workflow am 1. jedes Monats per API selbst wieder ein (Job `keepalive`, ohne Commit) | `.github/workflows/monitor.yml`, `e2e/smoke.spec.ts` |
 | 9 | LLM-Evals | ➖ entfällt: kein Sprachmodell | – |
 | 10 | Restore | ➖ entfällt: keine eigenen Backups, der Inhalt liegt vollständig im Repo | – |
