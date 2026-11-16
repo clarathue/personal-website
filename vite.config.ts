@@ -3,6 +3,10 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
+// Stand des Builds als <meta name="build-sha">, damit der Smoke nach dem Deploy
+// warten kann, bis GitHub Pages genau diesen Stand ausliefert.
+const BUILD_SHA = process.env.GITHUB_SHA ?? "local";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/' : '/',
@@ -27,6 +31,12 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    {
+      name: 'build-sha-meta',
+      transformIndexHtml: () => [
+        { tag: 'meta', attrs: { name: 'build-sha', content: BUILD_SHA }, injectTo: 'head' as const },
+      ],
+    },
     {
       name: 'serve-static-subpages',
       configureServer(server: ViteDevServer) {
