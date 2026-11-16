@@ -16,7 +16,7 @@
     "lint:fix": "eslint . --fix",
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
-    "type-check": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "type-check": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.e2e.json --noEmit",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean"
   },
