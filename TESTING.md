@@ -9,7 +9,7 @@ Stand 13.11.2026, `main` @ `9315521`: keine Tests, kein `test`-Skript, kein Work
 - Build wie im Deploy: `npm ci && npm run build` (`.github/workflows/deploy.yml:34-46`)
 - Lint: `npm run lint`. Läuft in `ci.yml` bei jedem PR und vor jedem Deploy
 - Typen: `npm run type-check` (`tsc -p` für `tsconfig.app.json` und `tsconfig.node.json`). Läuft in `ci.yml`
-- E2E: noch keine. Geplant: Specs unter `e2e/`, `npx playwright test`, gegen Prod `npx playwright test --grep @smoke`
+- E2E: `npm test` (Specs unter `e2e/`, startet selbst den lokalen Produktions-Build auf Port 4173). Gegen Prod: `BASE_URL=https://thuemecke.net npm run test:smoke`
 
 ## Schichten
 Routen: `src/App.tsx:26-38`. Formular: `src/app/contact/page.tsx:112-169`. Workflow: `.github/workflows/deploy.yml`.
@@ -24,7 +24,7 @@ Routen: `src/App.tsx:26-38`. Formular: `src/app/contact/page.tsx:112-169`. Workf
 | 5 | Datenqualität im Lauf | ➖ entfällt: keine Batches | – |
 | 6 | E2E/UI | ❌ offen: keine Specs für die Seiten (`/` samt vier Aliasen, `/ai-chatbots`, `/system-integration`, `/contact`, `/impressum`, `/datenschutz`, `/hr/`, 404-Fallback) und das Formular | `src/App.tsx:26-38`, `public/hr/index.html` |
 | 7 | Smoke nach Deploy | ❌ offen: nach `actions/deploy-pages` prüft nichts, ob die Seite läuft. Kein Rollback | `deploy.yml:70-80` |
-| 8 | Heartbeat | ❌ offen: kein Monitor im Repo. Auch agent-runtime und personal-automation prüfen die Website nicht, dort kommt thuemecke.net nur als Mail-Domain vor. Ob ein externer Dienst die Seite überwacht, ist von hier aus nicht prüfbar | – |
+| 8 | Heartbeat | ✅ seit PR 2: `monitor.yml` stündlich (Minute 17) und per Hand, `@smoke`-Specs gegen https://thuemecke.net, nur lesend, EmailJS blockiert. Alarm: fehlgeschlagener Workflow → GitHub-Mail (Entscheidung 16.11.2026: Mail reicht, kein Telegram). Achtung: GitHub schaltet geplante Workflows nach 60 Tagen ohne Repo-Aktivität ab | `.github/workflows/monitor.yml`, `e2e/smoke.spec.ts` |
 | 9 | LLM-Evals | ➖ entfällt: kein Sprachmodell | – |
 | 10 | Restore | ➖ entfällt: keine eigenen Backups, der Inhalt liegt vollständig im Repo | – |
 
@@ -54,3 +54,6 @@ Ein PR je Schicht, jeder zieht seine Zeile oben nach. Die Reihenfolge folgt der 
 - **Schicht 4b.** Vorschlag: nicht bauen. Mit Freigabe ginge einmal im Monat ein echter Versand über ein Test-Template (Betreff `TEST-`), rot bei Status ≠ 200. Das fängt einen gesperrten Key, ein aufgebrauchtes Kontingent oder ein gelöschtes Template. Heute bemerkt das niemand: der Besucher sieht eine Fehlermeldung, der Fehler landet nur in seiner Browser-Konsole (`src/app/contact/page.tsx:54-58`).
 - **EmailJS-Key aus dem Quelltext** (Lernhistorie Agent-Spec Tech), eigener `fix`-PR: Key, Service- und Template-ID als `VITE_EMAILJS_*` aus `.env`, im Deploy aus Repo-Variablen. Vite schreibt `VITE_*`-Werte ins ausgelieferte Bundle; der Public Key bleibt also öffentlich, die Änderung räumt nur den Quelltext auf. Fehlt die Variable im Deploy, ist das Formular in Prod kaputt, und kein Smoke ohne Absenden bemerkt das. Der Build muss deshalb bei leerem Wert abbrechen. `src/components/Contact.tsx` ist eine zweite, tote Kopie des Formulars (nur über `src/components/index.ts:4` exportiert, nirgends importiert) und fällt dabei weg.
 - **`/hr` gibt es zweimal:** als React-Route (`src/App.tsx:36`, `src/app/hr/page.tsx`) und als statische Seite (`public/hr/index.html`) mit anderer Überschrift. Ein direkter Aufruf landet nach dem Verhalten von GitHub Pages auf der statischen Seite (gegen Prod nicht geprüft), der Dev-Server lenkt `/hr` ebenfalls dorthin (`vite.config.ts:30-40`), und kein Link führt auf die React-Route. Die Specs prüfen die statische Seite; welche Fassung bleibt, ist offen.
+
+## Nebenbefund: Unterseiten mit Status 404 (geprüft 16.11.2026)
+GitHub Pages liefert alle Unterseiten außer `/` und `/hr/` über die `404.html` aus, also mit HTTP-Status 404: `/contact`, `/impressum`, `/datenschutz`, `/ai-chatbots`, `/system-integration`. Besucher sehen den richtigen Inhalt, Suchmaschinen werten die Seiten aber als nicht vorhanden, auch die aus `public/sitemap.xml`. Abhilfe wäre, beim Build je Route eine eigene `index.html` zu erzeugen (z. B. `dist/contact/index.html`). Das ist ein eigener PR, außerhalb des Test-Fahrplans.

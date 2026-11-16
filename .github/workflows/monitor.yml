@@ -1,0 +1,54 @@
+name: Monitor thuemecke.net
+
+# Stündlicher Check gegen Prod, nur lesend (siehe e2e/smoke.spec.ts).
+# Rot → GitHub-Benachrichtigung an den, der den Cron zuletzt geändert hat.
+# Achtung: In öffentlichen Repos schaltet GitHub geplante Workflows nach
+# 60 Tagen ohne Repo-Aktivität ab.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Adresse, gegen die geprüft wird'
+        default: 'https://thuemecke.net'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monitor
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke gegen Prod
+        run: npm run test:smoke
+        env:
+          BASE_URL: ${{ inputs.base_url || 'https://thuemecke.net' }}
+
+      - name: Report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
