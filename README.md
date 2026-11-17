@@ -69,7 +69,6 @@ src/
 │   │   ├── tooltip.tsx           # Tooltip components for UI hints
 │   │   └── [6 more essential UI components]
 │   ├── About.tsx                 # About section component
-│   ├── Contact.tsx               # Contact form component
 │   ├── Footer.tsx                # Site footer with links and legal info
 │   ├── Hero.tsx                  # Landing page hero section
 │   ├── Layout.tsx                # Page layout wrapper with SEO
