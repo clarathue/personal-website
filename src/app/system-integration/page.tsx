@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { ArrowRight, Database, GitBranch, Zap, Shield, Code, BarChart3, Users, Building2, ShoppingCart, FileText, Truck, Wallet } from 'lucide-react';
 import Layout from '@/components/Layout';
