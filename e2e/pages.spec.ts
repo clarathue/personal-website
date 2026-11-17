@@ -116,4 +116,39 @@ test.describe("Formular-Validierung (ohne Absenden)", () => {
     expect(await nachricht.evaluate((el: HTMLTextAreaElement) => el.validity.valueMissing)).toBe(true);
     expect(anfragen).toEqual([]);
   });
+
+  test("Name nur aus Leerzeichen wird nicht abgeschickt", async ({ page }) => {
+    const anfragen = await anfragenZaehlen(page);
+    await page.goto("/contact");
+    await page.getByLabel("Name").fill("   ");
+    await page.getByLabel("E-Mail").fill("test@example.invalid");
+    await page.getByLabel("Nachricht").fill("TEST- Validierung");
+    await page.getByRole("button", { name: "Nachricht senden" }).click();
+
+    const name = page.getByLabel("Name");
+    expect(await name.evaluate((el: HTMLInputElement) => el.validity.customError)).toBe(true);
+    expect(anfragen).toEqual([]);
+  });
+
+  test("Nachricht nur aus Leerzeichen und Zeilenumbrüchen wird nicht abgeschickt", async ({ page }) => {
+    const anfragen = await anfragenZaehlen(page);
+    await page.goto("/contact");
+    await page.getByLabel("Name").fill("Test Person");
+    await page.getByLabel("E-Mail").fill("test@example.invalid");
+    await page.getByLabel("Nachricht").fill("  \n\t \n");
+    await page.getByRole("button", { name: "Nachricht senden" }).click();
+
+    const nachricht = page.getByLabel("Nachricht");
+    expect(await nachricht.evaluate((el: HTMLTextAreaElement) => el.validity.customError)).toBe(true);
+    expect(anfragen).toEqual([]);
+  });
+
+  test("nach dem Korrigieren geht das Formular wieder durch", async ({ page }) => {
+    await page.goto("/contact");
+    const name = page.getByLabel("Name");
+    await name.fill("   ");
+    expect(await name.evaluate((el: HTMLInputElement) => el.validity.valid)).toBe(false);
+    await name.fill(" Test Person ");
+    expect(await name.evaluate((el: HTMLInputElement) => el.validity.valid)).toBe(true);
+  });
 });

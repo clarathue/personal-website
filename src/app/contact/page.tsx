@@ -14,6 +14,15 @@ import { Title } from '@/components/ui/title';
 // EmailJS Konfiguration
 emailjs.init("E85RYUMoO3-PpIbgV");
 
+const NUR_LEERZEICHEN = 'Bitte nicht nur Leerzeichen eingeben.';
+
+// `required` lässt Leerzeichen durch. Name und Nachricht melden deshalb selbst einen
+// Fehler, dann hält der Browser das Absenden an wie bei einem leeren Feld.
+function leerzeichenPruefen(feld: HTMLInputElement | HTMLTextAreaElement) {
+  const nurLeerzeichen = feld.value !== '' && feld.value.trim() === '';
+  feld.setCustomValidity(nurLeerzeichen ? NUR_LEERZEICHEN : '');
+}
+
 const ContactPage = () => {
   const [formData, setFormData] = React.useState({
     name: '',
@@ -33,10 +42,10 @@ const ContactPage = () => {
     try {
       const templateParams = {
         to_email: 'clara@thuemecke.net',
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        reply_to: formData.email,
+        from_name: formData.name.trim(),
+        from_email: formData.email.trim(),
+        message: formData.message.trim(),
+        reply_to: formData.email.trim(),
       };
 
       const result = await emailjs.send(
@@ -63,6 +72,7 @@ const ContactPage = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    if (name !== 'email') leerzeichenPruefen(e.target);
     setFormData(prev => ({
       ...prev,
       [name]: value
