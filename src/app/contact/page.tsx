@@ -11,8 +11,16 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CalendlyButton from '@/components/CalendlyButton';
 import { Title } from '@/components/ui/title';
-// EmailJS Konfiguration
-emailjs.init("E85RYUMoO3-PpIbgV");
+import { fehlendeEmailjsVariablen, fehlendeVariablenMeldung } from '@/lib/emailjs-config';
+
+// Kennungen aus der Build-Konfiguration (src/lib/emailjs-config.ts). Fehlt eine, bricht
+// der Produktions-Build ab; im Dev-Server meldet das Formular den Fehler beim Absenden.
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_FEHLEND = fehlendeEmailjsVariablen(import.meta.env);
+const KONFIGURATION_FEHLT =
+  'Das Kontaktformular ist gerade nicht eingerichtet. Bitte kontaktieren Sie mich direkt per E-Mail.';
 
 const NUR_LEERZEICHEN = 'Bitte nicht nur Leerzeichen eingeben.';
 
@@ -37,6 +45,11 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (EMAILJS_FEHLEND.length > 0) {
+      console.error(fehlendeVariablenMeldung(EMAILJS_FEHLEND));
+      toast.error(KONFIGURATION_FEHLT);
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -49,9 +62,10 @@ const ContactPage = () => {
       };
 
       const result = await emailjs.send(
-        'service_kd6vrxk',
-        'template_4spc8nj',
-        templateParams
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        { publicKey: EMAILJS_PUBLIC_KEY }
       );
 
       if (result.status === 200) {

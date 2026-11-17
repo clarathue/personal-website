@@ -27,9 +27,14 @@ Website thuemecke.net: React-SPA mit Vite, Tailwind und shadcn/ui auf GitHub Pag
 
 | Weg | Datei | Absender | Empfängerkreis | Auslöser |
 |---|---|---|---|---|
-| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service `service_kd6vrxk`, Template `template_4spc8nj` | `clara@thuemecke.net` (`to_email`) | Besucher klickt „Absenden“ |
+| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service und -Template aus `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` | `clara@thuemecke.net` (`to_email`) | Besucher klickt „Absenden“ |
 
 Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus.
+
+- **EmailJS-Kennungen nie im Quelltext.** Public Key, Service- und Template-ID kommen als
+  `VITE_EMAILJS_*` aus `.env` (Vorlage `.env.example`), in `ci.yml` und `deploy.yml` aus
+  den gleichnamigen GitHub-Secrets. Fehlt eine, bricht der Build ab (`vite.config.ts`).
+  Der lokale Test-Build nimmt erfundene Werte (`e2e/emailjs-testwerte.ts`).
 
 ## Prod-Zugriffe
 

@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { EMAILJS_TESTWERTE } from "./e2e/emailjs-testwerte";
 
 // BASE_URL gesetzt → gegen diese Adresse (Monitor, Smoke nach Deploy).
 // Sonst gegen den lokalen Produktions-Build, den Playwright selbst startet.
@@ -23,6 +24,8 @@ export default defineConfig({
       url: LOCAL_URL,
       reuseExistingServer: !process.env.CI,
       timeout: 120_000,
+      // Erfundene Kennungen, damit der Build ohne echte Werte durchläuft.
+      env: EMAILJS_TESTWERTE,
     },
   }),
 });
