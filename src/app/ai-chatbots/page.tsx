@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Database, MessageSquare, Zap, BarChart3, Building2, Users, FileText, Brain, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { 
   Carousel,
   CarouselContent,
