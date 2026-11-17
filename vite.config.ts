@@ -1,7 +1,8 @@
-import { defineConfig, type ViteDevServer } from "vite";
+import { defineConfig, loadEnv, type ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { fehlendeEmailjsVariablen, fehlendeVariablenMeldung } from "./src/lib/emailjs-config";
 
 // Stand des Builds als <meta name="build-sha">, damit der Smoke nach dem Deploy
 // warten kann, bis GitHub Pages genau diesen Stand ausliefert.
@@ -36,6 +37,16 @@ export default defineConfig(({ mode }) => ({
       transformIndexHtml: () => [
         { tag: 'meta', attrs: { name: 'build-sha', content: BUILD_SHA }, injectTo: 'head' as const },
       ],
+    },
+    // Ohne EmailJS-Kennungen ginge ein Build live, dessen Formular nichts sendet, und kein
+    // Smoke ohne Absenden bemerkt das. Deshalb bricht der Build ab.
+    {
+      name: 'emailjs-env-check',
+      apply: 'build' as const,
+      configResolved() {
+        const fehlend = fehlendeEmailjsVariablen(loadEnv(mode, process.cwd(), 'VITE_EMAILJS_'));
+        if (fehlend.length > 0) throw new Error(fehlendeVariablenMeldung(fehlend));
+      },
     },
     {
       name: 'serve-static-subpages',

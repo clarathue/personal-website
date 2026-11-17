@@ -1,4 +1,5 @@
 import { expect, test, type Page, type Route } from "@playwright/test";
+import { EMAILJS_TESTWERTE } from "./emailjs-testwerte";
 
 // Schicht 4a: Kontaktformular gegen eine Attrappe von EmailJS.
 // Jede Anfrage an api.emailjs.com beantwortet der Test selbst – keine Mail verlässt den Rechner.
@@ -63,8 +64,9 @@ test("erfolgreicher Versand zeigt die Bestätigung und leert das Formular", asyn
 
   expect(anfragen).toHaveLength(1);
   expect(anfragen[0]).toMatchObject({
-    service_id: "service_kd6vrxk",
-    template_id: "template_4spc8nj",
+    service_id: EMAILJS_TESTWERTE.VITE_EMAILJS_SERVICE_ID,
+    template_id: EMAILJS_TESTWERTE.VITE_EMAILJS_TEMPLATE_ID,
+    user_id: EMAILJS_TESTWERTE.VITE_EMAILJS_PUBLIC_KEY,
     template_params: {
       to_email: "clara@thuemecke.net",
       from_name: "Test Person",

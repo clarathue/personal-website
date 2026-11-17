@@ -32,8 +32,13 @@ jobs:
       - name: Type check
         run: npm run type-check
 
+      # Ohne die drei EmailJS-Kennungen bricht der Build ab (vite.config.ts).
       - name: Build
         run: npm run build
+        env:
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
 
       # Nur Laufzeitpakete landen im Bundle; rot ab Schwere "high".
       - name: Dependency audit
@@ -64,6 +69,7 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # Baut selbst mit erfundenen EmailJS-Kennungen (e2e/emailjs-testwerte.ts).
       - name: Smoke specs
         run: npm test
 
