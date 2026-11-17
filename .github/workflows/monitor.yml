@@ -1,24 +1,23 @@
 name: Monitor thuemecke.net
 
 # Stündlicher Check gegen Prod, nur lesend (siehe e2e/smoke.spec.ts).
-#
-# Angestoßen von außen: die agent-runtime-Box schickt stündlich zur Minute 23 ein
-# repository_dispatch (event_type monitor). GitHubs eigener Zeitplan hat diesen
-# Workflow ab dem 16.11.2026 nie ausgelöst, auch nicht nach Ab- und Anschalten
-# und nach einem Push mit neuer Minute. Ohne schedule-Trigger gilt auch die
-# 60-Tage-Abschaltung nicht mehr, der frühere Keepalive-Job entfällt.
-#
-# Alarm: GitHub mailt einen roten Lauf an den, der ihn ausgelöst hat, hier also an
-# die App der Box. Deshalb legt der Job bei Rot ein Issue an (oder kommentiert das
-# offene) und erwähnt darin die Inhaberin. Wird Prod wieder grün, schließt er es.
+# Rot → GitHub-Benachrichtigung an den, der den Cron zuletzt geändert hat.
+# GitHub schaltet geplante Workflows nach 60 Tagen ohne Repo-Aktivität ab.
+# Dagegen schaltet sich der Workflow monatlich per API selbst wieder ein
+# (Job keepalive), das setzt die Frist zurück – ohne Commit, ohne Deploy.
 on:
-  repository_dispatch:
-    types: [monitor]
+  schedule:
+    - cron: '23 * * * *'
+    - cron: '41 4 1 * *'   # keepalive, am 1. jedes Monats
   workflow_dispatch:
     inputs:
       base_url:
         description: 'Adresse, gegen die geprüft wird'
         default: 'https://thuemecke.net'
+      keepalive:
+        description: 'Nur den Keepalive ausführen'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -27,21 +26,11 @@ concurrency:
   group: monitor
   cancel-in-progress: true
 
-env:
-  PROD_URL: https://thuemecke.net
-  ISSUE_TITEL: Monitor rot – thuemecke.net
-
 jobs:
   smoke:
+    if: github.event.schedule != '41 4 1 * *' && !inputs.keepalive
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      contents: read
-      issues: write
-    env:
-      BASE_URL: ${{ inputs.base_url || 'https://thuemecke.net' }}
-      GH_TOKEN: ${{ github.token }}
-      LAUF_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,6 +49,8 @@ jobs:
 
       - name: Smoke gegen Prod
         run: npm run test:smoke
+        env:
+          BASE_URL: ${{ inputs.base_url || 'https://thuemecke.net' }}
 
       - name: Report
         if: failure()
@@ -69,21 +60,22 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-      - name: Alarm als Issue
-        if: failure()
-        run: |
-          nummer=$(gh issue list --state open --search "\"$ISSUE_TITEL\" in:title" --json number --jq '.[0].number // empty')
-          text="Smoke gegen $BASE_URL rot: $LAUF_URL"
-          if [ -n "$nummer" ]; then
-            gh issue comment "$nummer" --body "@${{ github.repository_owner }} weiterhin rot. $text"
-          else
-            gh issue create --title "$ISSUE_TITEL" --body "@${{ github.repository_owner }} $text"
-          fi
+  keepalive:
+    if: github.event.schedule == '41 4 1 * *' || inputs.keepalive
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Workflow erneut einschalten (setzt die 60-Tage-Frist zurück)
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/monitor.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
 
-      - name: Entwarnung
-        if: success() && env.BASE_URL == env.PROD_URL
+      - name: Zustand prüfen
         run: |
-          nummer=$(gh issue list --state open --search "\"$ISSUE_TITEL\" in:title" --json number --jq '.[0].number // empty')
-          if [ -n "$nummer" ]; then
-            gh issue close "$nummer" --comment "Wieder grün: $LAUF_URL"
-          fi
+          state=$(gh api "repos/${{ github.repository }}/actions/workflows/monitor.yml" --jq .state)
+          echo "monitor.yml: $state"
+          test "$state" = "active"
+        env:
+          GH_TOKEN: ${{ github.token }}
