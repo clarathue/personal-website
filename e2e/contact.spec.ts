@@ -124,3 +124,18 @@ test("die Attrappe greift für den echten Endpunkt", async ({ page }) => {
   await expect(page.getByText(ERFOLG)).toBeVisible();
   expect(urls).toEqual([SEND_URL]);
 });
+
+test("Leerzeichen am Rand werden vor dem Versand entfernt", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+
+  await page.goto("/contact");
+  await page.getByLabel("Name").fill("  Test Person ");
+  await page.getByLabel("E-Mail").fill("test@example.invalid");
+  await page.getByLabel("Nachricht").fill("\n TEST- Nachricht mit Rand \n");
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+
+  await expect(page.getByText(ERFOLG)).toBeVisible();
+  expect(anfragen[0]).toMatchObject({
+    template_params: { from_name: "Test Person", message: "TEST- Nachricht mit Rand" },
+  });
+});
