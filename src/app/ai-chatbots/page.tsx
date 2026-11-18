@@ -213,6 +213,7 @@ const AIChatbotsPage = () => {
       title="KI-gestützte Lösungen | Thümecke Business Intelligence Solutions"
       description="KI-gestützte Automatisierung für Daten, Analyse und Entscheidungsunterstützung. Wir entwickeln maßgeschneiderte Lösungen – von Multi-Agent-Systemen bis zur intelligenten Prozessautomatisierung."
       keywords="AI-Chatbots, Künstliche Intelligenz, Chatbot Entwicklung, Kundenservice Automatisierung, KI-Support, Prozessautomatisierung"
+      canonicalUrl="https://thuemecke.net/ai-chatbots"
     >
       <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
         {/* Hero Section */}
