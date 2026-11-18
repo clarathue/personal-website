@@ -68,13 +68,15 @@ test("erfolgreicher Versand zeigt die Bestätigung und leert das Formular", asyn
     template_id: EMAILJS_TESTWERTE.VITE_EMAILJS_TEMPLATE_ID,
     user_id: EMAILJS_TESTWERTE.VITE_EMAILJS_PUBLIC_KEY,
     template_params: {
-      to_email: "clara@thuemecke.net",
       from_name: "Test Person",
       from_email: "test@example.invalid",
       reply_to: "test@example.invalid",
       message: "TEST- Nachricht aus dem Formular-Test",
     },
   });
+  // Der Empfänger steht nur im EmailJS-Template, nie im Browser-Payload.
+  expect(anfragen[0].template_params).not.toHaveProperty("to_email");
+  expect(JSON.stringify(anfragen[0])).not.toContain("clara@thuemecke.net");
 });
 
 test("Fehlerantwort von EmailJS zeigt die Fehlermeldung und behält die Eingaben", async ({ page }) => {
@@ -140,4 +142,44 @@ test("Leerzeichen am Rand werden vor dem Versand entfernt", async ({ page }) => 
   expect(anfragen[0]).toMatchObject({
     template_params: { from_name: "Test Person", message: "TEST- Nachricht mit Rand" },
   });
+});
+
+test("Honeypot gefüllt: stille Erfolgsmeldung, keine Anfrage an EmailJS", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+
+  await page.goto("/contact");
+  await page.getByLabel("Name").fill("Test Person");
+  await page.getByLabel("E-Mail").fill("test@example.invalid");
+  await page.getByLabel("Nachricht").fill("TEST- Spam");
+  // Menschen erreichen das Feld nicht, ein Bot füllt es direkt.
+  await page.locator("#kontakt-zusatzfeld").evaluate((el: HTMLInputElement) => {
+    el.value = "http://spam.example.invalid";
+  });
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+
+  await expect(page.getByText(ERFOLG)).toBeVisible();
+  expect(anfragen).toHaveLength(0);
+});
+
+test("Honeypot ist für Menschen und Hilfstechnik unsichtbar und nicht fokussierbar", async ({ page }) => {
+  await page.goto("/contact");
+  const feld = page.locator("#kontakt-zusatzfeld");
+
+  await expect(feld).toHaveAttribute("tabindex", "-1");
+  await expect(feld).toHaveAttribute("autocomplete", "off");
+  await expect(page.locator("[aria-hidden=true]:has(#kontakt-zusatzfeld)")).toHaveCount(1);
+  // Nur Name, E-Mail und Nachricht sind für Hilfstechnik sichtbar.
+  await expect(page.getByRole("textbox")).toHaveCount(3);
+  const box = await feld.boundingBox();
+  // Bots müssen das Feld finden (kein display:none), Menschen sehen es nicht (außerhalb des Bildes).
+  expect(box).not.toBeNull();
+  expect(box!.x + box!.width).toBeLessThan(0);
+});
+
+test("leerer Honeypot: Versand läuft normal", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+  await ausfuellenUndSenden(page);
+  await expect(page.getByText(ERFOLG)).toBeVisible();
+  expect(anfragen).toHaveLength(1);
+  expect(anfragen[0].template_params).not.toHaveProperty("kontakt-zusatzfeld");
 });
