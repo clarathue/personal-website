@@ -11,6 +11,7 @@ const SystemIntegration = () => {
       title="System Integration | Thümecke Business Intelligence Solutions"
       description="Professionelle Systemintegration für Ihr Unternehmen. Verbinden Sie Ihre bestehenden Systeme und optimieren Sie Ihre Geschäftsprozesse durch nahtlose Integration."
       keywords="Systemintegration, API Integration, Datenintegration, Prozessautomatisierung, Systemvernetzung, Business Intelligence"
+      canonicalUrl="https://thuemecke.net/system-integration"
     >
       <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
         {/* Hero Section */}
