@@ -22,6 +22,17 @@ const EMAILJS_FEHLEND = fehlendeEmailjsVariablen(import.meta.env);
 const KONFIGURATION_FEHLT =
   'Das Kontaktformular ist gerade nicht eingerichtet. Bitte kontaktieren Sie mich direkt per E-Mail.';
 
+// Honeypot: Menschen sehen das Feld nicht und lassen es leer, einfache Bots füllen jedes Feld.
+// Der Name ist neutral (kein website/url), damit Autofill und Passwortmanager das Feld nicht füllen; der Empfänger steht nur im EmailJS-Template.
+const HONEYPOT_FELD = 'kontakt-zusatzfeld';
+const HONEYPOT_STIL: React.CSSProperties = {
+  position: 'absolute',
+  left: '-10000px',
+  width: '1px',
+  height: '1px',
+  overflow: 'hidden',
+};
+
 const NUR_LEERZEICHEN = 'Bitte nicht nur Leerzeichen eingeben.';
 
 // `required` lässt Leerzeichen durch. Name und Nachricht melden deshalb selbst einen
@@ -43,8 +54,15 @@ const ContactPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const honeypot = new FormData(e.currentTarget).get(HONEYPOT_FELD);
+    if (typeof honeypot === 'string' && honeypot !== '') {
+      // Bot: stille Erfolgsmeldung, ohne zu senden.
+      toast.success('Nachricht erfolgreich gesendet!');
+      setFormData({ name: '', email: '', message: '' });
+      return;
+    }
     if (EMAILJS_FEHLEND.length > 0) {
       console.error(fehlendeVariablenMeldung(EMAILJS_FEHLEND));
       toast.error(KONFIGURATION_FEHLT);
@@ -54,7 +72,6 @@ const ContactPage = () => {
 
     try {
       const templateParams = {
-        to_email: 'clara@thuemecke.net',
         from_name: formData.name.trim(),
         from_email: formData.email.trim(),
         message: formData.message.trim(),
@@ -141,6 +158,16 @@ const ContactPage = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   >
+                    <div style={HONEYPOT_STIL} aria-hidden="true">
+                      <input
+                        id={HONEYPOT_FELD}
+                        name={HONEYPOT_FELD}
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        defaultValue=""
+                      />
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-tech-gray-700">Name</label>
