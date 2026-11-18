@@ -6,7 +6,14 @@ Website thuemecke.net: React-SPA mit Vite, Tailwind und shadcn/ui auf GitHub Pag
 ## Was hier besonders ist
 
 - **Ein Push auf `main` ist ein Deploy** (`.github/workflows/deploy.yml`, nach den Checks aus
-  `ci.yml`). Danach prüft der Smoke Prod, stündlich der Monitor. Rückweg: Revert auf `main`.
+  `ci.yml`). Danach prüft der Smoke Prod, stündlich geplant der Monitor. Rückweg: Revert auf `main`.
+- **Der Takt des Monitors (`monitor.yml`, stündlich, Minute 23) ist von GitHub nicht zugesichert.**
+  Geplante Läufe kamen verzögert
+  (17.–18.11.2026: 3 Läufe in ca. 15 h, Lücken von 6–9 h); ob das Drosselung oder ein Anlaufeffekt
+  nach dem Revert ist, ist nicht geklärt. Ein ausbleibender Lauf ist erst nach ca. 24 h ein Befund,
+  und ein Ausfall der Seite kann bis zu ca. 9 h unbemerkt bleiben (der Smoke nach dem Deploy bleibt
+  davon unberührt). Die Auslösung durch die Box (16.11. 15:09 bis 17.11. 09:23 UTC, ca. 18 h)
+  wurde am 17.11.2026 bewusst zurückgenommen (PR #16).
 - **Das Kontaktformular verschickt echte Mails** über EmailJS aus dem Browser des Besuchers.
   Einen Trockenlauf gibt es nicht, jeder erfolgreiche Aufruf ist eine Mail.
 - **Unterseiten liefern Status 200, weil `postbuild` je Route eine HTML-Datei schreibt**
