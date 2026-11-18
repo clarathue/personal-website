@@ -38,6 +38,16 @@ for (const { path, h1 } of ROUTES) {
   });
 }
 
+test("Datenschutzerklärung enthält keine Platzhalteranschrift für EmailJS", async ({ page }) => {
+  await page.goto("/datenschutz");
+  const text = page.locator("body");
+  await expect(text).toContainText("EmailJS Pte. Ltd.");
+  await expect(text).not.toContainText("1234 Main St");
+  await expect(text).not.toContainText("EmailJS Inc.");
+  await expect(page.locator('a[href="https://www.emailjs.com/legal/data-protection-agreement/"]')).toBeVisible();
+  await expect(page.locator('a[href="https://www.emailjs.com/legal/privacy-policy/"]')).toBeVisible();
+});
+
 test.describe("Navigation", () => {
   const ZIELE = [
     { link: "AI-Chatbots", url: "/ai-chatbots", h1: /KI-gestützte Lösungen/ },

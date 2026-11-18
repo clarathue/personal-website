@@ -100,7 +100,13 @@ const Datenschutz = () => {
               EmailJS
             </Title>
             <p className="mb-6">
-              Ich nutze EmailJS für die Verarbeitung von Kontaktformularen. EmailJS ist ein Dienst der EmailJS Inc., 1234 Main St, San Francisco, CA 94107, USA. Die Datenschutzerklärung von EmailJS findest du unter:  
+              Ich nutze EmailJS für die Verarbeitung von Kontaktformularen. Anbieter ist die EmailJS Pte. Ltd. (Singapur). Dabei können Ihre Angaben aus dem Formular (Name, E-Mail-Adresse, Nachricht) an Server in den USA übermittelt werden. Die Übermittlung stützt sich auf die EU-Standardvertragsklauseln im Rahmen der Auftragsverarbeitungsvereinbarung von EmailJS, die Sie hier einsehen können:{' '}
+              <a href="https://www.emailjs.com/legal/data-protection-agreement/" className="text-tech-blue hover:text-tech-darkBlue">
+                https://www.emailjs.com/legal/data-protection-agreement/
+              </a>
+            </p>
+            <p className="mb-6">
+              Die Datenschutzerklärung von EmailJS finden Sie unter:{' '}
               <a href="https://www.emailjs.com/legal/privacy-policy/" className="text-tech-blue hover:text-tech-darkBlue">
                 https://www.emailjs.com/legal/privacy-policy/
               </a>
