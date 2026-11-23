@@ -1,6 +1,8 @@
 name: Monitor thuemecke.net
 
-# Stündlicher Check gegen Prod, nur lesend (siehe e2e/smoke.spec.ts).
+# Stündlich geplanter Check gegen Prod, nur lesend (siehe e2e/smoke.spec.ts).
+# Der Takt ist von GitHub nicht zugesichert; Messwerte und Schwelle für ein
+# ausbleibendes Ergebnis stehen in CLAUDE.md, Abschnitt „Was hier besonders ist“.
 # Rot → GitHub-Benachrichtigung an den, der den Cron zuletzt geändert hat.
 # GitHub schaltet geplante Workflows nach 60 Tagen ohne Repo-Aktivität ab.
 # Dagegen schaltet sich der Workflow monatlich per API selbst wieder ein
