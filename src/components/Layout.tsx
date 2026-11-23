@@ -13,12 +13,15 @@ interface LayoutProps {
   ogType?: string;
 }
 
+// Die Organisation im JSON-LD ist die Firma, ihre Adresse ist die Startseite.
+const SITE_URL = "https://thuemecke.net";
+
 const Layout: React.FC<LayoutProps> = ({ 
   children, 
   title = "Thümecke Business Intelligence Solutions | Prozessautomatisierung & Systemintegration",
   description = "Prozessautomatisierung und Systemintegration für den Mittelstand – von HR und Recruiting bis Einkauf und Finance. Pragmatisch umgesetzt, messbar wirksam.",
   keywords = "Prozessautomatisierung, Systemintegration, Business Intelligence, HR-Automatisierung, Recruiting-Automatisierung, KI-Lösungen, Mittelstand",
-  canonicalUrl = "https://thuemecke.net",
+  canonicalUrl = SITE_URL,
   ogImage = "https://thuemecke.net/favicon.png",
   ogType = "website"
 }) => {
@@ -26,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Thümecke Business Intelligence Solutions",
-    "url": canonicalUrl,
+    "url": SITE_URL,
     "logo": ogImage,
     "description": description,
     "address": {

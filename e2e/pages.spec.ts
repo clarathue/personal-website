@@ -48,6 +48,25 @@ test("Datenschutzerklärung enthält keine Platzhalteranschrift für EmailJS", a
   await expect(page.locator('a[href="https://www.emailjs.com/legal/privacy-policy/"]')).toBeVisible();
 });
 
+// Jede Unterseite nennt sich selbst als canonical (nicht die Startseite), og:url zieht mit.
+for (const path of ["/ai-chatbots", "/system-integration"]) {
+  test(`${path} setzt canonical und og:url auf die eigene Adresse`, async ({ page }) => {
+    await page.goto(path);
+    const erwartet = `https://thuemecke.net${path}`;
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", erwartet);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", erwartet);
+  });
+}
+
+// Die Organisation im JSON-LD bleibt die Firma: ihre url ist die Startseite, nie die Unterseite.
+for (const path of ["/ai-chatbots", "/system-integration"]) {
+  test(`${path} nennt im JSON-LD die Startseite als Organisation`, async ({ page }) => {
+    await page.goto(path);
+    const json = await page.locator('script[type="application/ld+json"]').textContent();
+    expect(JSON.parse(json ?? "{}").url).toBe("https://thuemecke.net");
+  });
+}
+
 test.describe("Navigation", () => {
   const ZIELE = [
     { link: "AI-Chatbots", url: "/ai-chatbots", h1: /KI-gestützte Lösungen/ },
