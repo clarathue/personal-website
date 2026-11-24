@@ -34,9 +34,14 @@ Website thuemecke.net: React-SPA mit Vite, Tailwind und shadcn/ui auf GitHub Pag
 
 | Weg | Datei | Absender | Empfängerkreis | Auslöser |
 |---|---|---|---|---|
-| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service und -Template aus `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` | `clara@thuemecke.net` (`to_email`) | Besucher klickt „Absenden“ |
+| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service und -Template aus `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` | `clara@thuemecke.net`, fest im EmailJS-Template (To Email), nicht im Code | Besucher klickt „Absenden“; ein gefülltes Honeypot-Feld sendet nichts |
 
 Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus.
+
+- **Der Empfänger steht nur im EmailJS-Template, nie im Payload.** Der Browser schickt kein
+  `to_email`; sonst könnte jeder mit dem öffentlichen Key an beliebige Adressen senden.
+  Das Honeypot-Feld (`kontakt-zusatzfeld`, ohne Label, außerhalb des Bildes, `aria-hidden`, `tabindex=-1`) bleibt;
+  ist es gefüllt, zeigt das Formular still „Erfolg“ und sendet nichts.
 
 - **EmailJS-Kennungen nie im Quelltext.** Public Key, Service- und Template-ID kommen als
   `VITE_EMAILJS_*` aus `.env` (Vorlage `.env.example`), in `ci.yml` und `deploy.yml` aus
