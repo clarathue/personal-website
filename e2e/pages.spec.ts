@@ -21,6 +21,13 @@ const ROUTES: { path: string; h1: RegExp }[] = [
   { path: "/hr/", h1: /HR-Systeme/ },
 ];
 
+// Auf /contact lädt das reCAPTCHA-Skript von Google; der Test beantwortet es selbst (nie echt).
+async function googleAttrappe(page: Page) {
+  await page.route("**/www.google.com/recaptcha/**", (route) =>
+    route.fulfill({ status: 200, contentType: "text/javascript", body: "window.grecaptcha = { ready(f) { f(); }, render() { return 1; }, reset() {} };" }),
+  );
+}
+
 function konsolenfehler(page: Page) {
   const fehler: string[] = [];
   page.on("console", (m) => { if (m.type() === "error") fehler.push(m.text()); });
@@ -31,6 +38,7 @@ function konsolenfehler(page: Page) {
 for (const { path, h1 } of ROUTES) {
   test(`${path} zeigt ihre Überschrift ohne Konsolenfehler`, async ({ page }) => {
     const fehler = konsolenfehler(page);
+    await googleAttrappe(page);
     await page.goto(path);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(h1);
     await page.waitForLoadState("networkidle");
@@ -63,7 +71,7 @@ test("Datenschutzerklärung nennt Google Fonts und Calendly, aber keine Analyse"
   expect(await text.innerText()).toMatch(/Übermittlung in ein Land außerhalb der EU[\s\S]*Übermittlung in ein Land außerhalb der EU/);
   await expect(text).toContainText("Cookies oder ähnliche Speicherungen");
   await expect(text).toContainText("https://policies.google.com/privacy");
-  await expect(text).toContainText("§ 25 Abs. 1 TDDDG");
+  await expect(text).toContainText("§ 25 Abs. 2 Nr. 2 TDDDG");
   await expect(text).toContainText("Art. 6 Abs. 1 lit. f DSGVO");
   await expect(text).toContainText("Data Privacy Framework");
   await expect(text).toContainText("Bayerische Landesamt für Datenschutzaufsicht");
@@ -75,7 +83,7 @@ test("Datenschutzerklärung nennt Google Fonts und Calendly, aber keine Analyse"
 });
 
 // Die Aussage „keine Cookies, keine Analyse“ und die Liste der Drittanbieter hängen am Code:
-// Beim Laden der Seiten gehen Anfragen nur an die eigene Adresse und an Google Fonts, es gibt
+// Beim Laden der Seiten gehen Anfragen nur an die eigene Adresse und an Google Fonts (auf /contact dazu reCAPTCHA), es gibt
 // weder Cookies noch Einträge im lokalen Speicher. Kommt ein weiterer Dienst dazu, wird das hier rot
 // und die Datenschutzerklärung muss mit.
 for (const path of ["/", "/contact", "/datenschutz", "/hr/"]) {
@@ -90,10 +98,13 @@ for (const path of ["/", "/contact", "/datenschutz", "/hr/"]) {
     await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) =>
       route.fulfill({ status: 200, contentType: "text/css", body: "" }),
     );
+    await googleAttrappe(page);
     await page.goto(path);
     await page.waitForLoadState("networkidle");
 
-    expect([...fremdeHosts].sort()).toEqual(["fonts.googleapis.com"]);
+    // Nur die Kontaktseite holt zusätzlich das reCAPTCHA-Skript von Google.
+    const erwartet = path === "/contact" ? ["fonts.googleapis.com", "www.google.com"] : ["fonts.googleapis.com"];
+    expect([...fremdeHosts].sort()).toEqual(erwartet);
     expect(await page.evaluate(() => document.cookie)).toBe("");
     expect(await page.evaluate(() => localStorage.length + sessionStorage.length)).toBe(0);
   });

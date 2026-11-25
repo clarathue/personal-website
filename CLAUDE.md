@@ -48,9 +48,9 @@ Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus
   den gleichnamigen GitHub-Secrets. Fehlt eine, bricht der Build ab (`vite.config.ts`).
   Der lokale Test-Build nimmt erfundene Werte (`e2e/emailjs-testwerte.ts`).
 
-- **reCAPTCHA v2 im Kontaktformular** (`src/components/RecaptchaField.tsx`). Das Google-Skript lädt nie beim
-  Seitenaufruf, sondern erst nach dem Klick auf „Spamschutz laden“ (Einwilligung; Datenschutzerklärung
-  nennt das). Ohne Token geht nichts an EmailJS; das Token geht als `g-recaptcha-response` mit.
+- **reCAPTCHA v2 im Kontaktformular** (`src/components/RecaptchaField.tsx`). Das Google-Skript lädt, sobald das
+  Formular auf der Kontaktseite erscheint, ohne Einwilligungsklick, nie auf anderen Seiten (Datenschutzerklärung:
+  berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO, § 25 Abs. 2 Nr. 2 TDDDG; bewusste Entscheidung). Ohne Token geht nichts an EmailJS; das Token geht als `g-recaptcha-response` mit.
   Site-Key aus `VITE_RECAPTCHA_SITE_KEY` (GitHub-Repo-*Variable*, `vars.` in `ci.yml`/`deploy.yml`),
   fehlt er, bricht der Build ab. Der Secret Key steht nur im EmailJS-Template, nie im Repo.
   Wer ein Google-Skript, einen Dienst oder eine Schrift ergänzt, zieht `src/app/datenschutz/page.tsx` im selben PR nach.

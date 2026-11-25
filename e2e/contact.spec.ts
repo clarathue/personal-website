@@ -75,9 +75,8 @@ async function felderAusfuellen(page: Page) {
   await page.getByLabel("Nachricht").fill("TEST- Nachricht aus dem Formular-Test");
 }
 
-// Einwilligen (Skript laden) und die Checkbox lösen.
+// Die Checkbox lösen; das Skript lädt beim Öffnen der Kontaktseite von selbst.
 async function spamschutzLoesen(page: Page) {
-  await page.getByRole("button", { name: "Spamschutz laden" }).click();
   await page.getByRole("button", { name: "Ich bin kein Roboter" }).click();
 }
 
@@ -185,17 +184,18 @@ test("Leerzeichen am Rand werden vor dem Versand entfernt", async ({ page }) => 
   });
 });
 
-test("das Google-Skript wird erst nach dem Klick auf Spamschutz laden geholt", async ({ page }) => {
+test("das Google-Skript wird nur auf der Kontaktseite geholt, ohne Klick", async ({ page }) => {
   const google = await recaptchaAttrappe(page);
-  await page.goto("/contact");
+  await page.goto("/");
   await page.waitForLoadState("networkidle");
   expect(google).toEqual([]);
-  await expect(page.getByRole("link", { name: "Datenschutzerklärung" })).toHaveAttribute("href", "/datenschutz");
 
-  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await page.goto("/contact");
   await expect(page.getByRole("button", { name: "Ich bin kein Roboter" })).toBeVisible();
   expect(google).toHaveLength(1);
   expect(google[0]).toContain("https://www.google.com/recaptcha/api.js");
+  await expect(page.getByRole("link", { name: "Datenschutzerklärung" })).toHaveAttribute("href", "/datenschutz");
+  await expect(page.getByRole("button", { name: "Spamschutz laden" })).toHaveCount(0);
 });
 
 test("ohne gelösten Spamschutz geht nichts an EmailJS", async ({ page }) => {
@@ -205,13 +205,10 @@ test("ohne gelösten Spamschutz geht nichts an EmailJS", async ({ page }) => {
   await page.goto("/contact");
   await felderAusfuellen(page);
 
-  // Skript nicht geladen
-  await page.getByRole("button", { name: "Nachricht senden" }).click();
-  await expect(page.getByText(/Bitte laden Sie den Spamschutz/)).toBeVisible();
-  // Skript geladen, Checkbox nicht gelöst
-  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  // Checkbox nicht gelöst
   await expect(page.getByRole("button", { name: "Ich bin kein Roboter" })).toBeVisible();
   await page.getByRole("button", { name: "Nachricht senden" }).click();
+  await expect(page.getByText(/Bitte bestätigen Sie die Checkbox des Spamschutzes/)).toBeVisible();
 
   expect(await alleMeldungen(page)).not.toContain(ERFOLG);
   expect(anfragen).toHaveLength(0);
@@ -230,7 +227,7 @@ test("das Token geht als g-recaptcha-response mit, und das Widget startet danach
   // Das Token war einmalig: ein zweiter Versand ohne neues Lösen geht nicht raus.
   await felderAusfuellen(page);
   await page.getByRole("button", { name: "Nachricht senden" }).click();
-  await expect(page.getByText(/Bitte laden Sie den Spamschutz/)).toBeVisible();
+  await expect(page.getByText(/Bitte bestätigen Sie die Checkbox des Spamschutzes/)).toBeVisible();
   expect(anfragen).toHaveLength(1);
 });
 
@@ -239,7 +236,6 @@ test("Skript nicht ladbar: sichtbarer Fehler, kein Versand", async ({ page }) =>
   await page.route("**/www.google.com/recaptcha/**", (route) => route.abort("blockedbyclient"));
   await page.goto("/contact");
   await felderAusfuellen(page);
-  await page.getByRole("button", { name: "Spamschutz laden" }).click();
   await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
   await page.getByRole("button", { name: "Nachricht senden" }).click();
   expect(anfragen).toHaveLength(0);
@@ -256,7 +252,6 @@ test("hängt die Google-Bibliothek, endet das Laden mit einem Fehler statt mit e
     }),
   );
   await page.goto("/contact");
-  await page.getByRole("button", { name: "Spamschutz laden" }).click();
   await page.clock.fastForward(11_000);
   await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
 });
@@ -264,10 +259,11 @@ test("hängt die Google-Bibliothek, endet das Laden mit einem Fehler statt mit e
 test("Wiederholen nach einem Fehler stapelt keine Skript-Tags", async ({ page }) => {
   await page.route("**/www.google.com/recaptcha/**", (route) => route.abort("blockedbyclient"));
   await page.goto("/contact");
+  await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
   for (let i = 0; i < 2; i++) {
-    await page.getByRole("button", { name: "Spamschutz laden" }).click();
+    await page.getByRole("button", { name: "Erneut versuchen" }).click();
     await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
-    await expect(page.getByRole("button", { name: "Spamschutz laden" })).toBeEnabled();
+    await expect(page.getByRole("button", { name: "Erneut versuchen" })).toBeEnabled();
   }
   await expect(page.locator('script[src*="recaptcha"]')).toHaveCount(0);
 });
