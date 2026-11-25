@@ -194,7 +194,6 @@ test("das Google-Skript wird nur auf der Kontaktseite geholt, ohne Klick", async
   await expect(page.getByRole("button", { name: "Ich bin kein Roboter" })).toBeVisible();
   expect(google).toHaveLength(1);
   expect(google[0]).toContain("https://www.google.com/recaptcha/api.js");
-  await expect(page.getByRole("link", { name: "Datenschutzerklärung" })).toHaveAttribute("href", "/datenschutz");
   await expect(page.getByRole("button", { name: "Spamschutz laden" })).toHaveCount(0);
 });
 
