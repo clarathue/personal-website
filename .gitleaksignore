@@ -1,0 +1,7 @@
+# Googles öffentlich dokumentierter reCAPTCHA-v2-Test-Schlüssel in den erfundenen E2E-Testwerten
+# (e2e/emailjs-testwerte.ts, Zeile 8). Kein Geheimnis, die Regel generic-api-key schlägt nur an.
+# Format: <Commit>:<Datei>:<Regel>:<Zeile>. Eine neue Fassung der Datei in einem neuen Commit braucht
+# einen neuen Eintrag.
+a619c16dae94c61d381f951c682401c031b994f4:e2e/emailjs-testwerte.ts:generic-api-key:8
+e32945cf30c592914e551806c3b1d21bbe27afbb:e2e/emailjs-testwerte.ts:generic-api-key:8
+29e7c5a4b5655b3d5783e2b98c8f2d93875f8c42:e2e/emailjs-testwerte.ts:generic-api-key:8

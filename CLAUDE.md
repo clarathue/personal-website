@@ -46,7 +46,10 @@ Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus
 - **EmailJS-Kennungen nie im Quelltext.** Public Key, Service- und Template-ID kommen als
   `VITE_EMAILJS_*` aus `.env` (Vorlage `.env.example`), in `ci.yml` und `deploy.yml` aus
   den gleichnamigen GitHub-Secrets. Fehlt eine, bricht der Build ab (`vite.config.ts`).
-  Der lokale Test-Build nimmt erfundene Werte (`e2e/emailjs-testwerte.ts`).
+  Der lokale Test-Build nimmt erfundene Werte (`e2e/emailjs-testwerte.ts`). Darin steht Googles
+  öffentlich dokumentierter reCAPTCHA-Test-Key; der Secret-Scan (`generic-api-key`) schlägt an ihm an.
+  `.gitleaksignore` erlaubt diese Funde je Commit (`<Commit>:<Datei>:<Regel>:<Zeile>`). Ändert ein neuer
+  Commit die Datei, braucht er einen neuen Eintrag, sonst wird die CI rot.
 
 - **reCAPTCHA v2 im Kontaktformular** (`src/components/RecaptchaField.tsx`). Das Google-Skript lädt nie beim
   Seitenaufruf, sondern erst nach dem Klick auf „Spamschutz laden“ (Einwilligung; Datenschutzerklärung
