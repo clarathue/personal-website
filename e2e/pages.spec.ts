@@ -53,7 +53,7 @@ test("Datenschutzerklärung enthält keine Platzhalteranschrift für EmailJS", a
 test("Datenschutzerklärung nennt Google Fonts und Calendly, aber keine Analyse", async ({ page }) => {
   await page.goto("/datenschutz");
   const text = page.locator("body");
-  for (const name of ["Hosting", "Google Fonts", "Calendly", "Rechtsgrundlagen, Speicherdauer und Drittlandübermittlung", "Ihre Rechte"]) {
+  for (const name of ["Hosting", "Google Fonts", "Google reCAPTCHA", "Calendly", "Rechtsgrundlagen, Speicherdauer und Drittlandübermittlung", "Ihre Rechte"]) {
     await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   }
   await expect(text).toContainText("fonts.googleapis.com");
@@ -62,6 +62,8 @@ test("Datenschutzerklärung nennt Google Fonts und Calendly, aber keine Analyse"
   // Der Drittland-Hinweis steht je einmal bei Hosting und Google Fonts.
   expect(await text.innerText()).toMatch(/Übermittlung in ein Land außerhalb der EU[\s\S]*Übermittlung in ein Land außerhalb der EU/);
   await expect(text).toContainText("Cookies oder ähnliche Speicherungen");
+  await expect(text).toContainText("https://policies.google.com/privacy");
+  await expect(text).toContainText("§ 25 Abs. 1 TDDDG");
   await expect(text).toContainText("Art. 6 Abs. 1 lit. f DSGVO");
   await expect(text).toContainText("Data Privacy Framework");
   await expect(text).toContainText("Bayerische Landesamt für Datenschutzaufsicht");
