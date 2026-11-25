@@ -48,6 +48,55 @@ test("Datenschutzerklärung enthält keine Platzhalteranschrift für EmailJS", a
   await expect(page.locator('a[href="https://www.emailjs.com/legal/privacy-policy/"]')).toBeVisible();
 });
 
+// Die Erklärung nennt, was der Code wirklich lädt (Google Fonts in src/index.css, Calendly-iframe
+// in CalendlyButton.tsx), und behauptet keine Analyse oder Einwilligung, die es nicht gibt.
+test("Datenschutzerklärung nennt Google Fonts und Calendly, aber keine Analyse", async ({ page }) => {
+  await page.goto("/datenschutz");
+  const text = page.locator("body");
+  for (const name of ["Hosting", "Google Fonts", "Calendly", "Rechtsgrundlagen, Speicherdauer und Drittlandübermittlung", "Ihre Rechte"]) {
+    await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  }
+  await expect(text).toContainText("fonts.googleapis.com");
+  await expect(text).toContainText("GitHub");
+  await expect(text).toContainText("Art. 77 DSGVO");
+  // Der Drittland-Hinweis steht je einmal bei Hosting und Google Fonts.
+  expect(await text.innerText()).toMatch(/Übermittlung in ein Land außerhalb der EU[\s\S]*Übermittlung in ein Land außerhalb der EU/);
+  await expect(text).toContainText("Cookies oder ähnliche Speicherungen");
+  await expect(text).toContainText("Art. 6 Abs. 1 lit. f DSGVO");
+  await expect(text).toContainText("Data Privacy Framework");
+  await expect(text).toContainText("Bayerische Landesamt für Datenschutzaufsicht");
+  await expect(text).toContainText("bewusst nicht auf meinem eigenen Server");
+  // Die Seite verlinkt keine Profile in sozialen Netzwerken, also steht dazu auch nichts im Text.
+  await expect(page.getByRole("heading", { name: "Soziale Medien" })).toHaveCount(0);
+  await expect(text).not.toContainText("Analyse Ihres Nutzerverhaltens");
+  await expect(text).not.toContainText("nach Ihrer Einwilligung");
+});
+
+// Die Aussage „keine Cookies, keine Analyse“ und die Liste der Drittanbieter hängen am Code:
+// Beim Laden der Seiten gehen Anfragen nur an die eigene Adresse und an Google Fonts, es gibt
+// weder Cookies noch Einträge im lokalen Speicher. Kommt ein weiterer Dienst dazu, wird das hier rot
+// und die Datenschutzerklärung muss mit.
+for (const path of ["/", "/contact", "/datenschutz", "/hr/"]) {
+  test(`${path} lädt nur von der eigenen Adresse und Google Fonts, ohne Cookies`, async ({ page, baseURL }) => {
+    const eigenerHost = new URL(baseURL!).host;
+    const fremdeHosts = new Set<string>();
+    page.on("request", (r) => {
+      const url = new URL(r.url());
+      if (url.protocol.startsWith("http") && url.host !== eigenerHost) fremdeHosts.add(url.host);
+    });
+    // Schriftanfragen beantwortet der Test selbst, damit kein Lauf an fremden Servern hängt.
+    await page.route(/fonts\.(googleapis|gstatic)\.com/, (route) =>
+      route.fulfill({ status: 200, contentType: "text/css", body: "" }),
+    );
+    await page.goto(path);
+    await page.waitForLoadState("networkidle");
+
+    expect([...fremdeHosts].sort()).toEqual(["fonts.googleapis.com"]);
+    expect(await page.evaluate(() => document.cookie)).toBe("");
+    expect(await page.evaluate(() => localStorage.length + sessionStorage.length)).toBe(0);
+  });
+}
+
 // Jede Unterseite nennt sich selbst als canonical (nicht die Startseite), og:url zieht mit.
 for (const path of ["/ai-chatbots", "/system-integration"]) {
   test(`${path} setzt canonical und og:url auf die eigene Adresse`, async ({ page }) => {

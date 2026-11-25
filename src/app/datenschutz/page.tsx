@@ -37,28 +37,31 @@ const Datenschutz = () => {
               Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in unser Kontaktformular eingeben.
             </p>
             <p className="mb-6">
-              Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).
+              Andere Daten werden automatisch beim Besuch der Website erfasst, vor allem technische Daten (z. B. IP-Adresse, Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Sie entstehen beim Hosting-Anbieter (siehe „Hosting“), beim Laden von Schriftarten von Google (siehe „Google Fonts“), beim Absenden des Kontaktformulars bei EmailJS (siehe „EmailJS“) und, nachdem Sie „Termin vereinbaren“ geklickt haben, bei Calendly (siehe „Calendly“).
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
               Wofür werden Ihre Daten verwendet?
             </Title>
             <p className="mb-6">
-              Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
+              Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Die Angaben aus dem Kontaktformular verwende ich, um Ihre Anfrage zu bearbeiten. Diese Website setzt selbst keine Cookies und nutzt keine Analyse- oder Tracking-Dienste. Ob Calendly nach dem Öffnen des Terminfensters Cookies oder ähnliche Speicherungen auf Ihrem Gerät vornimmt, bestimmt Calendly (siehe „Calendly“).
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
               Welche Rechte haben Sie bezüglich Ihrer Daten?
             </Title>
             <p className="mb-6">
-              Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen.
+              Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Alle Rechte im Einzelnen finden Sie unter „Ihre Rechte“.
             </p>
 
             <Title as="h2" variant="section" animate={true}>
               Hosting
             </Title>
             <p className="mb-6">
-              Die Inhalte meiner Website werden bei GitHub Pages gehostet. Anbieter ist die GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
+              Die Inhalte meiner Website werden bei GitHub Pages gehostet. Anbieter ist die GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA. In seiner Datenschutzerklärung nennt GitHub je nach Fall auch die GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Niederlande, als Verantwortliche.
+            </p>
+            <p className="mb-6">
+              Beim Aufruf der Website verarbeitet GitHub technisch bedingt Ihre IP-Adresse und weitere Verbindungsdaten (z. B. Zeitpunkt des Abrufs, Browser, aufgerufene Seite). Da der Anbieter seinen Sitz in den USA hat, kann dabei eine Übermittlung in ein Land außerhalb der EU stattfinden.
             </p>
 
             <Title as="h2" variant="section" animate={true}>
@@ -83,6 +86,7 @@ const Datenschutz = () => {
               Thümecke Business Intelligence Solutions<br />
               Kazmairstraße 59<br />
               80339 München<br />
+              E-Mail: clara@thuemecke.net
             </p>
 
             <Title as="h2" variant="section" animate={true}>
@@ -93,14 +97,14 @@ const Datenschutz = () => {
               Kontaktformular
             </Title>
             <p className="mb-6">
-              Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei mir gespeichert.
+              Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei mir gespeichert. Der Versand läuft über den Dienst EmailJS (siehe unten) und endet in meinem E-Mail-Postfach.
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
               EmailJS
             </Title>
             <p className="mb-6">
-              Ich nutze EmailJS für die Verarbeitung von Kontaktformularen. Anbieter ist die EmailJS Pte. Ltd. (Singapur). Dabei können Ihre Angaben aus dem Formular (Name, E-Mail-Adresse, Nachricht) an Server in den USA übermittelt werden. Die Übermittlung stützt sich auf die EU-Standardvertragsklauseln im Rahmen der Auftragsverarbeitungsvereinbarung von EmailJS, die Sie hier einsehen können:{' '}
+              Ich nutze EmailJS für die Verarbeitung von Kontaktformularen. Anbieter ist die EmailJS Pte. Ltd. mit Rechtssitz in Singapur. Laut der Datenschutzerklärung von EmailJS liegen alle Server in den USA (AWS); als Unterauftragsverarbeiter nennt EmailJS Cloudflare, AWS, Redis, Zendesk und Sentry. Ihre Angaben aus dem Formular (Name, E-Mail-Adresse, Nachricht) und Ihre IP-Adresse werden dabei an EmailJS übermittelt und dort verarbeitet, um die Nachricht an mein Postfach zuzustellen. Die Übermittlung stützt sich nach Angabe von EmailJS auf die EU-Standardvertragsklauseln; die Auftragsverarbeitungsvereinbarung gilt über die Nutzungsbedingungen von EmailJS und ist hier einsehbar:{' '}
               <a href="https://www.emailjs.com/legal/data-protection-agreement/" className="text-tech-blue hover:text-tech-darkBlue">
                 https://www.emailjs.com/legal/data-protection-agreement/
               </a>
@@ -112,11 +116,41 @@ const Datenschutz = () => {
               </a>
             </p>
 
-            <Title as="h2" variant="section" animate={true}>
-              Soziale Medien
+            <Title as="h5" variant="subsection" animate={true}>
+              Google Fonts
             </Title>
             <p className="mb-6">
-              Ich unterhalte Onlinepräsenzen innerhalb sozialer Netzwerke, um mit den dort aktiven Interessenten und Nutzern kommunizieren und sie dort über meine Leistungen informieren zu können.
+              Diese Website lädt die Schriftart „Inter“ beim Aufruf von den Servern von Google (fonts.googleapis.com und fonts.gstatic.com). Die Schrift ist bewusst nicht auf meinem eigenen Server abgelegt, sondern wird von Google geladen. Dabei überträgt Ihr Browser Ihre IP-Adresse und technische Verbindungsdaten an Google. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Muttergesellschaft ist die Google LLC in den USA, sodass eine Übermittlung in ein Land außerhalb der EU nicht ausgeschlossen werden kann.
+            </p>
+
+            <Title as="h5" variant="subsection" animate={true}>
+              Calendly
+            </Title>
+            <p className="mb-6">
+              Auf der Seite „Kontakt“ können Sie über „Termin vereinbaren“ ein Fenster mit dem Buchungsdienst Calendly öffnen. Erst mit diesem Klick lädt Ihr Browser Inhalte von calendly.com; dabei erhält Calendly u. a. Ihre IP-Adresse. Was Sie dort zur Buchung eingeben (z. B. Name, E-Mail-Adresse), verarbeitet Calendly, und es wird mir mitgeteilt. Anbieter ist Calendly, LLC in den USA; in der Datenschutzerklärung von Calendly steht als Anschrift 115 E Main St., Ste A1B, Buford, GA 30518, USA. Für die Buchung selbst handelt Calendly nach eigener Angabe als Auftragsverarbeiter für mich, für den Besuch der Calendly-Seite als Verantwortlicher. Auf der Seite „HR“ führt ein Link zu Calendly; erst nach Ihrem Klick verlassen Sie meine Website und gelangen zu Calendly. Näheres steht in der Datenschutzerklärung von Calendly:{' '}
+              <a href="https://calendly.com/privacy" className="text-tech-blue hover:text-tech-darkBlue">
+                https://calendly.com/privacy
+              </a>
+            </p>
+
+            <Title as="h2" variant="section" animate={true}>
+              Rechtsgrundlagen, Speicherdauer und Drittlandübermittlung
+            </Title>
+            <p className="mb-6">
+              Rechtsgrundlagen: Das Hosting bei GitHub und das Laden der Schrift von Google beruhen auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse an einer sicheren, schnellen und einheitlich gestalteten Bereitstellung der Website). Das Kontaktformular samt EmailJS beruht auf Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen zielt, sonst auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse, Anfragen zu bearbeiten). Die Terminbuchung über Calendly beruht auf Art. 6 Abs. 1 lit. b DSGVO, soweit sie auf Ihre Anfrage erfolgt, sonst auf Art. 6 Abs. 1 lit. f DSGVO.
+            </p>
+            <p className="mb-6">
+              Speicherdauer: Ihre Kontaktanfrage speichere ich so lange, wie es zur Bearbeitung nötig ist, und lösche sie danach. Entsteht daraus eine Geschäftsbeziehung, gelten für die dazugehörige Korrespondenz (Handels- und Geschäftsbriefe) Aufbewahrungsfristen von sechs Jahren (§ 257 HGB, § 147 AO); bis dahin bleibt sie gesperrt für andere Zwecke. Wie lange GitHub, Google, EmailJS und Calendly Daten speichern, richtet sich nach deren Datenschutzerklärungen.
+            </p>
+            <p className="mb-6">
+              Übermittlung in Drittländer: GitHub, Google und Calendly geben in ihren Datenschutzerklärungen an, dem EU-U.S. Data Privacy Framework (DPF) anzugehören (bei Google: Google LLC), und sich daneben, wo erforderlich, auf die EU-Standardvertragsklauseln zu stützen; für Calendly nennt dessen Erklärung beides. Ob ein Anbieter aktuell zertifiziert ist, können Sie auf https://www.dataprivacyframework.gov/list prüfen. Bei EmailJS stützt sich die Übermittlung nach dessen Angaben auf die EU-Standardvertragsklauseln (siehe „EmailJS“).
+            </p>
+
+            <Title as="h2" variant="section" animate={true}>
+              Ihre Rechte
+            </Title>
+            <p className="mb-6">
+              Sie haben nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Außerdem haben Sie das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für meinen Sitz in München ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach (Postanschrift: Postfach 1349, 91504 Ansbach), zuständig. Bei Fragen zum Datenschutz wenden Sie sich an clara@thuemecke.net.
             </p>
           </div>
         </div>
