@@ -42,11 +42,50 @@ async function alleMeldungen(page: Page): Promise<string[]> {
   return page.evaluate(() => (window as unknown as { __meldungen: string[] }).__meldungen);
 }
 
-async function ausfuellenUndSenden(page: Page) {
-  await page.goto("/contact");
+// Attrappe für das Google-Skript: kein Aufruf erreicht Google. Sie zählt die Anfragen, rendert
+// eine Checkbox-Attrappe, die ein Token liefert, und zählt reset().
+const RECAPTCHA_ATTRAPPE = `
+window.grecaptcha = {
+  zaehler: 0,
+  resets: 0,
+  ready(cb) { cb(); },
+  render(el, o) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = "Ich bin kein Roboter";
+    b.onclick = () => o.callback("test-token-" + ++window.grecaptcha.zaehler);
+    el.appendChild(b);
+    return 7;
+  },
+  reset() { window.grecaptcha.resets++; },
+};`;
+
+async function recaptchaAttrappe(page: Page) {
+  const anfragen: string[] = [];
+  await page.route("**/www.google.com/recaptcha/**", async (route) => {
+    anfragen.push(route.request().url());
+    await route.fulfill({ status: 200, contentType: "text/javascript", body: RECAPTCHA_ATTRAPPE });
+  });
+  return anfragen;
+}
+
+async function felderAusfuellen(page: Page) {
   await page.getByLabel("Name").fill("Test Person");
   await page.getByLabel("E-Mail").fill("test@example.invalid");
   await page.getByLabel("Nachricht").fill("TEST- Nachricht aus dem Formular-Test");
+}
+
+// Einwilligen (Skript laden) und die Checkbox lösen.
+async function spamschutzLoesen(page: Page) {
+  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await page.getByRole("button", { name: "Ich bin kein Roboter" }).click();
+}
+
+async function ausfuellenUndSenden(page: Page) {
+  await recaptchaAttrappe(page);
+  await page.goto("/contact");
+  await felderAusfuellen(page);
+  await spamschutzLoesen(page);
   await page.getByRole("button", { name: "Nachricht senden" }).click();
 }
 
@@ -132,7 +171,9 @@ test("die Attrappe greift für den echten Endpunkt", async ({ page }) => {
 test("Leerzeichen am Rand werden vor dem Versand entfernt", async ({ page }) => {
   const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
 
+  await recaptchaAttrappe(page);
   await page.goto("/contact");
+  await spamschutzLoesen(page);
   await page.getByLabel("Name").fill("  Test Person ");
   await page.getByLabel("E-Mail").fill("test@example.invalid");
   await page.getByLabel("Nachricht").fill("\n TEST- Nachricht mit Rand \n");
@@ -142,6 +183,93 @@ test("Leerzeichen am Rand werden vor dem Versand entfernt", async ({ page }) => 
   expect(anfragen[0]).toMatchObject({
     template_params: { from_name: "Test Person", message: "TEST- Nachricht mit Rand" },
   });
+});
+
+test("das Google-Skript wird erst nach dem Klick auf Spamschutz laden geholt", async ({ page }) => {
+  const google = await recaptchaAttrappe(page);
+  await page.goto("/contact");
+  await page.waitForLoadState("networkidle");
+  expect(google).toEqual([]);
+  await expect(page.getByRole("link", { name: "Datenschutzerklärung" })).toHaveAttribute("href", "/datenschutz");
+
+  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await expect(page.getByRole("button", { name: "Ich bin kein Roboter" })).toBeVisible();
+  expect(google).toHaveLength(1);
+  expect(google[0]).toContain("https://www.google.com/recaptcha/api.js");
+});
+
+test("ohne gelösten Spamschutz geht nichts an EmailJS", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+  await meldungenProtokollieren(page);
+  await recaptchaAttrappe(page);
+  await page.goto("/contact");
+  await felderAusfuellen(page);
+
+  // Skript nicht geladen
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+  await expect(page.getByText(/Bitte laden Sie den Spamschutz/)).toBeVisible();
+  // Skript geladen, Checkbox nicht gelöst
+  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await expect(page.getByRole("button", { name: "Ich bin kein Roboter" })).toBeVisible();
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+
+  expect(await alleMeldungen(page)).not.toContain(ERFOLG);
+  expect(anfragen).toHaveLength(0);
+  await expect(page.getByLabel("Name")).toHaveValue("Test Person");
+});
+
+test("das Token geht als g-recaptcha-response mit, und das Widget startet danach neu", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+  await ausfuellenUndSenden(page);
+  await expect(page.getByText(ERFOLG)).toBeVisible();
+
+  expect(anfragen).toHaveLength(1);
+  expect(anfragen[0]).toMatchObject({ template_params: { "g-recaptcha-response": "test-token-1" } });
+  expect(await page.evaluate(() => (window as unknown as { grecaptcha: { resets: number } }).grecaptcha.resets)).toBe(1);
+
+  // Das Token war einmalig: ein zweiter Versand ohne neues Lösen geht nicht raus.
+  await felderAusfuellen(page);
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+  await expect(page.getByText(/Bitte laden Sie den Spamschutz/)).toBeVisible();
+  expect(anfragen).toHaveLength(1);
+});
+
+test("Skript nicht ladbar: sichtbarer Fehler, kein Versand", async ({ page }) => {
+  const anfragen = await attrappe(page, (route) => route.fulfill({ status: 200, body: "OK" }));
+  await page.route("**/www.google.com/recaptcha/**", (route) => route.abort("blockedbyclient"));
+  await page.goto("/contact");
+  await felderAusfuellen(page);
+  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
+  await page.getByRole("button", { name: "Nachricht senden" }).click();
+  expect(anfragen).toHaveLength(0);
+});
+
+test("hängt die Google-Bibliothek, endet das Laden mit einem Fehler statt mit ewigem Warten", async ({ page }) => {
+  await page.clock.install();
+  await page.route("**/www.google.com/recaptcha/**", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "text/javascript",
+      // api.js lädt, aber ready() ruft nie zurück (gstatic gesperrt)
+      body: "window.grecaptcha = { ready() {}, render() { return 1; }, reset() {} };",
+    }),
+  );
+  await page.goto("/contact");
+  await page.getByRole("button", { name: "Spamschutz laden" }).click();
+  await page.clock.fastForward(11_000);
+  await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
+});
+
+test("Wiederholen nach einem Fehler stapelt keine Skript-Tags", async ({ page }) => {
+  await page.route("**/www.google.com/recaptcha/**", (route) => route.abort("blockedbyclient"));
+  await page.goto("/contact");
+  for (let i = 0; i < 2; i++) {
+    await page.getByRole("button", { name: "Spamschutz laden" }).click();
+    await expect(page.getByText(/Der Spamschutz konnte nicht geladen werden/)).toBeVisible();
+    await expect(page.getByRole("button", { name: "Spamschutz laden" })).toBeEnabled();
+  }
+  await expect(page.locator('script[src*="recaptcha"]')).toHaveCount(0);
 });
 
 test("Honeypot gefüllt: stille Erfolgsmeldung, keine Anfrage an EmailJS", async ({ page }) => {

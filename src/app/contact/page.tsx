@@ -10,15 +10,17 @@ import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CalendlyButton from '@/components/CalendlyButton';
+import RecaptchaField from '@/components/RecaptchaField';
 import { Title } from '@/components/ui/title';
-import { fehlendeEmailjsVariablen, fehlendeVariablenMeldung } from '@/lib/emailjs-config';
+import { fehlendeFormularVariablen, fehlendeVariablenMeldung } from '@/lib/emailjs-config';
 
 // Kennungen aus der Build-Konfiguration (src/lib/emailjs-config.ts). Fehlt eine, bricht
 // der Produktions-Build ab; im Dev-Server meldet das Formular den Fehler beim Absenden.
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_FEHLEND = fehlendeEmailjsVariablen(import.meta.env);
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+const EMAILJS_FEHLEND = fehlendeFormularVariablen(import.meta.env);
 const KONFIGURATION_FEHLT =
   'Das Kontaktformular ist gerade nicht eingerichtet. Bitte kontaktieren Sie mich direkt per E-Mail.';
 
@@ -32,6 +34,8 @@ const HONEYPOT_STIL: React.CSSProperties = {
   height: '1px',
   overflow: 'hidden',
 };
+
+const SPAMSCHUTZ_FEHLT = 'Bitte laden Sie den Spamschutz und bestätigen Sie die Checkbox, bevor Sie absenden.';
 
 const NUR_LEERZEICHEN = 'Bitte nicht nur Leerzeichen eingeben.';
 
@@ -49,6 +53,8 @@ const ContactPage = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [captchaToken, setCaptchaToken] = React.useState<string | null>(null);
+  const [captchaReset, setCaptchaReset] = React.useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,6 +74,10 @@ const ContactPage = () => {
       toast.error(KONFIGURATION_FEHLT);
       return;
     }
+    if (!captchaToken) {
+      toast.error(SPAMSCHUTZ_FEHLT);
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -76,6 +86,8 @@ const ContactPage = () => {
         from_email: formData.email.trim(),
         message: formData.message.trim(),
         reply_to: formData.email.trim(),
+        // EmailJS prüft das Token gegen den Secret Key im Template.
+        'g-recaptcha-response': captchaToken,
       };
 
       const result = await emailjs.send(
@@ -97,6 +109,9 @@ const ContactPage = () => {
         'Fehler beim Senden der Nachricht. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich direkt per E-Mail.'
       );
     } finally {
+      // Ein Token gilt nur für einen Versand.
+      setCaptchaToken(null);
+      setCaptchaReset((n) => n + 1);
       setIsSubmitting(false);
     }
   };
@@ -210,6 +225,8 @@ const ContactPage = () => {
                       />
                     </div>
                     
+                    <RecaptchaField siteKey={RECAPTCHA_SITE_KEY} onToken={setCaptchaToken} resetKey={captchaReset} />
+
                     <Button 
                       type="submit" 
                       className="w-full bg-tech-blue hover:bg-tech-darkBlue text-white"

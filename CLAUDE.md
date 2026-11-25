@@ -34,7 +34,7 @@ Website thuemecke.net: React-SPA mit Vite, Tailwind und shadcn/ui auf GitHub Pag
 
 | Weg | Datei | Absender | Empfängerkreis | Auslöser |
 |---|---|---|---|---|
-| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service und -Template aus `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` | `clara@thuemecke.net`, fest im EmailJS-Template (To Email), nicht im Code | Besucher klickt „Absenden“; ein gefülltes Honeypot-Feld sendet nichts |
+| Kontaktformular per EmailJS (`emailjs.send`) | `src/app/contact/page.tsx` | EmailJS-Service und -Template aus `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` | `clara@thuemecke.net`, fest im EmailJS-Template (To Email), nicht im Code | Besucher klickt „Absenden“ nach gelöstem reCAPTCHA; ein gefülltes Honeypot-Feld sendet nichts |
 
 Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus.
 
@@ -47,6 +47,13 @@ Kein anderer Code verschickt Mails. Specs und Skripte lösen den Versand nie aus
   `VITE_EMAILJS_*` aus `.env` (Vorlage `.env.example`), in `ci.yml` und `deploy.yml` aus
   den gleichnamigen GitHub-Secrets. Fehlt eine, bricht der Build ab (`vite.config.ts`).
   Der lokale Test-Build nimmt erfundene Werte (`e2e/emailjs-testwerte.ts`).
+
+- **reCAPTCHA v2 im Kontaktformular** (`src/components/RecaptchaField.tsx`). Das Google-Skript lädt nie beim
+  Seitenaufruf, sondern erst nach dem Klick auf „Spamschutz laden“ (Einwilligung; Datenschutzerklärung
+  nennt das). Ohne Token geht nichts an EmailJS; das Token geht als `g-recaptcha-response` mit.
+  Site-Key aus `VITE_RECAPTCHA_SITE_KEY` (GitHub-Repo-*Variable*, `vars.` in `ci.yml`/`deploy.yml`),
+  fehlt er, bricht der Build ab. Der Secret Key steht nur im EmailJS-Template, nie im Repo.
+  Wer ein Google-Skript, einen Dienst oder eine Schrift ergänzt, zieht `src/app/datenschutz/page.tsx` im selben PR nach.
 
 ## Prod-Zugriffe
 

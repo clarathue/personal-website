@@ -37,14 +37,14 @@ const Datenschutz = () => {
               Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in unser Kontaktformular eingeben.
             </p>
             <p className="mb-6">
-              Andere Daten werden automatisch beim Besuch der Website erfasst, vor allem technische Daten (z. B. IP-Adresse, Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Sie entstehen beim Hosting-Anbieter (siehe „Hosting“), beim Laden von Schriftarten von Google (siehe „Google Fonts“), beim Absenden des Kontaktformulars bei EmailJS (siehe „EmailJS“) und, nachdem Sie „Termin vereinbaren“ geklickt haben, bei Calendly (siehe „Calendly“).
+              Andere Daten werden automatisch beim Besuch der Website erfasst, vor allem technische Daten (z. B. IP-Adresse, Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Sie entstehen beim Hosting-Anbieter (siehe „Hosting“), beim Laden von Schriftarten von Google (siehe „Google Fonts“), beim Absenden des Kontaktformulars bei EmailJS (siehe „EmailJS“), wenn Sie den Spamschutz laden, bei Google (siehe „Google reCAPTCHA“) und, nachdem Sie „Termin vereinbaren“ geklickt haben, bei Calendly (siehe „Calendly“).
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
               Wofür werden Ihre Daten verwendet?
             </Title>
             <p className="mb-6">
-              Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Die Angaben aus dem Kontaktformular verwende ich, um Ihre Anfrage zu bearbeiten. Diese Website setzt selbst keine Cookies und nutzt keine Analyse- oder Tracking-Dienste. Ob Calendly nach dem Öffnen des Terminfensters Cookies oder ähnliche Speicherungen auf Ihrem Gerät vornimmt, bestimmt Calendly (siehe „Calendly“).
+              Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Die Angaben aus dem Kontaktformular verwende ich, um Ihre Anfrage zu bearbeiten. Diese Website setzt selbst keine Cookies und nutzt keine Analyse- oder Tracking-Dienste. Ob Calendly (nach dem Öffnen des Terminfensters) oder Google reCAPTCHA (nach dem Laden des Spamschutzes) Cookies oder ähnliche Speicherungen auf Ihrem Gerät vornehmen, bestimmen die Anbieter (siehe „Calendly“ und „Google reCAPTCHA“).
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
@@ -97,7 +97,7 @@ const Datenschutz = () => {
               Kontaktformular
             </Title>
             <p className="mb-6">
-              Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei mir gespeichert. Der Versand läuft über den Dienst EmailJS (siehe unten) und endet in meinem E-Mail-Postfach.
+              Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei mir gespeichert. Der Versand läuft über den Dienst EmailJS (siehe unten) und endet in meinem E-Mail-Postfach. Vor dem Absenden müssen Sie den Spamschutz Google reCAPTCHA laden und bestätigen (siehe „Google reCAPTCHA“).
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
@@ -124,6 +124,22 @@ const Datenschutz = () => {
             </p>
 
             <Title as="h5" variant="subsection" animate={true}>
+              Google reCAPTCHA
+            </Title>
+            <p className="mb-6">
+              Das Kontaktformular ist mit Google reCAPTCHA (Version 2, Checkbox) gegen automatisierten Missbrauch und Spam geschützt. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Muttergesellschaft ist die Google LLC in den USA, sodass eine Übermittlung in ein Land außerhalb der EU nicht ausgeschlossen werden kann.
+            </p>
+            <p className="mb-6">
+              Das Google-Skript wird nicht beim Aufruf der Seite geladen, sondern erst, wenn Sie im Formular auf „Spamschutz laden“ klicken. Erst dann übermittelt Ihr Browser Daten an Google, insbesondere Ihre IP-Adresse und technische Angaben zu Browser und Gerät sowie weitere Daten, die Google für die Prüfung auswertet. Nach der Bestätigung erhält der Browser von Google ein Prüfergebnis (Token). Dieses Token wird beim Absenden zusammen mit Ihren Formulardaten an EmailJS übermittelt; EmailJS lässt es bei Google prüfen, bevor die Nachricht zugestellt wird.
+            </p>
+            <p className="mb-6">
+              Die Verarbeitung beruht auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG), die Sie mit dem Klick auf „Spamschutz laden“ erteilen. Sie gilt nur für den aktuellen Besuch der Seite und wird nicht gespeichert. Ohne Einwilligung kann das Formular nicht abgesendet werden; Sie können mir stattdessen direkt an clara@thuemecke.net schreiben. Sie können die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie den Browser-Tab schließen oder die Seite neu laden (dann wird nichts mehr an Google übertragen) oder mir eine E-Mail schreiben. Näheres steht in der Datenschutzerklärung von Google:{' '}
+              <a href="https://policies.google.com/privacy" className="text-tech-blue hover:text-tech-darkBlue">
+                https://policies.google.com/privacy
+              </a>
+            </p>
+
+            <Title as="h5" variant="subsection" animate={true}>
               Calendly
             </Title>
             <p className="mb-6">
@@ -137,20 +153,20 @@ const Datenschutz = () => {
               Rechtsgrundlagen, Speicherdauer und Drittlandübermittlung
             </Title>
             <p className="mb-6">
-              Rechtsgrundlagen: Das Hosting bei GitHub und das Laden der Schrift von Google beruhen auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse an einer sicheren, schnellen und einheitlich gestalteten Bereitstellung der Website). Das Kontaktformular samt EmailJS beruht auf Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen zielt, sonst auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse, Anfragen zu bearbeiten). Die Terminbuchung über Calendly beruht auf Art. 6 Abs. 1 lit. b DSGVO, soweit sie auf Ihre Anfrage erfolgt, sonst auf Art. 6 Abs. 1 lit. f DSGVO.
+              Rechtsgrundlagen: Das Hosting bei GitHub und das Laden der Schrift von Google beruhen auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse an einer sicheren, schnellen und einheitlich gestalteten Bereitstellung der Website). Das Kontaktformular samt EmailJS beruht auf Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage auf einen Vertrag oder vorvertragliche Maßnahmen zielt, sonst auf Art. 6 Abs. 1 lit. f DSGVO (mein berechtigtes Interesse, Anfragen zu bearbeiten). Das Laden des Spamschutzes beruht auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG; siehe „Google reCAPTCHA“). Die Terminbuchung über Calendly beruht auf Art. 6 Abs. 1 lit. b DSGVO, soweit sie auf Ihre Anfrage erfolgt, sonst auf Art. 6 Abs. 1 lit. f DSGVO.
             </p>
             <p className="mb-6">
-              Speicherdauer: Ihre Kontaktanfrage speichere ich so lange, wie es zur Bearbeitung nötig ist, und lösche sie danach. Entsteht daraus eine Geschäftsbeziehung, gelten für die dazugehörige Korrespondenz (Handels- und Geschäftsbriefe) Aufbewahrungsfristen von sechs Jahren (§ 257 HGB, § 147 AO); bis dahin bleibt sie gesperrt für andere Zwecke. Wie lange GitHub, Google, EmailJS und Calendly Daten speichern, richtet sich nach deren Datenschutzerklärungen.
+              Speicherdauer: Ihre Kontaktanfrage speichere ich so lange, wie es zur Bearbeitung nötig ist, und lösche sie danach. Entsteht daraus eine Geschäftsbeziehung, gelten für die dazugehörige Korrespondenz (Handels- und Geschäftsbriefe) Aufbewahrungsfristen von sechs Jahren (§ 257 HGB, § 147 AO); bis dahin bleibt sie gesperrt für andere Zwecke. Die Einwilligung in den Spamschutz gilt nur für den aktuellen Seitenbesuch. Wie lange GitHub, Google, EmailJS und Calendly Daten speichern, richtet sich nach deren Datenschutzerklärungen.
             </p>
             <p className="mb-6">
-              Übermittlung in Drittländer: GitHub, Google und Calendly geben in ihren Datenschutzerklärungen an, dem EU-U.S. Data Privacy Framework (DPF) anzugehören (bei Google: Google LLC), und sich daneben, wo erforderlich, auf die EU-Standardvertragsklauseln zu stützen; für Calendly nennt dessen Erklärung beides. Ob ein Anbieter aktuell zertifiziert ist, können Sie auf https://www.dataprivacyframework.gov/list prüfen. Bei EmailJS stützt sich die Übermittlung nach dessen Angaben auf die EU-Standardvertragsklauseln (siehe „EmailJS“).
+              Übermittlung in Drittländer: GitHub, Google (auch für reCAPTCHA) und Calendly geben in ihren Datenschutzerklärungen an, dem EU-U.S. Data Privacy Framework (DPF) anzugehören (bei Google: Google LLC), und sich daneben, wo erforderlich, auf die EU-Standardvertragsklauseln zu stützen; für Calendly nennt dessen Erklärung beides. Ob ein Anbieter aktuell zertifiziert ist, können Sie auf https://www.dataprivacyframework.gov/list prüfen. Bei EmailJS stützt sich die Übermittlung nach dessen Angaben auf die EU-Standardvertragsklauseln (siehe „EmailJS“).
             </p>
 
             <Title as="h2" variant="section" animate={true}>
               Ihre Rechte
             </Title>
             <p className="mb-6">
-              Sie haben nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Außerdem haben Sie das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für meinen Sitz in München ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach (Postanschrift: Postfach 1349, 91504 Ansbach), zuständig. Bei Fragen zum Datenschutz wenden Sie sich an clara@thuemecke.net.
+              Sie haben nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Eine erteilte Einwilligung (Spamschutz) können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO). Außerdem haben Sie das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für meinen Sitz in München ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach (Postanschrift: Postfach 1349, 91504 Ansbach), zuständig. Bei Fragen zum Datenschutz wenden Sie sich an clara@thuemecke.net.
             </p>
           </div>
         </div>

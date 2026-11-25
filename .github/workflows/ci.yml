@@ -32,13 +32,14 @@ jobs:
       - name: Type check
         run: npm run type-check
 
-      # Ohne die drei EmailJS-Kennungen bricht der Build ab (vite.config.ts).
+      # Ohne die drei EmailJS-Kennungen und den reCAPTCHA-Site-Key (Repo-Variable) bricht der Build ab (vite.config.ts).
       - name: Build
         run: npm run build
         env:
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
           VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_RECAPTCHA_SITE_KEY: ${{ vars.VITE_RECAPTCHA_SITE_KEY }}
 
       # Nur Laufzeitpakete landen im Bundle; rot ab Schwere "high".
       - name: Dependency audit

@@ -36,7 +36,7 @@ This project is built with:
 ## How is this project deployed?
 
 - **Deployment:** Automated via GitHub Actions (`.github/workflows/deploy.yml`)
-- **EmailJS configuration:** `VITE_EMAILJS_PUBLIC_KEY`, `VITE_EMAILJS_SERVICE_ID` and `VITE_EMAILJS_TEMPLATE_ID` come from a local `.env` (copy `.env.example`) and, in CI and deploy, from the repository secrets of the same name. The build fails if one is missing.
+- **EmailJS configuration:** `VITE_EMAILJS_PUBLIC_KEY`, `VITE_EMAILJS_SERVICE_ID` and `VITE_EMAILJS_TEMPLATE_ID` come from a local `.env` (copy `.env.example`) and, in CI and deploy, from the repository secrets of the same name. The build fails if one is missing. The contact form also needs `VITE_RECAPTCHA_SITE_KEY` (public Google reCAPTCHA v2 checkbox site key; in CI and deploy a repository *variable*, not a secret). The matching secret key lives only in the EmailJS template (Settings, reCAPTCHA V2).
 - **Build Output:** The `dist/` folder is published to GitHub Pages
 - **Custom Domain:** Supported via a `CNAME` file (`thuemecke.net`)
 - **Static Assets:** All files in `public/` (including `sitemap.xml`, `robots.txt`, `favicon.ico`) are copied to the root of the deployed site
