@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router';
 import { Button } from '@/components/ui/button';
 
 const SCRIPT_URL = 'https://www.google.com/recaptcha/api.js?render=explicit';
@@ -26,6 +25,7 @@ declare global {
 }
 
 const LADE_TIMEOUT_MS = 10_000;
+const NORMAL_BREITE = 304;
 
 // Das Google-Skript wird nur geladen, wenn das Formular auf der Kontaktseite erscheint, nie auf
 // anderen Seiten. Ein schon geladenes Skript wird wiederverwendet, ein gescheitertes entfernt, damit Wiederholungen keine Tags stapeln.
@@ -94,8 +94,8 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
     if (widgetId.current !== null) return;
     widgetId.current = grecaptcha.render(container.current, {
       sitekey: siteKey,
-      // compact (164 px) statt normal (304 px), damit die Checkbox auf schmalen Telefonen in die Karte passt.
-      size: 'compact',
+      // Die übliche breite Form (304 px); nur wenn der Platz nicht reicht (kleines Telefon), die kompakte.
+      size: container.current.clientWidth > 0 && container.current.clientWidth < NORMAL_BREITE ? 'compact' : 'normal',
       callback: (token) => onTokenRef.current(token),
       'expired-callback': () => onTokenRef.current(null),
       'error-callback': () => onTokenRef.current(null),
@@ -117,11 +117,6 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
 
   return (
     <div className="space-y-3">
-      <p className="text-sm text-tech-gray-700">
-        Dieses Formular ist durch Google reCAPTCHA gegen Spam geschützt. Dabei lädt Ihr Browser beim
-        Öffnen dieser Seite Inhalte von Google und übermittelt u. a. Ihre IP-Adresse an Google
-        (auch in die USA). Details: <Link to="/datenschutz" className="text-tech-blue hover:text-tech-darkBlue underline">Datenschutzerklärung</Link>.
-      </p>
       {zustand === 'laedt' && (
         <p className="text-sm text-tech-gray-700" role="status">
           Spamschutz wird geladen...
@@ -137,12 +132,7 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
           </Button>
         </>
       )}
-      {zustand === 'bereit' && (
-        <p className="text-sm text-tech-gray-700" role="status">
-          Bitte bestätigen Sie die Checkbox.
-        </p>
-      )}
-      <div ref={container} tabIndex={-1} className="outline-none" />
+      <div ref={container} tabIndex={-1} className="outline-none max-w-full overflow-x-auto" />
     </div>
   );
 }
