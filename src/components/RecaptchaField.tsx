@@ -27,9 +27,8 @@ declare global {
 
 const LADE_TIMEOUT_MS = 10_000;
 
-// Das Google-Skript wird nie beim Seitenaufruf geladen, sondern erst nach dem Klick auf
-// „Spamschutz laden“ (ausdrückliche Einwilligung). Ein schon geladenes Skript wird
-// wiederverwendet, ein gescheitertes entfernt, damit Wiederholungen keine Tags stapeln.
+// Das Google-Skript wird nur geladen, wenn das Formular auf der Kontaktseite erscheint, nie auf
+// anderen Seiten. Ein schon geladenes Skript wird wiederverwendet, ein gescheitertes entfernt, damit Wiederholungen keine Tags stapeln.
 // Hängt die Bibliothek (z. B. von einem Blocker halb gesperrt), bricht ein Timeout ab.
 function skriptLaden(): Promise<Grecaptcha> {
   return new Promise((resolve, reject) => {
@@ -57,7 +56,7 @@ function skriptLaden(): Promise<Grecaptcha> {
   });
 }
 
-type Zustand = 'aus' | 'laedt' | 'bereit' | 'fehler';
+type Zustand = 'laedt' | 'bereit' | 'fehler';
 
 interface RecaptchaFieldProps {
   siteKey: string | undefined;
@@ -67,13 +66,13 @@ interface RecaptchaFieldProps {
 }
 
 export default function RecaptchaField({ siteKey, onToken, resetKey }: RecaptchaFieldProps) {
-  const [zustand, setZustand] = useState<Zustand>('aus');
+  const [zustand, setZustand] = useState<Zustand>('laedt');
   const container = useRef<HTMLDivElement>(null);
   const widgetId = useRef<number | null>(null);
   const onTokenRef = useRef(onToken);
   onTokenRef.current = onToken;
 
-  const einwilligen = async () => {
+  const laden = async () => {
     setZustand('laedt');
     try {
       await skriptLaden();
@@ -83,6 +82,11 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
       setZustand('fehler');
     }
   };
+
+  // Ohne Site-Key gibt es nichts zu laden; das Feld sagt es unten sichtbar.
+  useEffect(() => {
+    if (siteKey) void laden();
+  }, [siteKey]);
 
   useEffect(() => {
     const grecaptcha = window.grecaptcha;
@@ -96,8 +100,6 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
       'expired-callback': () => onTokenRef.current(null),
       'error-callback': () => onTokenRef.current(null),
     });
-    // Der Laden-Knopf verschwindet; der Fokus geht an die Checkbox-Fläche statt an <body>.
-    container.current.focus();
   }, [zustand, siteKey]);
 
   useEffect(() => {
@@ -115,26 +117,29 @@ export default function RecaptchaField({ siteKey, onToken, resetKey }: Recaptcha
 
   return (
     <div className="space-y-3">
-      {zustand !== 'bereit' && (
+      <p className="text-sm text-tech-gray-700">
+        Dieses Formular ist durch Google reCAPTCHA gegen Spam geschützt. Dabei lädt Ihr Browser beim
+        Öffnen dieser Seite Inhalte von Google und übermittelt u. a. Ihre IP-Adresse an Google
+        (auch in die USA). Details: <Link to="/datenschutz" className="text-tech-blue hover:text-tech-darkBlue underline">Datenschutzerklärung</Link>.
+      </p>
+      {zustand === 'laedt' && (
+        <p className="text-sm text-tech-gray-700" role="status">
+          Spamschutz wird geladen...
+        </p>
+      )}
+      {zustand === 'fehler' && (
         <>
-          <p className="text-sm text-tech-gray-700">
-            Zum Schutz vor Spam nutzt dieses Formular Google reCAPTCHA. Wenn Sie den Spamschutz laden,
-            lädt Ihr Browser Inhalte von Google und übermittelt dabei u. a. Ihre IP-Adresse an Google
-            (auch in die USA). Details und Widerruf: <Link to="/datenschutz" className="text-tech-blue hover:text-tech-darkBlue underline">Datenschutzerklärung</Link>.
+          <p className="text-sm text-red-600" role="alert">
+            Der Spamschutz konnte nicht geladen werden. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt per E-Mail.
           </p>
-          <Button type="button" variant="outline" onClick={einwilligen} disabled={zustand === 'laedt'}>
-            {zustand === 'laedt' ? 'Spamschutz wird geladen...' : 'Spamschutz laden'}
+          <Button type="button" variant="outline" onClick={laden}>
+            Erneut versuchen
           </Button>
         </>
       )}
-      {zustand === 'fehler' && (
-        <p className="text-sm text-red-600" role="alert">
-          Der Spamschutz konnte nicht geladen werden. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt per E-Mail.
-        </p>
-      )}
       {zustand === 'bereit' && (
         <p className="text-sm text-tech-gray-700" role="status">
-          Spamschutz geladen. Bitte bestätigen Sie die Checkbox.
+          Bitte bestätigen Sie die Checkbox.
         </p>
       )}
       <div ref={container} tabIndex={-1} className="outline-none" />

@@ -35,7 +35,7 @@ const HONEYPOT_STIL: React.CSSProperties = {
   overflow: 'hidden',
 };
 
-const SPAMSCHUTZ_FEHLT = 'Bitte laden Sie den Spamschutz und bestätigen Sie die Checkbox, bevor Sie absenden.';
+const SPAMSCHUTZ_FEHLT = 'Bitte bestätigen Sie die Checkbox des Spamschutzes, bevor Sie absenden.';
 
 const NUR_LEERZEICHEN = 'Bitte nicht nur Leerzeichen eingeben.';
 
